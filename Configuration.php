@@ -2,12 +2,9 @@
     include_once("helper/Database.php");
     include_once("helper/MustachePresenter.php");
     include_once("helper/Router.php");
-    include_once("controller/HomeController.php");
-    include_once("controller/AdminController.php");
-    include_once("model/PokemonModel.php");
-    include_once("model/TipoModel.php");
-    include_once("model/Pokemon.php");
-    include_once("model/UsuarioModel.php");
+    include_once("controller/LobbyUsuarioController.php");
+    include_once("controller/JuegoController.php");
+    include_once("controller/RankingController.php");
 
     include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
@@ -35,11 +32,32 @@
             return new MustachePresenter("view/templates");
         }
 
+        /*Controladores */
+        public static function getJuegoController(){
+            return new JuegoController(self::getPresenter(), self::getMainSettings());
+        }
+
+        public static function getLobbyUsuarioController(){
+            return new LobbyUsuarioController(self::getPresenter(), self::getMainSettings());
+        }
+
+        public static function getRankingController(){
+            return new RankingController(self::getPresenter(), self::getMainSettings());
+        }
+
+
         public static function getMainSettings(){
             $main_settings = array(
+                "isOnLobbyUsuarioView" => (isset($_GET["controller"]) || $_GET["controller"] == "lobbyusuario" || empty($_GET["controller"])) ? true : false,
+                "isOnJuegoView" => (isset($_GET["controller"]) && $_GET["controller"] == "juego") ? true:false,
+                "isOnRankingView"=> (isseT($_GET["controller"]) && $_GET["controller"] == "ranking") ? true :false
             );
             return $main_settings;
         }
 
+        /* NOTA: CAMBIAR ESTE POR EL DE LOGIN, OJO QUE ESTE "LOBBYCONTROLLER" ESTA DE EJEMPLO COMO CONTROLLER BASE */
+        public static function getRouter(){
+            return new Router("getLobbyUsuarioController","get");
+        }
     }
 ?>
