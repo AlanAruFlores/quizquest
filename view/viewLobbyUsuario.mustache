@@ -10,11 +10,46 @@
 
     <div class="menu">
         <h3 class="contenido__titulo menu__titulo">Seleccione una opcion</h3>
-        <a href="" class="menu__opcion">Crear Partida</a>
-        <a href="" class="menu__opcion">Unirse a Partida</a>
-        <a href="" class="menu__opcion">Crear Pregunta</a>
-        <a href="ranking/get" class="menu__opcion">Ver Ranking</a>
+        <a class="menu__opcion" id="abrir__crear__ventana">Crear Partida</a>
+        <a class="menu__opcion" id="ir__partida" href="/quizquest/partida/get">Unirse a Partida</a>
+        <a class="menu__opcion" id="abrir__pregunta__ventana">Crear Pregunta</a>
+        <a class="menu__opcion" id="ir__ranking" href="/quizquest/ranking/get">Ver Ranking</a>
     </div>
     <div class="wave wave_abajo"></div>
 </main>
+<div>
+
+<!-- PopUps -->
+<div class="popup crear__partida" id="crear__partida__ventana">
+    <a href="#" class="popup__button popup__cerrar" id="cerrar__crear__ventana"><i class="fa-solid fa-xmark"></i></a>
+    <h2 class="popup__titulo">Crea tu partida!</h2>
+    <form class="popup__formulario">
+        <h3 class="popup__subtitulo">Nueva Partida</h3>
+        <label>Nombre de la partida</label>
+        <input type="text" name="" id="" value="">
+        <button href="#" class="popup__boton boton__formulario">Crear</button>
+    </form>
+</div>
+
+<div class="popup crear__pregunta" id="crear__pregunta__ventana">
+    <a href="#" class="popup__button popup__cerrar" id="cerrar__pregunta__ventana"><i class="fa-solid fa-xmark"></i></a>
+    <h2 class="popup__titulo">Sugiere una pregunta!</h2>
+    <form class="popup__formulario">
+        <h3 class="popup__subtitulo">Nueva pregunta</h3>
+        <label>Pregunta</label>
+        <input type="text" name="" id="" value="">
+        <label>Tipo de pregunta</label>
+        <select name="">
+                <option value="historia">Historia</option>
+                <option value="geografia">Geografía</option>
+                <option value="ciencia">Ciencia</option>
+                <option value="arte">Arte</option>
+                <option value="deportes">Deportes</option>
+                <option value="entretenimiento">Entretenimiento</option>        
+       </select>
+        <button href="#" class="popup__boton boton__formulario">Crear Pregunta</button>
+    </form>
+</div>
+
 <script src="/quizquest/public/js/animacion_yeti.js"></script>
+<script src="/quizquest/public/js/main.js" type="module"></script>

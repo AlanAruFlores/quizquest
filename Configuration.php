@@ -5,6 +5,7 @@
     include_once("controller/LobbyUsuarioController.php");
     include_once("controller/JuegoController.php");
     include_once("controller/RankingController.php");
+    include_once("controller/PartidaController.php");
 
     include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
@@ -45,12 +46,16 @@
             return new RankingController(self::getPresenter(), self::getMainSettings());
         }
 
+        public static function getPartidaController(){
+            return new PartidaController(self::getPresenter(), self::getMainSettings());
+        }
 
         public static function getMainSettings(){
             $main_settings = array(
                 "isOnLobbyUsuarioView" => (isset($_GET["controller"]) || $_GET["controller"] == "lobbyusuario" || empty($_GET["controller"])) ? true : false,
                 "isOnJuegoView" => (isset($_GET["controller"]) && $_GET["controller"] == "juego") ? true:false,
-                "isOnRankingView"=> (isseT($_GET["controller"]) && $_GET["controller"] == "ranking") ? true :false
+                "isOnRankingView"=> (isset($_GET["controller"]) && $_GET["controller"] == "ranking") ? true :false,
+                "isOnPartidaView"=>(isset($_GET["controller"]) && $_GET["controller"] == "partida") ? true :false
             );
             return $main_settings;
         }

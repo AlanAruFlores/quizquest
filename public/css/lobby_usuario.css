@@ -111,6 +111,7 @@ body{
     padding: 0px 20px;
     box-shadow: 0px 0px 7px #fff;
     transition: 500ms;
+    cursor: pointer;
 }
 .menu__opcion:hover{
     background-color: #00c6fb;
@@ -155,6 +156,123 @@ body{
 
 }
 
+/*Pop Ups*/
+.popup{
+    background-blend-mode: lighten;
+    background: rgba(255, 255, 2555, 0.9);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    overflow: scroll;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 50px 15px;
+}
+.popup__titulo{
+    font-family: bebas;
+    font-size: 40px;
+    background-image: linear-gradient(to top, #00c6fb 100%, #005bea 10%); /* Cambia los colores según lo desees */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.popup__subtitulo{
+    font-size: 30px;
+}
+
+
+.popup__parrafo{
+    color:#303030;
+    font-size: 20px;
+    font-family: opensans;
+    text-align: center;
+    font-weight: 400;
+    line-height: 33px;
+}
+.popup__boton{
+    background-image: linear-gradient(to top, #00c6fb 100%, #005bea 10%); 
+    text-decoration: none;
+    font-family: bebas;
+    padding: 10px 40px;
+    font-size: 30px;
+    margin-top: 50px;
+}
+
+.popup__cerrar{
+    background-color: #00c6fb;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+/* Formulario CSS */
+.popup__formulario{
+    background-color: #00c6fb;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 500px;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0px;
+}
+.popup__formulario .popup__subtitulo{
+    color: #fff;
+    font-family: bebas;
+    font-size: 35px;
+    letter-spacing: 2px;
+}
+.popup__formulario label{
+    width: 80%;
+    font-family: opensans;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+.popup__formulario input, select{
+    width: 80%;
+    height: 30px;
+    border: none;
+    color: #303030;
+}
+.popup__formulario select option{
+    color: #303030;
+}
+
+.boton__formulario{
+    border: none;
+    background-image:none;
+    background-color: #fff;
+    color: #00c6fb;
+    width: 80%;
+}
+/*Ventana crear partida*/
+#crear__partida__ventana{
+    visibility: hidden;
+    opacity: 0;
+    transition: 500ms;
+}
+
+#crear__pregunta__ventana{
+    visibility: hidden;
+    opacity: 0;
+    transition: 500ms;
+}
 @media (min-width:950px) {
     .encabezado__titulo{
         font-size: 45px;
