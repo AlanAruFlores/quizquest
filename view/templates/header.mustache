@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
+
     {{#isOnLobbyUsuarioView}}
         <link rel="stylesheet" href="/quizquest/public/css/lobby_usuario.css">
     {{/isOnLobbyUsuarioView}}
@@ -12,16 +12,25 @@
     {{#isOnJuegoView}}
         <link rel="stylesheet" href="/quizquest/public/css/juego.css">
     {{/isOnJuegoView}}
-    
+
     {{#isOnRankingView}}
         <link rel="stylesheet" href="/quizquest/public/css/ranking.css">
     {{/isOnRankingView}}
 
     {{#isOnPartidaView}}
         <link rel="stylesheet" href="/quizquest/public/css/partidas.css">
+
     {{/isOnPartidaView}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="/quizquest/public/imagenes/quiz.png">
+
+    {{#isOnRankingView}}
+        <link rel="stylesheet" href="/quizquest/public/css/registro_login.css">
+    {{/isOnRankingView}}
+
+    {{#isOnRankingView}}
+        <link rel="stylesheet" href="/quizquest/public/css/perfil.css">
+    {{/isOnRankingView}}
 
     <title>QuizQuest</title>
 </head>
