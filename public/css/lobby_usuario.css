@@ -71,9 +71,10 @@ body{
     font-weight: 700;
     width: 90%; 
     text-align: center;
+    max-width: 600px;
 }
 .wave{
-    background-image: url(wave.svg);
+    background-image: url(/quizquest/public/imagenes/wave.svg);
     height: 80px;
     width: 100%;
     position: absolute;
@@ -147,4 +148,78 @@ body{
     font-size: 15px;
     margin-left: 4px;
 
+}
+
+@media (min-width:950px) {
+    .encabezado__titulo{
+        font-size: 45px;
+    }
+    .yeti__imagen{
+        grid-row: 4/8;
+        grid-column: 1/4;
+    }
+    /*CONTENIDO*/
+    .contenido{
+        grid-area: contenido;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: 60px 10px 150px 100px;
+        position: relative;    
+        padding: 70px 40px;
+        gap: 8px;
+    }
+    .contenido__titulo{
+        grid-row: 1/2;
+        grid-column: 1/4;
+    }
+    .contenido__subtitulo{
+        text-align: left;
+        grid-row: 2/3;
+        grid-column: 1/4;
+    }
+    .contenido__texto{
+        grid-row: 3/4;
+        grid-column: 1/4;
+        text-align: left;
+        font-size: 20px;
+    }
+    .menu{
+        grid-column: 4/8;
+        grid-row: 1/8;
+    }
+    .menu__titulo{
+        font-size: 45px;
+        margin-bottom: 50px;
+    }
+    .menu__opcion{
+        width: 300px;
+    }
+    /*PIE DE PAGINA*/
+    .pie__pagina{
+        padding: 20px 70px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: 1fr;
+    }
+    .pie__titulo{
+        font-size: 45px;
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+
+    .pie__subtitulo{
+        font-size: 25px;
+    }
+    .pie__integrantes{
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+    .pie__integrantes li{
+        margin-top: 2px;
+        font-size: 18px;
+    }
+
+    .pie__parrafo{
+        font-size: 18px;
+    }
 }
