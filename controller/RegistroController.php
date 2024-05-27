@@ -1,6 +1,6 @@
 <?php 
 
-    class RankingController{
+    class RegistroController{
         private $presenter;
         private $mainSettings;
 
@@ -10,7 +10,7 @@
         }
 
         public function get(){
-            $this->presenter->render("view/viewRanking.mustache", [...$this->mainSettings]);
+            $this->presenter->render("view/registro.mustache", [...$this->mainSettings]);
         }
     }
 ?>

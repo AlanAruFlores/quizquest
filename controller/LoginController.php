@@ -1,6 +1,6 @@
 <?php 
 
-    class RegistroController{
+    class LoginController{
         private $presenter;
         private $mainSettings;
 
@@ -10,7 +10,7 @@
         }
 
         public function get(){
-            $this->presenter->render("view/registro.mustache", [...$this->mainSettings]);
+            $this->presenter->render("view/login.mustache", [...$this->mainSettings]);
         }
     }
 ?>

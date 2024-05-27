@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../public/css/registro_login.css">
+    <link rel="stylesheet" href=".css">
+</head>
+<body>
+<header class="encabezado">
+    <h1 class="encabezado__titulo">QuizQuest</h1>
+</header>
+<main class="contenido">
+    <h2 class="contenido__titulo">Ingresar</h2>
+    <form class="formulario" action="ingreso.php" method="POST">
+        <div class="formulario__grupo">
+            <label for="nombre_usuario">Nombre de usuario:</label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="contrasenia">Año de nacimiento:</label>
+            <input type="text" id="contrasenia" name="contrasenia" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <button type="submit" class="boton">Iniciar</button>
+        </div>
+    </form>
+</main>
+
+<footer class="pie__pagina">
+    <h2 class="pie__titulo">QuizQuest</h2>
+    <h3 class="pie__titulo pie__subtitulo">Integrantes</h3>
+    <ul class="pie__integrantes">
+        <li>Vargas Franco</li>
+        <li>Gavagnin Lucas</li>
+        <li>Aruquipa Alan</li>
+    </ul>
+    <h3 class="pie__titulo pie__subtitulo">Materia</h3>
+    <p class="pie__parrafo">Programacion Web II</p>
+
+    <h3 class="pie__titulo pie__subtitulo">Universidad</h3>
+    <p class="pie__parrafo">Universidad Nacional de la Matanza</p>
+</footer>
+</body>
+</html>

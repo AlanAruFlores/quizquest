@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="../public/css/registro_login.css">
+    <link rel="stylesheet" href=".css">
+</head>
+<body>
+<header class="encabezado">
+    <h1 class="encabezado__titulo">QuizQuest</h1>
+</header>
+<main class="contenido">
+    <div class="wave wave_arriba"></div>
+
+    <h2 class="contenido__titulo">Crea tu cuenta</h2>
+    <form class="formulario" action="registro.php" method="POST">
+        <div class="formulario__grupo">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="nacimiento">Año de nacimiento:</label>
+            <input type="date" id="nacimiento" name="nacimiento" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+            </select>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="pais">País:</label>
+            <input type="text" id="pais" name="pais" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" name="ciudad" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="contrasenia">Contraseña:</label>
+            <input type="password" id="contrasenia" name="contrasenia" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="repetir_contrasenia">Repetir contraseña:</label>
+            <input type="password" id="repetir_contrasenia" name="repetir_contrasenia" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="formulario__grupo">
+            <label for="foto">Foto de perfil:</label>
+            <input type="file" id="foto" name="foto" accept="image/*">
+        </div>
+
+        <div class="formulario__grupo">
+            <button type="submit" class="boton">Registrar</button>
+        </div>
+    </form>
+    <div class="wave wave_abajo"></div>
+
+</main>
+
+<footer class="pie__pagina">
+    <h2 class="pie__titulo">QuizQuest</h2>
+    <h3 class="pie__titulo pie__subtitulo">Integrantes</h3>
+    <ul class="pie__integrantes">
+        <li>Vargas Franco</li>
+        <li>Gavagnin Lucas</li>
+        <li>Aruquipa Alan</li>
+    </ul>
+    <h3 class="pie__titulo pie__subtitulo">Materia</h3>
+    <p class="pie__parrafo">Programacion Web II</p>
+
+    <h3 class="pie__titulo pie__subtitulo">Universidad</h3>
+    <p class="pie__parrafo">Universidad Nacional de la Matanza</p>
+</footer>
+</body>
+</html>
