@@ -66,6 +66,7 @@ body{
 .tabla{
     width: 90%;
     border-collapse: collapse;
+    max-width: 600px;
 }
 .tabla__cabecera{
     text-align: left;
