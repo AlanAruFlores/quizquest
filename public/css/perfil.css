@@ -157,7 +157,7 @@ option{
 
 
 .wave{
-    background-image: url(../../../Vistas_Preguntados/svg/wave.svg);
+    background-image: url(/quizquest/public/imagenes/wave.svg);
     height: 80px;
     width: 100%;
     position: absolute;
