@@ -63,13 +63,27 @@ class Configuration
         return new PartidaController(self::getPresenter(), self::getMainSettings());
     }
 
+    public static function getLoginController(){
+        return new LoginController(self::getPresenter(), self::getMainSettings());
+    }
+
+    public static function getRegistroController(){
+        return new RegistroController(self::getPresenter(), self::getMainSettings());
+    }
+
+    public static function getPerfilController(){
+        return new PerfilController(self::getPresenter(), self::getMainSettings());
+    }
+
     public static function getMainSettings()
     {
         $main_settings = array(
             "isOnLobbyUsuarioView" => (isset($_GET["controller"]) || $_GET["controller"] == "lobbyusuario" || empty($_GET["controller"])) ? true : false,
             "isOnJuegoView" => (isset($_GET["controller"]) && $_GET["controller"] == "juego") ? true : false,
             "isOnRankingView" => (isset($_GET["controller"]) && $_GET["controller"] == "ranking") ? true : false,
-            "isOnPartidaView" => (isset($_GET["controller"]) && $_GET["controller"] == "partida") ? true : false
+            "isOnPartidaView" => (isset($_GET["controller"]) && $_GET["controller"] == "partida") ? true : false,
+            "isOnLoginOrRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "login" || $_GET["controller"]=="registro") ? true : false,
+            "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil") ? true : false
         );
         return $main_settings;
     }
