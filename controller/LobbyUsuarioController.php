@@ -14,6 +14,11 @@
             $this->presenter->render("view/viewLobbyUsuario.mustache",[...$this->mainSettings]);
         }
 
+        public function exit(){
+            $_SESSION["usuarioLogged"] = null;
+            unset($_SESSION["usuarioLogged"]);
+            header("Location:/quizquest/login/get");
+        }
 
     }
 ?>

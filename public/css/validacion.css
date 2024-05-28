@@ -1,0 +1,158 @@
+@font-face {
+    font-family: bebas;
+    src: url(/quizquest/public/fuentes/BebasNeue-Regular.ttf);
+}
+@font-face {
+    font-family: opensans;
+    src: url(/quizquest/public/fuentes/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: opensans;
+    color: #fff;
+}
+
+body{
+    display: grid;
+    background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 590px auto;
+    grid-template-areas: "encabezado" "contenido" "pie";
+}
+
+/*ENCABEZADO*/
+.encabezado{
+    background-color: #fff;
+    padding: 10px 20px;
+    grid-area: encabezado;
+}
+.encabezado__titulo{
+    font-family: bebas;
+    background-image: linear-gradient(to top, #00c6fb 90%, #005bea 10%); /* Cambia los colores según lo desees */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.yeti__imagen{
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    bottom: 25px;
+    z-index: -1;
+    transition: 1s;
+}
+/*CONTENIDO*/
+.contenido{
+    grid-area: contenido;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px 0px;
+    gap: 20px;
+}
+
+.validacion{
+    margin-top: 100px;
+    background-color: #fff;
+    padding: 40px 10px;
+    width: 90%;
+    max-width: 530px;
+}
+.validacion__titulo{
+    color: #00c6fb;
+    font-family: bebas;
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 25px;
+}
+.validacion div{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}
+.validacion div input{
+    width: 40px;
+    height: 40px;
+    border: none;
+    box-shadow: 0px 0px 2px #303030;
+    color: #303030;
+    font-size: 20px;
+    text-align: center;
+    font-family: bebas;
+}
+
+.validacion button{
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 90%;
+    color: #fff;
+    background-color: #00c6fb;
+    border: none;
+    height: 40px;
+    font-family: bebas;
+    font-size: 20px;
+}
+
+
+.wave{
+    background-image: url(/quizquest/public/imagenes/wave.svg);
+    height: 80px;
+    width: 100%;
+    position: absolute;
+    background-repeat:repeat-x;
+}
+.wave__abajo{
+    bottom:0;
+    left: 0;
+}
+.wave__arriba{
+    top: 0;
+    left: 0;
+    transform: rotate(180deg)
+}
+
+/*PIE DE PAGINA*/
+.pie__pagina{
+    grid-area: pie;
+    background-color: #fff;
+    padding: 20px 20px;
+}
+.pie__titulo{
+    color: #303030;
+    font-family: bebas;
+    letter-spacing: 1px;
+    font-size: 35px;
+}
+
+.pie__subtitulo{
+    margin-top: 15px;
+    font-size: 20px;
+}
+.pie__integrantes{
+    margin-top: 8px;
+    list-style: none;
+    margin-left: 4px;
+}
+.pie__integrantes li{
+    color: #303030;
+    font-family: opensans;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.pie__parrafo{
+    color: #303030;
+    font-family: opensans;
+    font-weight: 400;
+    font-size: 15px;
+    margin-left: 4px;
+
+}

@@ -12,6 +12,8 @@ include_once("controller/PerfilController.php");
 include_once("controller/RegistroController.php");
 
 
+include_once("model/RegistroModel.php");
+
 include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
 //Clase tipo Factory que retornara las instancias del proyecto y donde vamos a tener los controllers a usar
@@ -68,12 +70,18 @@ class Configuration
     }
 
     public static function getRegistroController(){
-        return new RegistroController(self::getPresenter(), self::getMainSettings());
+        return new RegistroController(self::getPresenter(),self::getRegistroModel(),self::getMainSettings());
     }
 
     public static function getPerfilController(){
         return new PerfilController(self::getPresenter(), self::getMainSettings());
     }
+
+    /*MODELOS*/
+    public static function getRegistroModel(){
+        return new RegistroModel();
+    }
+
 
     public static function getMainSettings()
     {
@@ -82,8 +90,9 @@ class Configuration
             "isOnJuegoView" => (isset($_GET["controller"]) && $_GET["controller"] == "juego") ? true : false,
             "isOnRankingView" => (isset($_GET["controller"]) && $_GET["controller"] == "ranking") ? true : false,
             "isOnPartidaView" => (isset($_GET["controller"]) && $_GET["controller"] == "partida") ? true : false,
-            "isOnLoginOrRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "login" || $_GET["controller"]=="registro") ? true : false,
-            "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil") ? true : false
+            "isOnLoginOrRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "login" || ($_GET["controller"]=="registro" && $_GET["action"] =="get")) ? true : false,
+            "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil") ? true : false,
+            "isOnValidateView" => (isset($_GET["controller"]) && ($_GET["controller"] == "registro" && $_GET["action"]=="validate")) ? true : false
         );
         return $main_settings;
     }

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     document.addEventListener("click", (e)=>{
       
-        if(!e.target.matches("#ir__ranking") && !e.target.matches("#ir__partida"))
+        if(!e.target.matches("#ir__ranking") && !e.target.matches("#ir__partida") && !e.target.matches("#salir"))
             e.preventDefault();
 
         if(e.target.matches("#abrir__crear__ventana") || e.target.matches("#abrir__crear__ventana *"))
