@@ -13,13 +13,13 @@ include_once("controller/RegistroController.php");
 
 
 include_once("model/RegistroModel.php");
+include_once("model/UsuarioModel.php");
 
 include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
 //Clase tipo Factory que retornara las instancias del proyecto y donde vamos a tener los controllers a usar
 class Configuration
 {
-
 
     public static function getConfig()
     {
@@ -37,6 +37,7 @@ class Configuration
 
         return new Database($server, $user, $password, $database);
     }
+
 
     public static function getPresenter()
     {
@@ -66,7 +67,7 @@ class Configuration
     }
 
     public static function getLoginController(){
-        return new LoginController(self::getPresenter(), self::getMainSettings());
+        return new LoginController(self::getPresenter(),self::getUsuarioModel(), self::getMainSettings());
     }
 
     public static function getRegistroController(){
@@ -82,7 +83,9 @@ class Configuration
         return new RegistroModel();
     }
 
-
+    public static function getUsuarioModel(){
+        return new UsuarioModel(self::getDatabase());
+    }
     public static function getMainSettings()
     {
         $main_settings = array(
