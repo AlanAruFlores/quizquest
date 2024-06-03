@@ -1,21 +1,23 @@
+{{#preguntaActual}}
 <main class="contenido">
     <div class="wave wave_arriba"></div>
-    <div class="contenedor">
-        <div class="contenedor__titulo">Deportes</div>
+    <div class="contenedor" style="background-color:{{color}}; box-shadow: 0px 0px 15px {{color}};">
+        <div class="contenedor__titulo">{{categoria}}</div>
         <div class="contenedor__pregunta">
             <a href="#" class="contenedor__reportar">
                 <i class="fa-solid fa-flag"></i>
             </a>
 
-            <p>¿Que equipo gano el mundial 2022?</p>
+            <p>{{descripcion}}</p>
         </div>
-        <a href="" class="contenedor__respuesta">A) Argentina</a>
-        <a href="" class="contenedor__respuesta">B) Ecuador</a>
-        <a href="" class="contenedor__respuesta">C) Alemania</a>
-        <a href="" class="contenedor__respuesta">D) Francia</a>
+        {{#respuestasActuales}}
+            <a href="" class="contenedor__respuesta">A) {{descripcion_respuesta}}</a>
+        {{/respuestasActuales}}
     </div>
     <div class="wave wave_abajo"></div>
 </main>
+{{/preguntaActual}}
+
 <!-- PopUps -->
 <div class="popup victoria">
     <h2 class="popup__titulo">¡Enhorabuena, Jugador 1! </h2>

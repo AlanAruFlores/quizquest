@@ -51,8 +51,8 @@ CREATE TABLE Editor
 -- Creación de la tabla Partida
 CREATE TABLE Partida
 (
-    id      INT PRIMARY KEY,
-    nombre  VARCHAR(100) NOT NULL,
+    id      INT PRIMARY KEY auto_increment,
+    nombre  VARCHAR(100) NOT NULL unique,
     puntaje INT          NOT NULL
 );
 
@@ -68,9 +68,9 @@ CREATE TABLE Categoria
 CREATE TABLE Pregunta
 (
     id           INT PRIMARY KEY,
+    descripcion  TEXT,
     punto        INT     NOT NULL,
     esValido     BOOLEAN NOT NULL,
-    descripcion  TEXT,
     categoría_id INT,
     FOREIGN KEY (categoría_id) REFERENCES Categoria (id)
 );
@@ -128,7 +128,7 @@ VALUES (3);
 -- Insertar datos en la tabla Partida
 INSERT INTO Partida (id, nombre, puntaje)
 VALUES (1, 'Partida 1', 100);
-
+	
 -- Insertar datos en la tabla Categoría
 INSERT INTO Categoria (id, nombre, color) VALUES
 (1, 'Cultura', '#258D19'),
@@ -139,17 +139,17 @@ INSERT INTO Categoria (id, nombre, color) VALUES
 (6, 'Historia', '#ac00ac');
 
 -- Insertar datos en la tabla Pregunta
-INSERT INTO Pregunta (id, punto, esValido, categoría_id)
-VALUES (1, 10, TRUE, 1),
-       (2, 10, TRUE, 1),
-       (3, 10, TRUE, 1),
-       (4, 10, TRUE, 1),
-       (5, 10, TRUE, 1),
-       (6, 10, TRUE, 1),
-       (7, 10, TRUE, 1),
-       (8, 10, TRUE, 1),
-       (9, 10, TRUE, 1),
-       (10, 10, TRUE, 1);
+INSERT INTO Pregunta (id,descripcion, punto, esValido, categoría_id)
+VALUES (1, "¿Pregunta 1?",10, TRUE, 1),
+       (2,"¿Pregunta 2?", 10, TRUE, 2),
+       (3,"¿Pregunta 3?", 10, TRUE, 3),
+       (4,"¿Pregunta 4?",10, TRUE, 4),
+       (5,"¿Pregunta 5?",10, TRUE, 5),
+       (6,"¿Pregunta 6?",10, TRUE, 6),
+       (7,"¿Pregunta 7?",10, TRUE, 2),
+       (8,"¿Pregunta 8?",10, TRUE, 3),
+       (9,"¿Pregunta 9?",10, TRUE, 4),
+       (10,"¿Pregunta 10?",10, TRUE, 5);
 
 -- Insertar datos en la tabla Realiza
 /*
@@ -235,3 +235,8 @@ VALUES (37, FALSE, 'Mercurio', 10),
        (38, TRUE, 'Venus', 10),
        (39, FALSE, 'Marte', 10),
        (40, FALSE, 'Júpiter', 10);
+       
+/*SELECT*/
+select p.id, p.descripcion, p.punto, c.nombre as categoria, c.color as color from pregunta p join categoria c on p.categoría_id = c.id order by rand() limit 1;
+select r.id as res_id, r.esCorreto, r.descripción as descripcion_respuesta, p.id as preg_id, p.descripcion as descripcion_pregunta, p.punto, p.esValido from respuesta r join pregunta p on r.pregunta_id = p.id where p.id = 3;
+select * from partida;

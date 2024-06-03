@@ -23,11 +23,11 @@
 <div class="popup crear__partida" id="crear__partida__ventana">
     <a href="#" class="popup__button popup__cerrar" id="cerrar__crear__ventana"><i class="fa-solid fa-xmark"></i></a>
     <h2 class="popup__titulo">Crea tu partida!</h2>
-    <form class="popup__formulario">
+    <form class="popup__formulario" action="/quizquest/lobbyusuario/createNewPartida" method="POST">
         <h3 class="popup__subtitulo">Nueva Partida</h3>
-        <label>Nombre de la partida</label>
-        <input type="text" name="" id="" value="">
-        <button href="#" class="popup__boton boton__formulario">Crear</button>
+        <label class="nombre">Nombre de la partida</label>
+        <input type="text" name="nombre" id="nombre">
+        <button type="submit" class="popup__boton boton__formulario" id="crear__partida__boton">Crear</button>
     </form>
 </div>
 
