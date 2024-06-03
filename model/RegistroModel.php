@@ -35,7 +35,7 @@ class RegistroModel{
         $mail->isHTML(true);
         
         $mail->Subject = "Verificacion de registro";
-        $mail->Body = "Tu codigo de verificacion es $code<br><a href='http://localhost/quizquest/registro/validate'>Ingresa el codigo de verificacion</a>";
+        $mail->Body = "<h1>Codigo de Verificacion</h1><br>Tu codigo de verificacion es $code<br><a href='http://localhost/quizquest/registro/validate'>Ingresa el codigo de verificacion</a>";
 
         $mail->send();
 

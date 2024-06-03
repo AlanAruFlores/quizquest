@@ -90,7 +90,7 @@ class Configuration
             "isOnJuegoView" => (isset($_GET["controller"]) && $_GET["controller"] == "juego") ? true : false,
             "isOnRankingView" => (isset($_GET["controller"]) && $_GET["controller"] == "ranking") ? true : false,
             "isOnPartidaView" => (isset($_GET["controller"]) && $_GET["controller"] == "partida") ? true : false,
-            "isOnLoginOrRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "login" || ($_GET["controller"]=="registro" && $_GET["action"] =="get")) ? true : false,
+            "isOnLoginOrRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "login" || ($_GET["controller"]=="registro")) ? true : false,
             "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil") ? true : false,
             "isOnValidateView" => (isset($_GET["controller"]) && ($_GET["controller"] == "registro" && $_GET["action"]=="validate")) ? true : false
         );
