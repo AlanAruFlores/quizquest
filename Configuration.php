@@ -13,13 +13,17 @@ include_once("controller/RegistroController.php");
 
 
 include_once("model/RegistroModel.php");
+include_once("model/UsuarioModel.php");
+
+include_once("model/PartidaModel.php");
+include_once("model/RespuestaModel.php");
+include_once("model/PreguntaModel.php");
 
 include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
 //Clase tipo Factory que retornara las instancias del proyecto y donde vamos a tener los controllers a usar
 class Configuration
 {
-
 
     public static function getConfig()
     {
@@ -38,6 +42,7 @@ class Configuration
         return new Database($server, $user, $password, $database);
     }
 
+
     public static function getPresenter()
     {
         // Le pasamos el controlador y metodo por defectos
@@ -47,12 +52,12 @@ class Configuration
     /*Controladores */
     public static function getJuegoController()
     {
-        return new JuegoController(self::getPresenter(), self::getMainSettings());
+        return new JuegoController(self::getPresenter(),self::getPreguntaModel(),self::getRespuestaModel(), self::getMainSettings());
     }
 
     public static function getLobbyUsuarioController()
     {
-        return new LobbyUsuarioController(self::getPresenter(), self::getMainSettings());
+        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(), self::getMainSettings());
     }
 
     public static function getLobbyEditorController()
@@ -71,7 +76,7 @@ class Configuration
     }
 
     public static function getLoginController(){
-        return new LoginController(self::getPresenter(), self::getMainSettings());
+        return new LoginController(self::getPresenter(),self::getUsuarioModel(), self::getMainSettings());
     }
 
     public static function getRegistroController(){
@@ -87,6 +92,21 @@ class Configuration
         return new RegistroModel();
     }
 
+    public static function getUsuarioModel(){
+        return new UsuarioModel(self::getDatabase());
+    }
+
+    public static function getPreguntaModel(){
+        return new PreguntaModel(self::getDatabase());
+    }
+
+    public static function getRespuestaModel(){
+        return new RespuestaModel(self::getDatabase());
+    }
+
+    public static function getPartidaModel(){
+        return new PartidaModel(self::getDatabase());
+    }
 
     public static function getMainSettings()
     {
@@ -96,7 +116,7 @@ class Configuration
             "isOnJuegoView" => (isset($_GET["controller"]) && $_GET["controller"] == "juego") ? true : false,
             "isOnRankingView" => (isset($_GET["controller"]) && $_GET["controller"] == "ranking") ? true : false,
             "isOnPartidaView" => (isset($_GET["controller"]) && $_GET["controller"] == "partida") ? true : false,
-            "isOnLoginOrRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "login" || ($_GET["controller"]=="registro" && $_GET["action"] =="get")) ? true : false,
+            "isOnLoginOrRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "login" || ($_GET["controller"]=="registro")) ? true : false,
             "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil") ? true : false,
             "isOnValidateView" => (isset($_GET["controller"]) && ($_GET["controller"] == "registro" && $_GET["action"]=="validate")) ? true : false
         );
