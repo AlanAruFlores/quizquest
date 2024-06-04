@@ -7,6 +7,10 @@
     {{#isOnLobbyUsuarioView}}
         <link rel="stylesheet" href="/quizquest/public/css/lobby_usuario.css">
     {{/isOnLobbyUsuarioView}}
+
+    {{#isOnLobbyEditorView}}
+        <link rel="stylesheet" href="/quizquest/public/css/lobby_editor.css">
+    {{/isOnLobbyEditorView}}
     
     {{#isOnJuegoView}}
         <link rel="stylesheet" href="/quizquest/public/css/juego.css">
@@ -38,5 +42,10 @@
 </head>
 <body>
     <header class="encabezado">
-        <h1 class="encabezado__titulo">QuizQuest</h1>
+        {{#isOnLobbyEditorView}}
+            <h1 class="encabezado__titulo">QuizQuest Editor</h1>
+        {{/isOnLobbyEditorView}}
+        {{^isOnLobbyEditorView}}
+            <h1 class="encabezado__titulo">QuizQuest</h1>
+        {{/isOnLobbyEditorView}}
     </header>

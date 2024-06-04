@@ -6,7 +6,7 @@ include_once("controller/LobbyUsuarioController.php");
 include_once("controller/JuegoController.php");
 include_once("controller/RankingController.php");
 include_once("controller/PartidaController.php");
-
+include_once("controller/LobbyEditorController.php");
 include_once("controller/LoginController.php");
 include_once("controller/PerfilController.php");
 include_once("controller/RegistroController.php");
@@ -60,6 +60,11 @@ class Configuration
         return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(), self::getMainSettings());
     }
 
+    public static function getLobbyEditorController()
+    {
+        return new LobbyEditorController(self::getPresenter(), self::getMainSettings());
+    }
+
     public static function getRankingController()
     {
         return new RankingController(self::getPresenter(), self::getMainSettings());
@@ -106,7 +111,8 @@ class Configuration
     public static function getMainSettings()
     {
         $main_settings = array(
-            "isOnLobbyUsuarioView" => (isset($_GET["controller"]) || $_GET["controller"] == "lobbyusuario" || empty($_GET["controller"])) ? true : false,
+            "isOnLobbyUsuarioView" => (isset($_GET["controller"]) && $_GET["controller"] == "lobbyusuario" || empty($_GET["controller"])) ? true : false,
+            "isOnLobbyEditorView" => (isset($_GET["controller"]) && $_GET["controller"] == "lobbyeditor") ? true : false,
             "isOnJuegoView" => (isset($_GET["controller"]) && $_GET["controller"] == "juego") ? true : false,
             "isOnRankingView" => (isset($_GET["controller"]) && $_GET["controller"] == "ranking") ? true : false,
             "isOnPartidaView" => (isset($_GET["controller"]) && $_GET["controller"] == "partida") ? true : false,
