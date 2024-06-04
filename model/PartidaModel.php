@@ -13,7 +13,10 @@
         public function getPartidaByName($partida){
             return $this->database->query("SELECT * FROM partida WHERE nombre = '".$partida->getNombre()."'");
         }
-        //Metodo para crear un nuevo Usuario
 
+        public function updatePartidaPoints($partida, $points){
+            $partida->setPuntaje($partida->getPuntaje()+$points);
+            $this->database->execute("UPDATE partida SET puntaje = puntaje+$points WHERE id = '".$partida->getId()."'");  
+        }
     }
 ?>

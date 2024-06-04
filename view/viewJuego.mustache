@@ -1,7 +1,15 @@
 {{#preguntaActual}}
-<main class="contenido">
+<style>
+    .encabezado__titulo{
+        background-image: linear-gradient(to top, {{color}} 90%, {{color}} 10%); /* Cambia los colores según lo desees */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+
+<main class="contenido" style="background-color:{{color}};" >
     <div class="wave wave_arriba"></div>
-    <div class="contenedor" style="background-color:{{color}}; box-shadow: 0px 0px 15px {{color}};">
+    <div class="contenedor" style="background-color:{{color}}; box-shadow: 0px 0px 10px #ff;">
         <div class="contenedor__titulo">{{categoria}}</div>
         <div class="contenedor__pregunta">
             <a href="#" class="contenedor__reportar">
@@ -10,7 +18,7 @@
             <p>{{descripcion}}</p>
         </div>
         {{#respuestasActuales}}
-            <a href="" class="contenedor__respuesta">{{letra}}){{descripcion_respuesta}}</a>
+            <a href="/quizquest/juego/selectAnswer?idRespSeleccionada={{res_id}}" class="contenedor__respuesta">{{letra}}){{descripcion_respuesta}}</a>
         {{/respuestasActuales}}
     </div>
     <div class="wave wave_abajo"></div>
@@ -18,14 +26,39 @@
 {{/preguntaActual}}
 
 <!-- PopUps -->
-<div class="popup victoria">
-    <h2 class="popup__titulo">¡Enhorabuena, Jugador 1! </h2>
-    <p class="popup__parrafo">Eres el campeón indiscutible del trivia de preguntas. Tu conocimiento, habilidad y astucia te han llevado a la victoria. ¡Celebra tu triunfo y disfruta del reconocimiento como el mejor jugador de trivia! ¡Felicidades por tu logro!</p>
-    <a href="#" class="popup__boton">Continuar</a>
-</div>
+{{#hayPopUp}}
+    {{^popUpCorrectoOError}}
+        <div class="popup victoria">
+            <h2 class="popup__titulo">¡Respondiste bien la pregunta!</h2>
+            <p class="popup__parrafo">Vas Joya jugador!</p>
+            <img class="popup__imagen" src="/quizquest/public/imagenes/correct.svg">
+            <a href="/quizquest/juego/goToNextQuestion" class="popup__boton">Continuar</a>
+        </div>
+    {{/popUpCorrectoOError}}
 
-<div class="popup derrota">
-    <h2 class="popup__titulo">¡Aplausos por tu esfuerzo, Jugador 1!</h2>
-    <p class="popup__parrafo">Si bien esta vez no te llevas la victoria, tu dedicación y entusiasmo son admirables. Sigue desafiando tu mente y participando con valentía en futuras rondas. Recuerda, cada juego es una oportunidad para aprender y mejorar. ¡Gracias por tu participación y esperamos verte de nuevo en la próxima partida!</p>
-    <a href="#" class="popup__boton">Continuar</a>
-</div>
+    {{#popUpCorrectoOError}}
+        <div class="popup derrota">
+            <h2 class="popup__titulo">¡Mal respondido!</h2>
+            <p class="popup__parrafo">No te preocupes que la proxima te sale!</p>
+            <img class="popup__imagen"  src="/quizquest/public/imagenes/wrong.svg">
+            <a href="/quizquest/juego/goToNextQuestion" class="popup__boton">Continuar</a>
+        </div>
+    {{/popUpCorrectoOError}}
+{{/hayPopUp}}
+
+
+<!--
+
+    <div class="popup victoria">
+        <h2 class="popup__titulo">¡Bien Jugador vas joya!</h2>
+        <p class="popup__parrafo">Eres el campeón indiscutible del trivia de preguntas. Tu conocimiento, habilidad y astucia te han llevado a la victoria. ¡Celebra tu triunfo y disfruta del reconocimiento como el mejor jugador de trivia! ¡Felicidades por tu logro!</p>
+        <a href="#" class="popup__boton">Continuar</a>
+    </div>
+
+    <div class="popup derrota">
+        <h2 class="popup__titulo">¡Aplausos por tu esfuerzo, Jugador 1!</h2>
+        <p class="popup__parrafo">Si bien esta vez no te llevas la victoria, tu dedicación y entusiasmo son admirables. Sigue desafiando tu mente y participando con valentía en futuras rondas. Recuerda, cada juego es una oportunidad para aprender y mejorar. ¡Gracias por tu participación y esperamos verte de nuevo en la próxima partida!</p>
+        <a href="#" class="popup__boton">Continuar</a>
+    </div>
+    
+ -->

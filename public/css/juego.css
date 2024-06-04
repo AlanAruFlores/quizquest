@@ -115,6 +115,12 @@ body{
     text-decoration: none;
     font-size: 20px;
     border-radius: 25px;
+    transition: 1s;
+}
+
+.contenedor__respuesta:hover{
+    background-color: #e0e0e0;
+    cursor: pointer;
 }
 
 .wave{
@@ -225,6 +231,7 @@ body{
 .popup__parrafo{
     color:#303030;
     font-size: 20px;
+    max-width: 500px;
     font-family: opensans;
     text-align: center;
     font-weight: 400;
@@ -238,12 +245,14 @@ body{
     font-size: 30px;
     margin-top: 50px;
 }
-
+.popup__imagen{
+    width: 250px;
+}
 .victoria{
-    display: none;
+    display: flex;
 }
 .derrota{
-    display: none;
+    display: flex;
 }
 
 
