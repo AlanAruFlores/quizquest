@@ -2,7 +2,7 @@
     class Database{
 
         private $conexion;
-        public function __construct($host="localhost:3306", $user="root", $password="", $dbname="pokedex_db"){
+        public function __construct($host="localhost:3306", $user="root", $password="", $dbname="quizquest_db"){
             $this->conexion = mysqli_connect($host,$user,$password,$dbname);
         }
 
