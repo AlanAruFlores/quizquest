@@ -242,3 +242,12 @@ VALUES (37, FALSE, 'Mercurio', 'A', 10),
 select p.id, p.descripcion, p.punto, c.nombre as categoria, c.color as color from pregunta p join categoria c on p.categoría_id = c.id order by rand() limit 1;
 select r.id as res_id, r.esCorreto, r.descripción as descripcion_respuesta, p.id as preg_id, p.descripcion as descripcion_pregunta, p.punto, p.esValido from respuesta r join pregunta p on r.pregunta_id = p.id where p.id = 3;
 select * from partida;
+select * from realiza;
+
+/*Consultas multitabla para evitar repetidos*/
+select * from pregunta p where p.id
+		not in(
+				select r.pregunta_id from realiza r
+				where r.usuario_id =2
+            ) order by rand() limit 10 ;
+

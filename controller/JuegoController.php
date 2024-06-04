@@ -28,13 +28,11 @@
                     ...$this->mainSettings]);
                 return ;
             }
-
-
+            
             //Cambiamos la pregunta y sus respuestas , ademas, la establecemos con la sesion
             $_SESSION["indicePregunta"] += 1; //Contador para incrementar las perguntas
             // Obtengo respuestas aleatorias
-            $preguntasDeLaPartida = $this->preguntaModel->getRandomPreguntas();
-            $preguntaActual = $preguntasDeLaPartida[$indexSiguientePregunta];
+            $preguntaActual = $_SESSION["preguntasActuales"][$indexSiguientePregunta];
             $_SESSION["preguntaActualExistente"] = $preguntaActual;
             
             $respuestasActuales = $this->respuestaModel->getRespuestaByPreguntaId($preguntaActual["id"]);
@@ -51,7 +49,7 @@
             $idRespuestaSeleccionada = $_GET["idRespSeleccionada"];
             $respuestaSeleccionaObject = $this->respuestaModel->getRespuestaByRespuestaIdAndPreguntaId($idRespuestaSeleccionada,$_SESSION["preguntaActualExistente"]["id"]);
             var_dump($respuestaSeleccionaObject);
-    
+            
             $estaEquivocado = false;
             if($respuestaSeleccionaObject["esCorreto"]=="0")
                 $estaEquivocado = true;
@@ -68,8 +66,6 @@
 
         public function goToNextQuestion(){
             unset($_SESSION["preguntaActualExistente"]);
-            $_SESSION["preguntaActualExistente"] = null;
-
             header("Location:/quizquest/juego/get");
         }
 
