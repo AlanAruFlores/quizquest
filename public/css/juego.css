@@ -139,6 +139,17 @@ body{
     box-shadow: 0px 0px 8px #303030;
     margin: 7px;
 }
+.contenedor_dificultad{
+    padding: 4px 10px;
+    position: absolute;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-family: bebas;
+    bottom: 0;
+    left: 0;
+    margin: 10px;
+    border-radius: 10px;
+}
 
 /*Waves*/
 .wave{

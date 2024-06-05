@@ -31,6 +31,9 @@
             $_SESSION["partidaActual"] = $partidaObject;
             
             $_SESSION["indicePregunta"] = 0;
+
+            //Aseguro que el usuario luego no se pueda ir libremente
+            $_SESSION["isPlaying"] = true;
             header("Location:/quizquest/juego/get");
         }
 

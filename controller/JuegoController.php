@@ -25,7 +25,10 @@ class JuegoController
     public function get()
     {
 
+
         if($_SESSION["indicePregunta"] >=10){
+            unset($_SESSION["preguntaActualExistente"]);
+            unset($_SESSION["isPlaying"]);
             echo "terminado";
             die();
         }
@@ -43,13 +46,22 @@ class JuegoController
             $_SESSION["indicePregunta"] += 1;
         }
 
-    
+        $colorDificultad  = "";
+
+        if($_SESSION["levelOfQuestion"] == "FACIL")
+            $colorDificultad  = "#339900";
+        else if($_SESSION["levelOfQuestion"] == "INTERMEDIO")
+            $colorDificultad  = "#ffcc00";
+        else
+            $colorDificultad = "#cc3300";
+
 
         $this->presenter->render("view/viewJuego.mustache", [
             "partidaActual" => $_SESSION["partidaActual"],
             "preguntaActual" => $_SESSION["preguntaActualExistente"],
             "respuestasActuales" => $_SESSION["respuestasActuales"],
             "nivelPregunta" => $_SESSION["levelOfQuestion"],
+            "colorDificultad" => $colorDificultad,
             ...$this->mainSettings
         ]);
     }
