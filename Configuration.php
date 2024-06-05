@@ -52,7 +52,7 @@ class Configuration
     /*Controladores */
     public static function getJuegoController()
     {
-        return new JuegoController(self::getPresenter(),self::getPreguntaModel(),self::getRespuestaModel(), self::getMainSettings());
+        return new JuegoController(self::getPresenter(),self::getPartidaModel(), self::getPreguntaModel(),self::getRespuestaModel(), self::getMainSettings());
     }
 
     public static function getLobbyUsuarioController()

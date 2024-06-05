@@ -45,6 +45,7 @@
 
             //Preparo las preguntas y su contador de preguntas
             $_SESSION["preguntasActuales"] = $this->preguntaModel->getRandomPreguntas();
+            
             $_SESSION["indicePregunta"] = 0;
             header("Location:/quizquest/juego/get");
         }

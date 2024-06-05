@@ -44,10 +44,32 @@
         }
 
         public function getRandomPreguntas(){
-            return $this->database->query("select p.id, p.descripcion, p.punto, p.esValido, c.nombre as categoria , c.color from realiza r join pregunta p 	
+            return $this->database->query("select p.id, p.descripcion, p.punto, p.esValido, p.acertadas, p.cantidad_dadas, p.porcentaje, c.nombre as categoria , c.color from realiza r join pregunta p 	
             on r.pregunta_id = p.id
             join categoria c on c.id = p.categoria_id
             where partida_id = '".$_SESSION["partidaActual"]["id"]."' order by rand()");
+        }
+    
+        public function update($pregunta){
+            $this->database->execute("UPDATE pregunta SET cantidad_dadas='".$pregunta["cantidad_dadas"]."', acertadas='".$pregunta["acertadas"]."' , porcentaje='".$pregunta["porcentaje"]."' WHERE id = '".$pregunta["id"]."'");  
+        }
+
+        public function increaseCantidadOfPregunta($pregunta){
+            $pregunta["cantidad_dadas"] += 1;
+            $_SESSION["preguntaActualExistente"] = $pregunta;
+            self::update($pregunta);
+        }
+
+        public function increaseAcertadasOfPregunta($pregunta){
+            $pregunta["acertadas"] += 1;
+            $_SESSION["preguntaActualExistente"] = $pregunta;
+            self::update($pregunta);
+        }
+
+        public function updatePorcentaje($pregunta){
+            $pregunta["porcentaje"] = floor((($pregunta["acertadas"])/($pregunta["cantidad_dadas"]))*100);
+            $_SESSION["preguntaActualExistente"] = $pregunta;
+            self::update($pregunta);
         }
     }
 ?>

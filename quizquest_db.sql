@@ -71,6 +71,9 @@ CREATE TABLE Pregunta
     descripcion  TEXT,
     punto        INT     NOT NULL,
     esValido     BOOLEAN NOT NULL,
+    cantidad_dadas INT,
+    acertadas INT,
+    porcentaje INT,
     categoria_id INT,
     FOREIGN KEY (categoria_id) REFERENCES Categoria (id)
 );
@@ -140,24 +143,23 @@ INSERT INTO Categoria (id, nombre, color) VALUES
 (6, 'Historia', '#ac00ac');
 
 -- Insertar datos en la tabla Pregunta
-INSERT INTO Pregunta (id, descripcion, punto, esValido, categoria_id)
+INSERT INTO Pregunta (id, descripcion, punto, esValido, categoria_id, cantidad_dadas, acertadas, porcentaje)
 VALUES 
-(1, "¿Cuál es la capital de Francia?", 10, TRUE, 5),
-(2, "¿Quién formuló la teoría de la relatividad?", 10, TRUE, 2),
-(3, "¿Cuál es el río más largo del mundo?", 10, TRUE, 5),
-(4, "¿En qué año se desintegró la Unión Soviética?", 10, TRUE, 6),
-(5, "¿Quién escribió la novela 'Don Quijote de la Mancha'?", 10, TRUE, 1),
-(6, "¿Cuántos días tiene una semana?", 10, TRUE, 6),
-(7, "¿Cuál es la fórmula química del agua?", 10, TRUE, 3),
-(8, "¿Cuántas horas tiene un día?", 10, TRUE, 3),
-(9, "¿Quién fue el primer presidente de los Estados Unidos?", 10, TRUE, 6),
-(10, "¿Cuál es el segundo planeta del sistema solar?", 10, TRUE, 5),
-(11, "¿Cuál es el planeta más grande del sistema solar?", 10, TRUE, 5),
-(12, "¿En qué año comenzó la Segunda Guerra Mundial?", 10, TRUE, 6),
-(13, "¿Quién escribió el libro 'Cien años de soledad'?", 10, TRUE, 1),
-(14, "¿Cuál es el océano más grande del mundo?", 10, TRUE, 5),
-(15, "¿Quién pintó la Mona Lisa?", 10, TRUE, 1);
-
+(1, "¿Cuál es la capital de Francia?", 10, TRUE, 5, 100, 60, 60),
+(2, "¿Quién formuló la teoría de la relatividad?", 10, TRUE, 2, 80, 25, 31),
+(3, "¿Cuál es el río más largo del mundo?", 10, TRUE, 5, 70, 30, 42),
+(4, "¿En qué año se desintegró la Unión Soviética?", 10, TRUE, 6, 80, 25, 31),
+(5, "¿Quién escribió la novela 'Don Quijote de la Mancha'?", 10, TRUE, 1, 120, 10, 8),
+(6, "¿Cuántos días tiene una semana?", 10, TRUE, 6, 110, 70, 63),
+(7, "¿Cuál es la fórmula química del agua?", 10, TRUE, 3, 150, 120, 80),
+(8, "¿Cuántas horas tiene un día?", 10, TRUE, 3, 130, 100, 76),
+(9, "¿Quién fue el primer presidente de los Estados Unidos?", 10, TRUE, 6, 120, 10, 8),
+(10, "¿Cuál es el segundo planeta del sistema solar?", 10, TRUE, 5, 140, 110, 78),
+(11, "¿Cuál es el planeta más grande del sistema solar?", 10, TRUE, 5, 80, 25, 31),
+(12, "¿En qué año comenzó la Segunda Guerra Mundial?", 10, TRUE, 6, 180, 160, 88),
+(13, "¿Quién escribió el libro 'Cien años de soledad'?", 10, TRUE, 1, 120, 10, 8),
+(14, "¿Cuál es el océano más grande del mundo?", 10, TRUE, 5, 220, 200, 90),
+(15, "¿Quién pintó la Mona Lisa?", 10, TRUE, 1, 80, 25, 31);
 -- Insertar datos en la tabla Respuesta para cada pregunta
 -- Pregunta 1
 INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
@@ -285,3 +287,12 @@ select p.id, p.descripcion, p.punto, p.esValido, c.nombre, c.color as categoria 
 	on r.pregunta_id = p.id
     join categoria c on c.id = p.categoria_id
     where partida_id = 2 order by rand();
+    
+    
+/*SELECTS PARA OBTENER FACILES O INTERMEDIOS O DIFICILES*/
+select * from pregunta p where p.id
+		not in(
+				select r.pregunta_id from realiza r
+				where r.usuario_id =2
+            ) and p.porcentaje >= 50 order by rand() limit 10 ;
+    

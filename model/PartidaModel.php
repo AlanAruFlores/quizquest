@@ -14,9 +14,14 @@
             return $this->database->query("SELECT * FROM partida WHERE nombre = '".$partida->getNombre()."'");
         }
 
-        public function updatePartidaPoints($partida, $points){
-            $partida->setPuntaje($partida->getPuntaje()+$points);
-            $this->database->execute("UPDATE partida SET puntaje = puntaje+$points WHERE id = '".$partida->getId()."'");  
+        public function update($partida){
+            $this->database->execute("UPDATE partida SET nombre='".$partida["nombre"]."', puntaje = puntaje+".$partida["puntaje"]." WHERE id = '".$partida["id"]."'");  
+        }
+
+        public function increasePartidaPoints($partida, $points){
+            $partida["puntaje"]+=$points;
+            self::update($partida);
+            return $partida;
         }
     }
 ?>
