@@ -6,50 +6,48 @@
             $this->database = $database;
         }
 
-        private function getPreguntasNoRepeated($limit , $elementsNotIncluded = null){
-            if($elementsNotIncluded == null){
-                return $this->database->query("select * from pregunta p where p.id not in(
+        private function getPreguntasNoRepeatedByLevel($level){
+            $porcentajeDificultadConditional = ($level == "FACIL") ? "p.porcentaje between 50 and 100" :
+                    (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje.between 0 and 24");
+
+            return $this->database->query("select p.*, c.nombre as categoria, c.color from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
                     select r.pregunta_id from realiza r
                     where r.usuario_id = '".$_SESSION["usuarioLogged"]["id"]."'
-                    ) order by rand() limit $limit ;");
-            }
-            
-            var_dump($elementsNotIncluded);
-            var_dump(array_column($elementsNotIncluded, 'id'));
-            
-            $idElementsNotIncluded = array_column($elementsNotIncluded, 'id');
-            return $this->database->query("select * from pregunta p where p.id not in(
-            ".implode(',',$idElementsNotIncluded).") order by rand() limit $limit ;");            
+                    ) and $porcentajeDificultadConditional order by rand() limit 1 ;");         
         }
 
-        //Limpio si esas preguntas ya se los habia tomado a algun usuario
-        private function clearQuestions(){
-            $this->database->execute("
-                delete from realiza where usuario_id = '".$_SESSION["usuarioLogged"]["id"]."'
+        //Limpio si esas preguntas ya se los habia tomado a algun usuario   
+        private function getPreguntasRepeatedByLevel($porcentajeDificultadConditional){
+            return $this->database->query("select * from realiza r join pregunta p on r.pregunta_id  = p.id where $porcentajeDificultadConditional;
             ");
         }
-
-        public function generateRandomPreguntas(){
-            $arrPreguntas = self::getPreguntasNoRepeated(10);
+        private function clearQuestionsByLevel($level){
+           
+            $porcentajeDificultConditional = ($level == "FACIL") ? "p.porcentaje between 50 and 100" :
+                (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje.between 0 and 24");
             
-            $cantidadObtenida=sizeof($arrPreguntas) ;
-            if( $cantidadObtenida<10){
-                $limitAux = 10-$cantidadObtenida;
-                self::clearQuestions();
-                $arrPreguntasFaltantes= self::getPreguntasNoRepeated($limitAux, $arrPreguntas);
-                $arrPreguntas = array_merge($arrPreguntas, $arrPreguntasFaltantes);
+            $preguntasToDelete = self::getPreguntasRepeatedByLevel($porcentajeDificultConditional);
+            
+            foreach($preguntasToDelete as $preguntaItem){
+                $this->database ->execute("DELETE realiza FROM realiza WHERE usuario_id = '".$preguntaItem["usuario_id"]."' and pregunta_id = '".$preguntaItem["pregunta_id"]."';");
+            }
+                // var_dump($level);
+                // var_dump($porcentajeDificultadConditional);
+                // die();
             }
 
-            return $arrPreguntas;
-        }
+        public function generateARandomQuestion($puntaje){
+            var_dump($puntaje);
+            $level = ($puntaje>=0 && $puntaje <=50) ? "FACIL" : (($puntaje >50 && $puntaje <=80) ? "INTERMEDIO" : "DIFICIL");
+ 
+            if(!self::getPreguntasNoRepeatedByLevel($level))
+                self::clearQuestionsByLevel($level);
 
-        public function getRandomPreguntas(){
-            return $this->database->query("select p.id, p.descripcion, p.punto, p.esValido, p.acertadas, p.cantidad_dadas, p.porcentaje, c.nombre as categoria , c.color from realiza r join pregunta p 	
-            on r.pregunta_id = p.id
-            join categoria c on c.id = p.categoria_id
-            where partida_id = '".$_SESSION["partidaActual"]["id"]."' order by rand()");
+            $questionGenerated = self::getPreguntasNoRepeatedByLevel($level);
+            return $questionGenerated;
+            
         }
-    
+        
         public function update($pregunta){
             $this->database->execute("UPDATE pregunta SET cantidad_dadas='".$pregunta["cantidad_dadas"]."', acertadas='".$pregunta["acertadas"]."' , porcentaje='".$pregunta["porcentaje"]."' WHERE id = '".$pregunta["id"]."'");  
         }

@@ -1,7 +1,7 @@
 <?php
 include_once ("model/Pregunta.php");
 include_once ("model/Respuesta.php");
-
+include_once("model/UsuarioPartidaPregunta.php");
 class JuegoController
 {
 
@@ -9,12 +9,14 @@ class JuegoController
     private $mainSettings;
     private $partidaModel;
     private $preguntaModel;
+    private $usuarioPartidaPreguntaModel;
     private $respuestaModel;
-    public function __construct($presenter, $partidaModel, $preguntaModel, $respuestaModel, $mainSettings)
+    public function __construct($presenter, $partidaModel, $preguntaModel, $respuestaModel, $usuarioPartidaPreguntaModel, $mainSettings)
     {
         $this->presenter = $presenter;
         $this->partidaModel = $partidaModel;
         $this->preguntaModel = $preguntaModel;
+        $this->usuarioPartidaPreguntaModel = $usuarioPartidaPreguntaModel;
         $this->mainSettings = $mainSettings;
         $this->respuestaModel = $respuestaModel;
     }
@@ -23,20 +25,32 @@ class JuegoController
     public function get()
     {
 
+        if($_SESSION["indicePregunta"] >=10){
+            echo "terminado";
+            die();
+        }
+
         //Pregunta actual a responder y preparo sus respuestas
         if (!isset($_SESSION["preguntaActualExistente"])) {
-            $_SESSION["preguntaActualExistente"] = $_SESSION["preguntasActuales"][$_SESSION["indicePregunta"]];
-            $_SESSION["respuestas_actuales"] = $this->respuestaModel->getRespuestaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
+            $_SESSION["preguntaActualExistente"] = $this->preguntaModel->generateARandomQuestion($_SESSION["partidaActual"]["puntaje"]);
+
+            $_SESSION["respuestasActuales"] = $this->respuestaModel->getRespuestaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
+            $upp = new UsuarioPartidaPregunta($_SESSION["partidaActual"]["id"], $_SESSION["preguntaActualExistente"]["id"], $_SESSION["usuarioLogged"]["id"]);
+            $this->usuarioPartidaPreguntaModel->insertNewUsuarioPartidaPregunta($upp);
             //Itero para la siguiente pregunta que venga
+            $_SESSION["levelOfQuestion"] = ($_SESSION["partidaActual"]["puntaje"] <= 50 && $_SESSION["partidaActual"]["puntaje"] >= 0) ? "FACIL" :
+            (($_SESSION["partidaActual"]["puntaje"] >50 && $_SESSION["partidaActual"]["puntaje"] <=80) ? "INTERMEDIO": "DIFICIL");
+           
             $_SESSION["indicePregunta"] += 1;
         }
 
-        //  var_dump($_SESSION["preguntaActualExistente"]);
-        //     die();
+    
+
         $this->presenter->render("view/viewJuego.mustache", [
             "partidaActual" => $_SESSION["partidaActual"],
             "preguntaActual" => $_SESSION["preguntaActualExistente"],
-            "respuestasActuales" => $_SESSION["respuestas_actuales"],
+            "respuestasActuales" => $_SESSION["respuestasActuales"],
+            "nivelPregunta" => $_SESSION["levelOfQuestion"],
             ...$this->mainSettings
         ]);
     }
@@ -46,13 +60,13 @@ class JuegoController
     {
         //Obtengo la respuesta seleccionada
         $respuestaSeleccionadaObject = $this->respuestaModel->getRespuestaByRespuestaIdAndPreguntaId($_GET["idRespSeleccionada"], $_SESSION["preguntaActualExistente"]["id"]);
+      
         //Veo si se equivoco o no
         $estaEquivocado = $respuestaSeleccionadaObject["esCorreto"] == "0" ? true : false;
         $this->preguntaModel->increaseCantidadOfPregunta($_SESSION["preguntaActualExistente"]);
         //Si acierta
         if (!$estaEquivocado) {
             $_SESSION["partidaActual"] = $this->partidaModel->increasePartidaPoints($_SESSION["partidaActual"], $_SESSION["preguntaActualExistente"]["punto"]);
-
             $this->preguntaModel->increaseAcertadasOfPregunta($_SESSION["preguntaActualExistente"]);
         }
         $this->preguntaModel->updatePorcentaje($_SESSION["preguntaActualExistente"]);
@@ -61,7 +75,7 @@ class JuegoController
         $this->presenter->render("view/viewJuego.mustache", [
             "partidaActual" => $_SESSION["partidaActual"],
             "preguntaActual" => $_SESSION["preguntaActualExistente"],
-            "respuestasActuales" => $_SESSION["respuestas_actuales"],
+            "respuestasActuales" => $_SESSION["respuestasActuales"],
             "hayPopUp" => true,
             "popUpCorrectoOError" => $estaEquivocado,
             ...$this->mainSettings

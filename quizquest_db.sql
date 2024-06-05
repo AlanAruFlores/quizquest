@@ -266,21 +266,30 @@ VALUES (57, TRUE, 'Leonardo da Vinci', 'A', 15),
        (59, FALSE, 'Vincent van Gogh', 'C', 15),
        (60, FALSE, 'Rembrandt', 'D', 15);
        
-/*SELECT*/
-select p.id, p.descripcion, p.punto, c.nombre as categoria, c.color as color from pregunta p join categoria c on p.categoria_id = c.id order by rand() limit 1;
-select r.id as res_id, r.esCorreto, r.descripción as descripcion_respuesta, p.id as preg_id, p.descripcion as descripcion_pregunta, p.punto, p.esValido from respuesta r join pregunta p on r.pregunta_id = p.id where p.id = 3;
-select * from partida;
-select * from realiza;
-select * from pregunta;
+
 
 /*Consultas multitabla para evitar repetidos*/
 
 #Evitar repetidos
-select * from pregunta p where p.id
+
+            
+select * from realiza;
+
+DELETE realiza
+FROM realiza 
+WHERE usuario_id = 2 and pregunta_id = 1;
+
+select * from realiza r join pregunta p on r.pregunta_id  = p.id where  usuario_id = 2;
+select * from realiza r;
+  
+select p.id, p.descripcion, p.porcentaje from pregunta p where p.id
 		not in(
 				select r.pregunta_id from realiza r
 				where r.usuario_id =2
-            ) order by rand() limit 10 ;
+            );
+select count(*) as faciles from pregunta p where p.porcentaje between 50 and 100;
+select count(*) as intermedios from pregunta p where p.porcentaje between 25 and 49;
+select count(*) as dificiles from pregunta p where p.porcentaje between 0 and 24;
 
 #Obtener preguntas de un realiza
 select p.id, p.descripcion, p.punto,p.cantidad_dadas,p.porcentaje, p.esValido, c.nombre, c.color as categoria from realiza r join pregunta p 	
@@ -292,9 +301,16 @@ select p.id, p.descripcion, p.punto,p.cantidad_dadas,p.porcentaje, p.esValido, c
             on r.pregunta_id = p.id
             join categoria c on c.id = p.categoria_id
             where partida_id = '4' order by rand();
+            
 /*SELECTS PARA OBTENER FACILES O INTERMEDIOS O DIFICILES*/
-select * from pregunta p where p.id
-		not in(
-				select r.pregunta_id from realiza r
-				where r.usuario_id =2
-            ) and p.porcentaje >= 50 order by rand() limit 10 ;
+select p.*, c.nombre as categoria from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
+                    select r.pregunta_id from realiza r
+                    where r.usuario_id = 2
+                    ) and p.porcentaje between 25 and 49 order by rand() limit 1;
+                    
+/*SELECT*/
+select p.id, p.descripcion, p.punto, c.nombre as categoria, c.color as color from pregunta p join categoria c on p.categoria_id = c.id order by rand() limit 1;
+select r.id as res_id, r.esCorreto, r.descripción as descripcion_respuesta, p.id as preg_id, p.descripcion as descripcion_pregunta, p.punto, p.esValido from respuesta r join pregunta p on r.pregunta_id = p.id where p.id = 3;
+select * from partida;
+select * from realiza;
+select * from pregunta;

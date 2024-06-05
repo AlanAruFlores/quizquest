@@ -52,12 +52,12 @@ class Configuration
     /*Controladores */
     public static function getJuegoController()
     {
-        return new JuegoController(self::getPresenter(),self::getPartidaModel(), self::getPreguntaModel(),self::getRespuestaModel(), self::getMainSettings());
+        return new JuegoController(self::getPresenter(),self::getPartidaModel(), self::getPreguntaModel(),self::getRespuestaModel(), self::getUsuarioPartidaPreguntaModel(), self::getMainSettings());
     }
 
     public static function getLobbyUsuarioController()
     {
-        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(), self::getPreguntaModel(),self::getUsuarioPartidaPreguntaModel(),self::getMainSettings());
+        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(), self::getMainSettings());
     }
 
     public static function getRankingController()
