@@ -53,7 +53,9 @@ CREATE TABLE Partida
 (
     id      INT PRIMARY KEY auto_increment,
     nombre  VARCHAR(100) NOT NULL unique,
-    puntaje INT          NOT NULL
+    puntaje INT          NOT NULL,
+	usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );
 
 -- Creación de la tabla Categoría (necesaria para FK en Pregunta)
@@ -71,18 +73,19 @@ CREATE TABLE Pregunta
     descripcion  TEXT,
     punto        INT     NOT NULL,
     esValido     BOOLEAN NOT NULL,
-    categoría_id INT,
-    FOREIGN KEY (categoría_id) REFERENCES Categoria (id)
+    cantidad_dadas INT,
+    acertadas INT,
+    porcentaje INT,
+    categoria_id INT,
+    FOREIGN KEY (categoria_id) REFERENCES Categoria (id)
 );
 
 -- Creación de la tabla Realiza
 CREATE TABLE Realiza
 (
-    partida_id  INT,
     pregunta_id INT,
 	usuario_id INT,
-	PRIMARY KEY (partida_id, pregunta_id),
-    FOREIGN KEY (partida_id) REFERENCES Partida (id),
+	PRIMARY KEY (usuario_id, pregunta_id),
     FOREIGN KEY (pregunta_id) REFERENCES Pregunta (id),
     FOREIGN KEY(usuario_id) REFERENCES Usuario(id)
  );
@@ -126,10 +129,6 @@ VALUES (2);
 INSERT INTO Editor (Usuario_id)
 VALUES (3);
 
--- Insertar datos en la tabla Partida
-INSERT INTO Partida (id, nombre, puntaje)
-VALUES (1, 'Partida 1', 100);
-	
 -- Insertar datos en la tabla Categoría
 INSERT INTO Categoria (id, nombre, color) VALUES
 (1, 'Cultura', '#258D19'),
@@ -140,32 +139,23 @@ INSERT INTO Categoria (id, nombre, color) VALUES
 (6, 'Historia', '#ac00ac');
 
 -- Insertar datos en la tabla Pregunta
-INSERT INTO Pregunta (id,descripcion, punto, esValido, categoría_id)
-VALUES (1, "¿Pregunta 1?",10, TRUE, 1),
-       (2,"¿Pregunta 2?", 10, TRUE, 2),
-       (3,"¿Pregunta 3?", 10, TRUE, 3),
-       (4,"¿Pregunta 4?",10, TRUE, 4),
-       (5,"¿Pregunta 5?",10, TRUE, 5),
-       (6,"¿Pregunta 6?",10, TRUE, 6),
-       (7,"¿Pregunta 7?",10, TRUE, 2),
-       (8,"¿Pregunta 8?",10, TRUE, 3),
-       (9,"¿Pregunta 9?",10, TRUE, 4),
-       (10,"¿Pregunta 10?",10, TRUE, 5);
-
--- Insertar datos en la tabla Realiza
-/*
-INSERT INTO Realiza (partida_id, pregunta_id)
-VALUES (1, 1),
-       (1, 2),
-       (1, 3),
-       (1, 4),
-       (1, 5),
-       (1, 6),
-       (1, 7),
-       (1, 8),
-       (1, 9),
-       (1, 10);
-*/
+INSERT INTO Pregunta (id, descripcion, punto, esValido, categoria_id, cantidad_dadas, acertadas, porcentaje)
+VALUES 
+(1, "¿Cuál es la capital de Francia?", 10, TRUE, 5, 100, 60, 60),
+(2, "¿Quién formuló la teoría de la relatividad?", 10, TRUE, 2, 80, 25, 31),
+(3, "¿Cuál es el río más largo del mundo?", 10, TRUE, 5, 70, 30, 42),
+(4, "¿En qué año se desintegró la Unión Soviética?", 10, TRUE, 6, 80, 25, 31),
+(5, "¿Quién escribió la novela 'Don Quijote de la Mancha'?", 10, TRUE, 1, 120, 10, 8),
+(6, "¿Cuántos días tiene una semana?", 10, TRUE, 6, 110, 70, 63),
+(7, "¿Cuál es la fórmula química del agua?", 10, TRUE, 3, 150, 120, 80),
+(8, "¿Cuántas horas tiene un día?", 10, TRUE, 3, 130, 100, 76),
+(9, "¿Quién fue el primer presidente de los Estados Unidos?", 10, TRUE, 6, 120, 10, 8),
+(10, "¿Cuál es el segundo planeta del sistema solar?", 10, TRUE, 5, 140, 110, 78),
+(11, "¿Cuál es el planeta más grande del sistema solar?", 10, TRUE, 5, 80, 25, 31),
+(12, "¿En qué año comenzó la Segunda Guerra Mundial?", 10, TRUE, 6, 180, 160, 88),
+(13, "¿Quién escribió el libro 'Cien años de soledad'?", 10, TRUE, 1, 120, 10, 8),
+(14, "¿Cuál es el océano más grande del mundo?", 10, TRUE, 5, 220, 200, 90),
+(15, "¿Quién pintó la Mona Lisa?", 10, TRUE, 1, 80, 25, 31);
 -- Insertar datos en la tabla Respuesta para cada pregunta
 -- Pregunta 1
 INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
@@ -237,8 +227,84 @@ VALUES (37, FALSE, 'Mercurio', 'A', 10),
        (39, FALSE, 'Marte', 'C', 10),
        (40, FALSE, 'Júpiter', 'D', 10);
 
+-- Pregunta 11
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES (41, FALSE, 'Mercurio', 'A', 11),
+       (42, FALSE, 'Venus', 'B', 11),
+       (43, FALSE, 'Marte', 'C', 11),
+       (44, TRUE, 'Júpiter', 'D', 11);
+
+-- Pregunta 12
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES (45, FALSE, '1938', 'A', 12),
+       (46, TRUE, '1939', 'B', 12),
+       (47, FALSE, '1940', 'C', 12),
+       (48, FALSE, '1941', 'D', 12);
+
+-- Pregunta 13
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES (49, FALSE, 'Gabriel García Márquez', 'A', 13),
+       (50, TRUE, 'Gabriel García Márquez', 'B', 13),
+       (51, FALSE, 'Pablo Neruda', 'C', 13),
+       (52, FALSE, 'Julio Cortázar', 'D', 13);
+
+-- Pregunta 14
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES (53, FALSE, 'Océano Atlántico', 'A', 14),
+       (54, TRUE, 'Océano Pacífico', 'B', 14),
+       (55, FALSE, 'Océano Índico', 'C', 14),
+       (56, FALSE, 'Océano Ártico', 'D', 14);
+
+-- Pregunta 15
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES (57, TRUE, 'Leonardo da Vinci', 'A', 15),
+       (58, FALSE, 'Pablo Picasso', 'B', 15),
+       (59, FALSE, 'Vincent van Gogh', 'C', 15),
+       (60, FALSE, 'Rembrandt', 'D', 15);
        
+
+
+/*Consultas multitabla para evitar repetidos*/
+
+#Evitar repetidos
+
+select * from realiza;
+
+DELETE realiza
+FROM realiza 
+WHERE usuario_id = 2 and pregunta_id = 1;
+
+#Obtener preguntas de un realiza
+select p.id, p.descripcion, p.punto,p.cantidad_dadas,p.porcentaje, p.esValido, c.nombre, c.color as categoria from realiza r join pregunta p 	
+	on r.pregunta_id = p.id
+    join categoria c on c.id = p.categoria_id
+    where partida_id = 3 order by rand();
+    
+    select p.id, p.descripcion, p.punto, p.esValido, p.cantidad_dadas, p.porcentaje, c.nombre as categoria , c.color from realiza r join pregunta p 	
+            on r.pregunta_id = p.id
+            join categoria c on c.id = p.categoria_id
+            where partida_id = '4' order by rand();
+            
+/*SELECTS PARA OBTENER FACILES O INTERMEDIOS O DIFICILES*/
+select p.*, c.nombre as categoria from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
+                    select r.pregunta_id from realiza r
+                    where r.usuario_id = 2
+                    ) and p.porcentaje between 25 and 49 order by rand() limit 1;
+                    
 /*SELECT*/
-select p.id, p.descripcion, p.punto, c.nombre as categoria, c.color as color from pregunta p join categoria c on p.categoría_id = c.id order by rand() limit 1;
+select p.id, p.descripcion, p.punto, c.nombre as categoria, c.color as color from pregunta p join categoria c on p.categoria_id = c.id order by rand() limit 1;
 select r.id as res_id, r.esCorreto, r.descripción as descripcion_respuesta, p.id as preg_id, p.descripcion as descripcion_pregunta, p.punto, p.esValido from respuesta r join pregunta p on r.pregunta_id = p.id where p.id = 3;
 select * from partida;
+select * from realiza;
+select * from pregunta;
+
+select * from realiza r join pregunta p on r.pregunta_id  = p.id where  usuario_id = 2;
+select p.id, p.descripcion, p.porcentaje from pregunta p where p.id
+		not in(
+				select r.pregunta_id from realiza r
+				where r.usuario_id =2
+            );
+            
+select count(*) as faciles from pregunta p where p.porcentaje between 50 and 100;
+select count(*) as intermedios from pregunta p where p.porcentaje between 25 and 49;
+select count(*) as dificiles from pregunta p where p.porcentaje between 0 and 24;

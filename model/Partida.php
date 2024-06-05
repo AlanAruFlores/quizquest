@@ -3,12 +3,13 @@ class Partida {
     private $id;
     private $nombre;
     private $puntaje;
-
+    private $usuarioId;
     // Constructor
-    public function __construct($id=null, $nombre=null, $puntaje=null) {
+    public function __construct($id=null, $nombre=null, $puntaje=null, $usuarioId = null) {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->puntaje = $puntaje;
+        $this->usuarioId = $usuarioId;
     }
 
     // Métodos Setter
@@ -24,6 +25,10 @@ class Partida {
         $this->puntaje = $puntaje;
     }
 
+    public function setUsuarioId($usuarioId){
+        $this->usuarioId = $usuarioId;
+    }
+
     // Métodos Getter
     public function getId() {
         return $this->id;
@@ -36,5 +41,10 @@ class Partida {
     public function getPuntaje() {
         return $this->puntaje;
     }
+
+    public function getUsuarioId(){
+        return $this->usuarioId;
+    }
+
 }
 ?>
