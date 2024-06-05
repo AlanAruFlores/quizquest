@@ -8,7 +8,7 @@
 
         private function getPreguntasNoRepeatedByLevel($level){
             $porcentajeDificultadConditional = ($level == "FACIL") ? "p.porcentaje between 50 and 100" :
-                    (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje.between 0 and 24");
+                    (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje between 0 and 24");
 
             return $this->database->query("select p.*, c.nombre as categoria, c.color from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
                     select r.pregunta_id from realiza r
@@ -18,8 +18,7 @@
 
         //Limpio si esas preguntas ya se los habia tomado a algun usuario   
         private function getPreguntasRepeatedByLevel($porcentajeDificultadConditional){
-            return $this->database->query("select * from realiza r join pregunta p on r.pregunta_id  = p.id where $porcentajeDificultadConditional;
-            ");
+            return $this->database->query("select * from realiza r join pregunta p on r.pregunta_id  = p.id where $porcentajeDificultadConditional;");
         }
         private function clearQuestionsByLevel($level){
            

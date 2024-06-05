@@ -53,7 +53,9 @@ CREATE TABLE Partida
 (
     id      INT PRIMARY KEY auto_increment,
     nombre  VARCHAR(100) NOT NULL unique,
-    puntaje INT          NOT NULL
+    puntaje INT          NOT NULL,
+	usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );
 
 -- Creación de la tabla Categoría (necesaria para FK en Pregunta)
@@ -81,11 +83,9 @@ CREATE TABLE Pregunta
 -- Creación de la tabla Realiza
 CREATE TABLE Realiza
 (
-    partida_id  INT,
     pregunta_id INT,
 	usuario_id INT,
-	PRIMARY KEY (partida_id, pregunta_id),
-    FOREIGN KEY (partida_id) REFERENCES Partida (id),
+	PRIMARY KEY (usuario_id, pregunta_id),
     FOREIGN KEY (pregunta_id) REFERENCES Pregunta (id),
     FOREIGN KEY(usuario_id) REFERENCES Usuario(id)
  );
@@ -129,10 +129,6 @@ VALUES (2);
 INSERT INTO Editor (Usuario_id)
 VALUES (3);
 
--- Insertar datos en la tabla Partida
-INSERT INTO Partida (id, nombre, puntaje)
-VALUES (1, 'Partida 1', 100);
-	
 -- Insertar datos en la tabla Categoría
 INSERT INTO Categoria (id, nombre, color) VALUES
 (1, 'Cultura', '#258D19'),
@@ -272,24 +268,11 @@ VALUES (57, TRUE, 'Leonardo da Vinci', 'A', 15),
 
 #Evitar repetidos
 
-            
 select * from realiza;
 
 DELETE realiza
 FROM realiza 
 WHERE usuario_id = 2 and pregunta_id = 1;
-
-select * from realiza r join pregunta p on r.pregunta_id  = p.id where  usuario_id = 2;
-select * from realiza r;
-  
-select p.id, p.descripcion, p.porcentaje from pregunta p where p.id
-		not in(
-				select r.pregunta_id from realiza r
-				where r.usuario_id =2
-            );
-select count(*) as faciles from pregunta p where p.porcentaje between 50 and 100;
-select count(*) as intermedios from pregunta p where p.porcentaje between 25 and 49;
-select count(*) as dificiles from pregunta p where p.porcentaje between 0 and 24;
 
 #Obtener preguntas de un realiza
 select p.id, p.descripcion, p.punto,p.cantidad_dadas,p.porcentaje, p.esValido, c.nombre, c.color as categoria from realiza r join pregunta p 	
@@ -314,3 +297,14 @@ select r.id as res_id, r.esCorreto, r.descripción as descripcion_respuesta, p.i
 select * from partida;
 select * from realiza;
 select * from pregunta;
+
+select * from realiza r join pregunta p on r.pregunta_id  = p.id where  usuario_id = 2;
+select p.id, p.descripcion, p.porcentaje from pregunta p where p.id
+		not in(
+				select r.pregunta_id from realiza r
+				where r.usuario_id =2
+            );
+            
+select count(*) as faciles from pregunta p where p.porcentaje between 50 and 100;
+select count(*) as intermedios from pregunta p where p.porcentaje between 25 and 49;
+select count(*) as dificiles from pregunta p where p.porcentaje between 0 and 24;

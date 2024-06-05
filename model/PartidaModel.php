@@ -7,7 +7,7 @@
         }
 
         public function insertNewPartida($partida){
-            return $this->database->execute("INSERT INTO partida (nombre,puntaje) VALUES('".$partida->getNombre()."','".$partida->getPuntaje()."')");
+            return $this->database->execute("INSERT INTO partida (nombre,puntaje,usuario_id) VALUES('".$partida->getNombre()."','".$partida->getPuntaje()."', '".$partida->getUsuarioId()."')");
         }
 
         public function getPartidaByName($partida){

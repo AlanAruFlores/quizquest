@@ -1,7 +1,7 @@
 <?php
 include_once ("model/Pregunta.php");
 include_once ("model/Respuesta.php");
-include_once("model/UsuarioPartidaPregunta.php");
+include_once("model/UsuarioPregunta.php");
 class JuegoController
 {
 
@@ -9,14 +9,14 @@ class JuegoController
     private $mainSettings;
     private $partidaModel;
     private $preguntaModel;
-    private $usuarioPartidaPreguntaModel;
+    private $usuarioPreguntaModel;
     private $respuestaModel;
-    public function __construct($presenter, $partidaModel, $preguntaModel, $respuestaModel, $usuarioPartidaPreguntaModel, $mainSettings)
+    public function __construct($presenter, $partidaModel, $preguntaModel, $respuestaModel, $usuarioPreguntaModel, $mainSettings)
     {
         $this->presenter = $presenter;
         $this->partidaModel = $partidaModel;
         $this->preguntaModel = $preguntaModel;
-        $this->usuarioPartidaPreguntaModel = $usuarioPartidaPreguntaModel;
+        $this->usuarioPreguntaModel = $usuarioPreguntaModel;
         $this->mainSettings = $mainSettings;
         $this->respuestaModel = $respuestaModel;
     }
@@ -33,10 +33,9 @@ class JuegoController
         //Pregunta actual a responder y preparo sus respuestas
         if (!isset($_SESSION["preguntaActualExistente"])) {
             $_SESSION["preguntaActualExistente"] = $this->preguntaModel->generateARandomQuestion($_SESSION["partidaActual"]["puntaje"]);
-
             $_SESSION["respuestasActuales"] = $this->respuestaModel->getRespuestaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
-            $upp = new UsuarioPartidaPregunta($_SESSION["partidaActual"]["id"], $_SESSION["preguntaActualExistente"]["id"], $_SESSION["usuarioLogged"]["id"]);
-            $this->usuarioPartidaPreguntaModel->insertNewUsuarioPartidaPregunta($upp);
+            $up = new UsuarioPregunta($_SESSION["preguntaActualExistente"]["id"], $_SESSION["usuarioLogged"]["id"]);
+            $this->usuarioPreguntaModel->insertNewUsuarioPregunta($up);
             //Itero para la siguiente pregunta que venga
             $_SESSION["levelOfQuestion"] = ($_SESSION["partidaActual"]["puntaje"] <= 50 && $_SESSION["partidaActual"]["puntaje"] >= 0) ? "FACIL" :
             (($_SESSION["partidaActual"]["puntaje"] >50 && $_SESSION["partidaActual"]["puntaje"] <=80) ? "INTERMEDIO": "DIFICIL");

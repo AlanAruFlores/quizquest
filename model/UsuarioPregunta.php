@@ -1,24 +1,14 @@
 <?php 
 
-    class UsuarioPartidaPregunta{
+    class UsuarioPregunta{
 
-        private $partidaId;
         private $preguntaId;
         private $usuarioId;
 
             
-        public function __construct($partidaId = null, $preguntaId = null, $usuarioId = null) {
-            $this->partidaId = $partidaId;
+        public function __construct($preguntaId = null, $usuarioId = null) {
             $this->preguntaId = $preguntaId;
             $this->usuarioId = $usuarioId;
-        }
-
-        public function getPartidaId() {
-            return $this->partidaId;
-        }
-
-        public function setPartidaId($partidaId) {
-            $this->partidaId = $partidaId;
         }
 
         public function getPreguntaId() {

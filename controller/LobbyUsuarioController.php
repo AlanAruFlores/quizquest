@@ -24,6 +24,8 @@
             $partida = new Partida();
             $partida->setNombre($_POST["nombre"]);
             $partida->setPuntaje(0);
+            $partida->setUsuarioId($_SESSION["usuarioLogged"]["id"]);
+            
             $this->partidaModel->insertNewPartida($partida);
             $partidaObject= $this->partidaModel->getPartidaByName($partida);
             $_SESSION["partidaActual"] = $partidaObject;
