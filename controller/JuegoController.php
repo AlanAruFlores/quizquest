@@ -27,10 +27,8 @@ class JuegoController
 
 
         if($_SESSION["indicePregunta"] >=10){
-            unset($_SESSION["preguntaActualExistente"]);
-            unset($_SESSION["isPlaying"]);
-            echo "terminado";
-            die();
+            header("Location:/quizquest/juego/goToTheEnd");
+            return ;
         }
 
         //Pregunta actual a responder y preparo sus respuestas
@@ -99,6 +97,20 @@ class JuegoController
     {
         unset($_SESSION["preguntaActualExistente"]);
         header("Location:/quizquest/juego/get");
+    }
+
+    public function goToTheEnd(){
+        $this->presenter->render("view/viewFinDePartida.mustache", [
+            "partidaActual" => $_SESSION["partidaActual"],
+            "hayPopUpGanador" => $_SESSION["partidaActual"]["puntaje"] > 50,
+            ...$this->mainSettings
+        ]);
+    }
+
+    public function goToLobby(){
+        unset($_SESSION["isPlaying"]);
+        unset($_SESSION["partidaActual"]);
+        header("Location:/quizquest/lobbyusuario/get");
     }
 
 }
