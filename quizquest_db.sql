@@ -283,16 +283,18 @@ select * from pregunta p where p.id
             ) order by rand() limit 10 ;
 
 #Obtener preguntas de un realiza
-select p.id, p.descripcion, p.punto, p.esValido, c.nombre, c.color as categoria from realiza r join pregunta p 	
+select p.id, p.descripcion, p.punto,p.cantidad_dadas,p.porcentaje, p.esValido, c.nombre, c.color as categoria from realiza r join pregunta p 	
 	on r.pregunta_id = p.id
     join categoria c on c.id = p.categoria_id
-    where partida_id = 2 order by rand();
+    where partida_id = 3 order by rand();
     
-    
+    select p.id, p.descripcion, p.punto, p.esValido, p.cantidad_dadas, p.porcentaje, c.nombre as categoria , c.color from realiza r join pregunta p 	
+            on r.pregunta_id = p.id
+            join categoria c on c.id = p.categoria_id
+            where partida_id = '4' order by rand();
 /*SELECTS PARA OBTENER FACILES O INTERMEDIOS O DIFICILES*/
 select * from pregunta p where p.id
 		not in(
 				select r.pregunta_id from realiza r
 				where r.usuario_id =2
             ) and p.porcentaje >= 50 order by rand() limit 10 ;
-    
