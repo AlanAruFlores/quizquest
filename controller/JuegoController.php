@@ -15,45 +15,33 @@
             $this->respuestaModel =$respuestaModel;
         }
 
+        //Muestra las preguntas y sus respuestas.
         public function get(){
-            $partida = $_SESSION["partidaActual"];
-            $indexSiguientePregunta = $_SESSION["indicePregunta"];
-
-            // Evitamos que cambie de pregunta:
-            if(isset($_SESSION["preguntaActualExistente"])){
-                $this->presenter->render("view/viewJuego.mustache", [
-                    "partidaActual"=>$partida,
-                    "preguntaActual" => $_SESSION["preguntaActualExistente"],
-                    "respuestasActuales" => $_SESSION["respuestas_actuales"],
-                    ...$this->mainSettings]);
-                return ;
+            
+            //Pregunta actual a responder y preparo sus respuestas
+            if(!isset($_SESSION["preguntaActualExistente"])){         
+                $_SESSION["preguntaActualExistente"] = $_SESSION["preguntasActuales"][$_SESSION["indicePregunta"]];
+                $_SESSION["respuestas_actuales"] = $this->respuestaModel->getRespuestaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
+                //Itero para la siguiente pregunta que venga
+                $_SESSION["indicePregunta"] += 1; 
             }
             
-            //Cambiamos la pregunta y sus respuestas , ademas, la establecemos con la sesion
-            $_SESSION["indicePregunta"] += 1; //Contador para incrementar las perguntas
-            // Obtengo respuestas aleatorias
-            $preguntaActual = $_SESSION["preguntasActuales"][$indexSiguientePregunta];
-            $_SESSION["preguntaActualExistente"] = $preguntaActual;
-            
-            $respuestasActuales = $this->respuestaModel->getRespuestaByPreguntaId($preguntaActual["id"]);
-            $_SESSION["respuestas_actuales"] = $respuestasActuales;
-            
             $this->presenter->render("view/viewJuego.mustache", [
-                "partidaActual"=>$partida,
-                "preguntaActual" => $preguntaActual,
-                "respuestasActuales" => $respuestasActuales,
+                "partidaActual"=>$_SESSION["partidaActual"],
+                "preguntaActual" => $_SESSION["preguntaActualExistente"],
+                "respuestasActuales" => $_SESSION["respuestas_actuales"],
                 ...$this->mainSettings]);
         }
 
+        //Se ejecuta cuando seleccion una respuesta
         public function selectAnswer(){
-            $idRespuestaSeleccionada = $_GET["idRespSeleccionada"];
-            $respuestaSeleccionaObject = $this->respuestaModel->getRespuestaByRespuestaIdAndPreguntaId($idRespuestaSeleccionada,$_SESSION["preguntaActualExistente"]["id"]);
-            var_dump($respuestaSeleccionaObject);
+            //Obtengo la respuesta seleccionada
+            $respuestaSeleccionadaObject = $this->respuestaModel->getRespuestaByRespuestaIdAndPreguntaId($_GET["idRespSeleccionada"],$_SESSION["preguntaActualExistente"]["id"]);
             
-            $estaEquivocado = false;
-            if($respuestaSeleccionaObject["esCorreto"]=="0")
-                $estaEquivocado = true;
+            //Veo si se equivoco o no
+            $estaEquivocado = $respuestaSeleccionadaObject["esCorreto"]=="0" ? true : false;
 
+            //Retorno el popup con el mensaje correspondiente
             $this->presenter->render("view/viewJuego.mustache", [
                 "partidaActual"=>$_SESSION["partidaActual"],
                 "preguntaActual" => $_SESSION["preguntaActualExistente"],
@@ -64,6 +52,7 @@
         }
 
 
+        //Se ejecuta cuando apretamos el boton del popup
         public function goToNextQuestion(){
             unset($_SESSION["preguntaActualExistente"]);
             header("Location:/quizquest/juego/get");

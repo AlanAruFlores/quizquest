@@ -43,7 +43,7 @@
                 $this->usuarioPartidaPreguntaModel->insertNewUsuarioPartidaPregunta($upp);
             }
 
-            //Lista de preguntas y contador de preguntas
+            //Preparo las preguntas y su contador de preguntas
             $_SESSION["preguntasActuales"] = $this->preguntaModel->getRandomPreguntas();
             $_SESSION["indicePregunta"] = 0;
             header("Location:/quizquest/juego/get");
@@ -51,7 +51,6 @@
 
 
         public function exit(){
-            $_SESSION["usuarioLogged"] = null;
             unset($_SESSION["usuarioLogged"]);
             header("Location:/quizquest/login/get");
         }
