@@ -15,7 +15,7 @@
         }
 
         public function update($partida){
-            $this->database->execute("UPDATE partida SET nombre='".$partida["nombre"]."', puntaje = puntaje+".$partida["puntaje"]." WHERE id = '".$partida["id"]."'");  
+            $this->database->execute("UPDATE partida SET nombre='".$partida["nombre"]."', puntaje = ".$partida["puntaje"]." WHERE id = '".$partida["id"]."'");  
         }
 
         public function increasePartidaPoints($partida, $points){
