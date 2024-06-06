@@ -1,13 +1,12 @@
 @font-face {
     font-family: bebas;
-    src: url(../../../Vistas_Preguntados/ttf/BebasNeue-Regular.ttf);
+    src: url(/quizquest/public/fuentes/BebasNeue-Regular.ttf);
 }
 
 @font-face {
     font-family: opensans;
-    src: url(../../../Vistas_Preguntados/ttf/OpenSans-VariableFont_wdth,wght.ttf);
+    src: url(/quizquest/public/fuentes/OpenSans-VariableFont_wdth\,wght.ttf);
 }
-
 * {
     margin: 0;
     padding: 0;
