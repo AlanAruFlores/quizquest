@@ -36,7 +36,7 @@
             }
 
         public function generateARandomQuestion($puntaje){
-            $level = ($puntaje>=0 && $puntaje <=50) ? "FACIL" : (($puntaje >50 && $puntaje <=80) ? "INTERMEDIO" : "DIFICIL");
+            $level = ($puntaje>=0 && $puntaje <=100) ? "FACIL" : (($puntaje >100 && $puntaje <=150) ? "INTERMEDIO" : "DIFICIL");
  
             if(!self::getPreguntasNoRepeatedByLevel($level))
                 self::clearQuestionsByLevel($level);

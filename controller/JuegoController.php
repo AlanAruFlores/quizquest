@@ -25,8 +25,8 @@ class JuegoController
     public function get()
     {
 
-
-        if($_SESSION["indicePregunta"] >=10){
+        //Si se equivoco termina el juego
+        if( $_SESSION["isIncorrectQuestion"] == true){
             header("Location:/quizquest/juego/goToTheEnd");
             return ;
         }
@@ -38,8 +38,8 @@ class JuegoController
             $up = new UsuarioPregunta($_SESSION["preguntaActualExistente"]["id"], $_SESSION["usuarioLogged"]["id"]);
             $this->usuarioPreguntaModel->insertNewUsuarioPregunta($up);
             //Itero para la siguiente pregunta que venga
-            $_SESSION["levelOfQuestion"] = ($_SESSION["partidaActual"]["puntaje"] <= 50 && $_SESSION["partidaActual"]["puntaje"] >= 0) ? "FACIL" :
-            (($_SESSION["partidaActual"]["puntaje"] >50 && $_SESSION["partidaActual"]["puntaje"] <=80) ? "INTERMEDIO": "DIFICIL");
+            $_SESSION["levelOfQuestion"] = ($_SESSION["partidaActual"]["puntaje"] <= 100 && $_SESSION["partidaActual"]["puntaje"] >= 0) ? "FACIL" :
+            (($_SESSION["partidaActual"]["puntaje"] > 100 && $_SESSION["partidaActual"]["puntaje"] <=150) ? "INTERMEDIO": "DIFICIL");
            
             $_SESSION["indicePregunta"] += 1;
         }
@@ -72,11 +72,14 @@ class JuegoController
       
         //Veo si se equivoco o no
         $estaEquivocado = $respuestaSeleccionadaObject["esCorreto"] == "0" ? true : false;
+
         $this->preguntaModel->increaseCantidadOfPregunta($_SESSION["preguntaActualExistente"]);
         //Si acierta
         if (!$estaEquivocado) {
             $_SESSION["partidaActual"] = $this->partidaModel->increasePartidaPoints($_SESSION["partidaActual"], $_SESSION["preguntaActualExistente"]["punto"]);
             $this->preguntaModel->increaseAcertadasOfPregunta($_SESSION["preguntaActualExistente"]);
+        }else{
+            $_SESSION["isIncorrectQuestion"] = true;
         }
         $this->preguntaModel->updatePorcentaje($_SESSION["preguntaActualExistente"]);
 
@@ -110,6 +113,7 @@ class JuegoController
     public function goToLobby(){
         unset($_SESSION["isPlaying"]);
         unset($_SESSION["partidaActual"]);
+        unset($_SESSION["isIncorrectQuestion"]);
         header("Location:/quizquest/lobbyusuario/get");
     }
 
