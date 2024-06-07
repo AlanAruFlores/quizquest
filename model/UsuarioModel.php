@@ -10,6 +10,5 @@
             return $this->database->query("SELECT * FROM usuario WHERE CorreoElectronico='".$usuario->getCorreoElectronico()."' AND contrasena='".$usuario->getContrasena()."'");
         }
         //Metodo para crear un nuevo Usuario
-
     }
 ?>

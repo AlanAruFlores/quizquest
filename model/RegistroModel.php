@@ -13,9 +13,9 @@ require 'PHPMailer/src/SMTP.php';
 //Create an instance; passing `true` enables exceptions
 
 class RegistroModel{
-    
-    public function __construct(){
-
+    private $database;
+    public function __construct($database){
+        $this->database = $database;
     }
 
     public function sendValidation(){
@@ -54,6 +54,14 @@ class RegistroModel{
         return $code;
     }
 
+
+    //Registrar usuario
+    public function registerNewUser($usuario){
+        $sql = "INSERT INTO Usuario (nombreCompleto, rol, imagen, esHabilitado, anoNacimiento, Sexo, CorreoElectronico, contrasena, nombrerUsuario, puntaje, localidad_id)
+        VALUES ('".$usuario->getNombreCompleto()."', '".$usuario->getRol()."', '".$usuario->getImagen()."',1, '".$usuario->getAnoNacimiento()."', '".$usuario->getSexo()."', '".$usuario->getCorreoElectronico()."', '".$usuario->getContrasena()."', '".$usuario->getNombreUsuario()."', ".$usuario->getPuntaje().", ".$usuario->getLocalidadId().")";
+
+        $this->database->execute($sql);
+    }
 }
 
 

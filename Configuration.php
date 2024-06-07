@@ -80,7 +80,7 @@ class Configuration
     }
 
     public static function getRegistroController(){
-        return new RegistroController(self::getPresenter(),self::getRegistroModel(),self::getMainSettings());
+        return new RegistroController(self::getPresenter(),self::getRegistroModel(),self::getUsuarioModel(),self::getMainSettings());
     }
 
     public static function getPerfilController(){
@@ -93,7 +93,7 @@ class Configuration
 
     /*MODELOS*/
     public static function getRegistroModel(){
-        return new RegistroModel();
+        return new RegistroModel(self::getDatabase());
     }
 
     public static function getUsuarioModel(){

@@ -12,12 +12,12 @@ CREATE TABLE Localidad
 -- Creación de la tabla Usuario
 CREATE TABLE Usuario
 (
-    id                 INT PRIMARY KEY,	 
+    id                 INT PRIMARY KEY auto_increment,	 
     imagen             VARCHAR(255)	, -- Assuming image is stored as binary large object
     rol                VARCHAR(50)  NOT NULL,
     nombreCompleto     VARCHAR(150) NOT NULL,
     esHabilitado       BOOLEAN      NOT NULL,
-    añoNacimiento      INT          NOT NULL,
+    anoNacimiento      INT          NOT NULL,
     Sexo               CHAR(1)      NOT NULL,
     CorreoElectronico VARCHAR(100) NOT NULL,
     contrasena         VARCHAR(100) NOT NULL,
@@ -109,7 +109,7 @@ INSERT INTO Localidad (id, País, Ciudad)
 VALUES (1, 'Argentina', 'Buenos Aires');
 
 -- Insertar datos en la tabla Usuario
-INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, añoNacimiento, Sexo, CorreoElectronico, contrasena,
+INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, anoNacimiento, Sexo, CorreoElectronico, contrasena,
                      nombrerUsuario, puntaje, localidad_id)
 VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, 1985, 'M', 'juan.perez@example.com', 'password123', 'juanp', 100,
         1),
@@ -415,6 +415,7 @@ select r.id as res_id, r.esCorreto, r.descripción as descripcion_respuesta, p.i
 select * from partida;
 select * from realiza;
 select * from pregunta;
+select * from usuario;
 
 select * from realiza r join pregunta p on r.pregunta_id  = p.id where  usuario_id = 2;
 select p.id, p.descripcion, p.porcentaje from pregunta p where p.id
