@@ -7,7 +7,7 @@
         $_GET["action"]="get";
     }
     
-    if(isset($_SESSION["isPlaying"]) and ($_GET["controller"] != "juego")){
+    if(isset($_SESSION["isPlaying"]) && ($_GET["controller"] != "juego") && ($_GET["controller"] !="contar")){
         $_GET["controller"]="juego";
         $_GET["action"]="get";
     }

@@ -10,16 +10,13 @@
 
             if(!isset($_SESSION["temporizador"]))
                 $_SESSION["temporizador"] = serialize(new Temporizador(20));
-    
-            // var_dump($_SESSION["temporizador"]);
-            // var_dump(unserialize($_SESSION["temporizador"]));
 
-            // die();
-        
             $temporizador = unserialize($_SESSION["temporizador"]);
-            $temporizador->setSegundos($temporizador->getSegundos()-1);
-        
+            $temporizador->setSegundos($temporizador->getSegundos()-1);        
             $_SESSION["temporizador"] = serialize($temporizador);
+
+            // var_dump(unserialize($_SESSION["temporizador"])->getSegundos());
+            // var_dump($temporizador->getSegundos());
             // Establecer el tipo de contenido como JSON
             header('Content-Type: application/json');
             // Devolver solo los datos necesarios del temporizador
@@ -28,8 +25,5 @@
             ));
     
         }
-
-    }
-    
-  
+    }  
 ?>

@@ -98,6 +98,7 @@ class JuegoController
     //Se ejecuta cuando apretamos el boton del popup
     public function goToNextQuestion()
     {
+        unset($_SESSION["temporizador"]);
         unset($_SESSION["preguntaActualExistente"]);
         header("Location:/quizquest/juego/get");
     }
@@ -111,6 +112,8 @@ class JuegoController
     }
 
     public function goToLobby(){
+        unset($_SESSION["temporizador"]);
+        unset($_SESSION["preguntaActualExistente"]);
         unset($_SESSION["isPlaying"]);
         unset($_SESSION["partidaActual"]);
         unset($_SESSION["isIncorrectQuestion"]);

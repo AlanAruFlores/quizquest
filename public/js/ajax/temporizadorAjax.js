@@ -1,10 +1,17 @@
-// setInterval(()=>{
-//     $.ajax({
-//         url:"/quizquest/contar/get",
-//         type:"GET",
-//         datatype: 'json',
-//         success: function($temporizador){
-//             console.log($temporizador.segundos);
-//         }
-//     });
-// },1000);
+const $contadorTiempoElem = document.querySelector("#contador_tiempo");
+
+setInterval(()=>{
+    $.ajax({
+        url:"/quizquest/contar/get",
+        type:"GET",
+        datatype: 'json',
+        success: function($temporizador){
+            $contadorTiempoElem.innerHTML = $temporizador.segundos;
+            if($temporizador.segundos == 0)
+                location.href="http://localhost/quizquest/juego/goToTheEnd"
+        }
+    });
+},1000);
+
+
+
