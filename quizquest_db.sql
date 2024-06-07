@@ -156,6 +156,35 @@ VALUES
 (13, "¿Quién escribió el libro 'Cien años de soledad'?", 10, TRUE, 1, 120, 10, 8),
 (14, "¿Cuál es el océano más grande del mundo?", 10, TRUE, 5, 220, 200, 90),
 (15, "¿Quién pintó la Mona Lisa?", 10, TRUE, 1, 80, 25, 31);
+
+/*MAS PREGUNTAS !!*/
+-- Preguntas Fáciles
+INSERT INTO Pregunta (id, descripcion, punto, esValido, categoria_id, cantidad_dadas, acertadas, porcentaje)
+VALUES 
+(16, "¿Cuál es la capital de España?", 10, TRUE, 5, 100, 60, 60),
+(17, "¿Cuál es el color del cielo en un día despejado?", 10, TRUE, 5, 100, 100, 100),
+(18, "¿Qué animal es famoso por tener una cola larga y peluda y colgarse de los árboles?", 10, TRUE, 5, 100, 90, 90),
+(19, "¿Qué tipo de animal es un delfín?", 10, TRUE, 5, 100, 80, 80),
+(20, "¿Cuál es el resultado de sumar 2 + 2?", 10, TRUE, 6, 100, 100, 100);
+
+-- Preguntas de Nivel Medio
+INSERT INTO Pregunta (id, descripcion, punto, esValido, categoria_id, cantidad_dadas, acertadas, porcentaje)
+VALUES 
+(21, "¿Cuál es la capital de Australia?", 10, TRUE, 5, 100, 40, 40),
+(22, "¿Qué elemento químico tiene el símbolo 'H'?", 10, TRUE, 2, 100, 30, 30),
+(23, "¿Quién escribió la obra de teatro 'Romeo y Julieta'?", 10, TRUE, 1, 100, 40, 40),
+(24, "¿En qué país se encuentra la Gran Muralla China?", 10, TRUE, 5, 100, 40, 40),
+(25, "¿Cuál es el resultado de multiplicar 8 por 7?", 10, TRUE, 6, 100, 40, 40);
+
+-- Preguntas Difíciles
+INSERT INTO Pregunta (id, descripcion, punto, esValido, categoria_id, cantidad_dadas, acertadas, porcentaje)
+VALUES 
+(26, "¿Cuál es el resultado de la raíz cuadrada de 144?", 10, TRUE, 2, 100, 10, 10),
+(27, "¿Cuál es la capital de Islandia?", 10, TRUE, 5, 100, 14, 14),
+(28, "¿En qué año se fundó la Organización de las Naciones Unidas (ONU)?", 10, TRUE, 6, 100, 12, 12),
+(29, "¿Cuál es el componente principal del aire que respiramos?", 10, TRUE, 5, 100, 10, 10),
+(30, "¿Quién fue el primer ser humano en orbitar la Tierra?", 10, TRUE, 6, 100, 8, 8);
+
 -- Insertar datos en la tabla Respuesta para cada pregunta
 -- Pregunta 1
 INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
@@ -263,28 +292,117 @@ VALUES (57, TRUE, 'Leonardo da Vinci', 'A', 15),
        (60, FALSE, 'Rembrandt', 'D', 15);
        
 
+/*RESPUESTAS DE LAS PREGUNTAS EXTRAS*/
+-- Preguntas Fáciles
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(61, TRUE, 'Madrid', 'A', 16),
+(62, FALSE, 'Barcelona', 'B', 16),
+(63, FALSE, 'Londres', 'C', 16),
+(64, FALSE, 'París', 'D', 16);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(65, TRUE, 'Azul', 'A', 17),
+(66, FALSE, 'Verde', 'B', 17),
+(67, FALSE, 'Amarillo', 'C', 17),
+(68, FALSE, 'Rojo', 'D', 17);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(69, TRUE, 'Mono', 'A', 18),
+(70, FALSE, 'Tigre', 'B', 18),
+(71, FALSE, 'Elefante', 'C', 18),
+(72, FALSE, 'León', 'D', 18);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(73, TRUE, 'Mamífero marino', 'A', 19),
+(74, FALSE, 'Pez', 'B', 19),
+(75, FALSE, 'Ave', 'C', 19),
+(76, FALSE, 'Reptil', 'D', 19);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(77, TRUE, '4', 'A', 20),
+(78, FALSE, '2', 'B', 20),
+(79, FALSE, '5', 'C', 20),
+(80, FALSE, '3', 'D', 20);
+
+-- Preguntas de Nivel Medio
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(81, TRUE, 'Canberra', 'A', 21),
+(82, FALSE, 'Sídney', 'B', 21),
+(83, FALSE, 'Melbourne', 'C', 21),
+(84, FALSE, 'Brisbane', 'D', 21);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(85, TRUE, 'Hidrógeno', 'A', 22),
+(86, FALSE, 'Helio', 'B', 22),
+(87, FALSE, 'Oxígeno', 'C', 22),
+(88, FALSE, 'Carbono', 'D', 22);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(89, TRUE, 'William Shakespeare', 'A', 23),
+(90, FALSE, 'Charles Dickens', 'B', 23),
+(91, FALSE, 'Jane Austen', 'C', 23),
+(92, FALSE, 'Federico García Lorca', 'D', 23);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(93, TRUE, 'China', 'A', 24),
+(94, FALSE, 'India', 'B', 24),
+(95, FALSE, 'Rusia', 'C', 24),
+(96, FALSE, 'Estados Unidos', 'D', 24);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(97, TRUE, '56', 'A', 25),
+(98, FALSE, '64', 'B', 25),
+(99, FALSE, '42', 'C', 25),
+(100, FALSE, '36', 'D', 25);
+
+-- Preguntas Difíciles
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(101, TRUE, '12', 'A', 26),
+(102, FALSE, '6', 'B', 26),
+(103, FALSE, '9', 'C', 26),
+(104, FALSE, '16', 'D', 26);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(105, TRUE, 'Reikiavik', 'A', 27),
+(106, FALSE, 'Helsinki', 'B', 27),
+(107, FALSE, 'Oslo', 'C', 27),
+(108, FALSE, 'Estocolmo', 'D', 27);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(109, TRUE, '1945', 'A', 28),
+(110, FALSE, '1918', 'B', 28),
+(111, FALSE, '1939', 'C', 28),
+(112, FALSE, '1954', 'D', 28);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(113, TRUE, 'Nitrógeno', 'A', 29),
+(114, FALSE, 'Oxígeno', 'B', 29),
+(115, FALSE, 'Dióxido de carbono', 'C', 29),
+(116, FALSE, 'Hidrógeno', 'D', 29);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+(117, TRUE, 'Yuri Gagarin', 'A', 30),
+(118, FALSE, 'Neil Armstrong', 'B', 30),
+(119, FALSE, 'Buzz Aldrin', 'C', 30),
+(120, FALSE, 'John Glenn', 'D', 30);
 
 /*Consultas multitabla para evitar repetidos*/
-
-#Evitar repetidos
-
-select * from realiza;
-
-DELETE realiza
-FROM realiza 
-WHERE usuario_id = 2 and pregunta_id = 1;
-
-#Obtener preguntas de un realiza
-select p.id, p.descripcion, p.punto,p.cantidad_dadas,p.porcentaje, p.esValido, c.nombre, c.color as categoria from realiza r join pregunta p 	
-	on r.pregunta_id = p.id
-    join categoria c on c.id = p.categoria_id
-    where partida_id = 3 order by rand();
-    
-    select p.id, p.descripcion, p.punto, p.esValido, p.cantidad_dadas, p.porcentaje, c.nombre as categoria , c.color from realiza r join pregunta p 	
-            on r.pregunta_id = p.id
-            join categoria c on c.id = p.categoria_id
-            where partida_id = '4' order by rand();
-            
+        
 /*SELECTS PARA OBTENER FACILES O INTERMEDIOS O DIFICILES*/
 select p.*, c.nombre as categoria from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
                     select r.pregunta_id from realiza r
@@ -304,7 +422,39 @@ select p.id, p.descripcion, p.porcentaje from pregunta p where p.id
 				select r.pregunta_id from realiza r
 				where r.usuario_id =2
             );
-            
+      
+/*30 PREGUNTAS EN TOTAL , 12 FACILES, 10 INTERMEDIOS, 8 DIFICILES*/
+select count(*)from pregunta;
 select count(*) as faciles from pregunta p where p.porcentaje between 50 and 100;
 select count(*) as intermedios from pregunta p where p.porcentaje between 25 and 49;
 select count(*) as dificiles from pregunta p where p.porcentaje between 0 and 24;
+
+
+
+
+
+
+
+
+
+/*
+#Evitar repetidos
+
+select * from realiza;
+
+DELETE realiza
+FROM realiza 
+WHERE usuario_id = 2 and pregunta_id = 1;
+
+
+Obtener preguntas de un realiza
+select p.id, p.descripcion, p.punto,p.cantidad_dadas,p.porcentaje, p.esValido, c.nombre, c.color as categoria from realiza r join pregunta p 	
+	on r.pregunta_id = p.id
+    join categoria c on c.id = p.categoria_id
+    where r.partida_id = 3 order by rand();
+    
+    select p.id, p.descripcion, p.punto, p.esValido, p.cantidad_dadas, p.porcentaje, c.nombre as categoria , c.color from realiza r join pregunta p 	
+            on r.pregunta_id = p.id
+            join categoria c on c.id = p.categoria_id
+            where partida_id = '4' order by rand();
+  */  

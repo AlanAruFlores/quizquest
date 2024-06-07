@@ -26,7 +26,7 @@ class JuegoController
     {
 
         //Si se equivoco termina el juego
-        if( $_SESSION["isIncorrectQuestion"] == true){
+        if(isset($_SESSION["isIncorrectQuestion"]) && $_SESSION["isIncorrectQuestion"] == true){
             header("Location:/quizquest/juego/goToTheEnd");
             return ;
         }

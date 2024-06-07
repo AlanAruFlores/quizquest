@@ -10,7 +10,7 @@ include_once("controller/LobbyEditorController.php");
 include_once("controller/LoginController.php");
 include_once("controller/PerfilController.php");
 include_once("controller/RegistroController.php");
-
+include_once("controller/ContarController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/UsuarioModel.php");
@@ -85,6 +85,10 @@ class Configuration
 
     public static function getPerfilController(){
         return new PerfilController(self::getPresenter(), self::getMainSettings());
+    }
+
+    public static function getContarController(){
+        return new ContarController(self::getPresenter());
     }
 
     /*MODELOS*/

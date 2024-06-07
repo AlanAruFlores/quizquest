@@ -1,9 +1,11 @@
 <?php 
     session_start();
     include_once("Configuration.php");
-
-
-
+    
+    if(!isset($_SESSION["usuarioLogged"]) && ($_GET["controller"] != "login" && $_GET["controller"] != "registro") ){
+        $_GET["controller"]="login";
+        $_GET["action"]="get";
+    }
     
     if(isset($_SESSION["isPlaying"]) and ($_GET["controller"] != "juego")){
         $_GET["controller"]="juego";
