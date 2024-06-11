@@ -15,9 +15,12 @@
     color: #fff;
 }
 
-body {
+body{
     display: grid;
-    background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
+    /* background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%); */
+    background-image: url(/quizquest/public/imagenes/fondo.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas: "encabezado" "contenido" "pie";

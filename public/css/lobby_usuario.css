@@ -17,7 +17,10 @@
 
 body{
     display: grid;
-    background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
+    /* background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%); */
+    background-image: url(/quizquest/public/imagenes/fondo.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas: "encabezado" "contenido" "pie";
@@ -44,6 +47,7 @@ body{
     bottom: 25px;
     z-index: -1;
     transition: 1s;
+    filter: drop-shadow(1px 1px 20px #fff);
 }
 /*CONTENIDO*/
 .contenido{
@@ -60,6 +64,7 @@ body{
     font-family: bebas;
     letter-spacing: 2px;
     font-size: 38px;
+    text-shadow: 1px 1px 4px #fff;
 }
 .contenido__subtitulo{
     font-size: 18px;
