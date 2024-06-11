@@ -1,21 +1,21 @@
-<main class="contenido">
-    <div class="wave wave_arriba"></div>
-    <h2 class="contenido__titulo">Ingresar</h2>
+<main class="main">
     <form class="formulario" action="/quizquest/login/verifyLogin" method="POST">
+        <h1 class="formulario__titulo__principal">Quizquest</h1>
+
+        <h2 class="formulario__titulo">Login</h2>
+        <p class="formulario__parrafo">Ingrese sus credenciales</p>
         <div class="formulario__grupo">
-            <label for="nombre_usuario">Correo Electronico:</label>
-            <input type="email" id="nombre_usuario" name="correo_electronico" required>
+            <input type="email" id="nombre_usuario" name="correo_electronico" placeholder="Correo Electronico" required>
         </div>
 
         <div class="formulario__grupo">
-            <label for="contrasenia">Contraseña:</label>
-            <input type="text" id="contrasenia" name="contrasena" required>
+            <input type="text" id="contrasenia" name="contrasena" placeholder="Contraseña" required>
         </div>
 
         <div class="formulario__grupo">
-            <button type="submit" class="boton">Iniciar</button>
+            <button type="submit" class="boton">Login</button>
+            <a href="/quizquest/registro/get" class="boton boton_registro">Registrar</a>
         </div>
-        <a style="color:#303030"href="/quizquest/registro/get">Si no tienes una cuenta. Registrate</a>
+        <a class="formulario__registro" href="/quizquest/registro/get">Si no tienes una cuenta. Registrate</a>
     </form>
-    <div class="wave wave_abajo"></div>
 </main>

@@ -1,0 +1,89 @@
+@font-face {
+    font-family: bebas;
+    src: url(/quizquest/public/fuentes/BebasNeue-Regular.ttf);
+}
+@font-face {
+    font-family: opensans;
+    src: url(/quizquest/public/fuentes/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: opensans;
+}
+
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(/quizquest/public/imagenes/fondo.svg);
+}
+
+.contenido{
+    padding: 40px 40px;
+}
+.formulario{
+    background-blend-mode: lighten;
+    background-color: #ffffffe3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    max-width: 500px;
+    padding: 25px;
+    margin: 0 auto;
+}
+.formulario__titulo{
+    text-align: center;
+    font-size: 30px;
+    color: #303030;
+}
+.formulario__parrafo{
+    text-align: center;
+    color: #303030;
+}
+.formulario__grupo{
+    display: flex;
+    flex-direction: column;
+}
+
+input, select{
+    height: 35px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #ffffffef;
+    border: none;
+}
+
+.boton{
+    margin-top: 25px;
+    background-color: #1ccafa ;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    font-family: bebas;
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+.boton_registro{
+    display: none;
+}
+.formulario__registro{
+    font-size: 13px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.formulario__titulo__principal{
+    display: none;
+}
+
+
+

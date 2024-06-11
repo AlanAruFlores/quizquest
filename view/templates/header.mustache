@@ -24,9 +24,13 @@
         <link rel="stylesheet" href="/quizquest/public/css/partidas.css">
     {{/isOnPartidaView}}
     
-    {{#isOnLoginOrRegisterView}}
-        <link rel="stylesheet" href="/quizquest/public/css/registro_login.css"> 
-    {{/isOnLoginOrRegisterView}}
+    {{#isOnLoginView}}
+        <link rel="stylesheet" href="/quizquest/public/css/login.css"> 
+    {{/isOnLoginView}}
+    
+    {{#isOnRegisterView}}
+            <link rel="stylesheet" href="/quizquest/public/css/registro.css"> 
+    {{/isOnRegisterView}}
 
     {{#isOnPerfilView}}
         <link rel="stylesheet" href="/quizquest/public/css/perfil.css">
@@ -46,7 +50,7 @@
         {{#isOnLobbyEditorView}}
             <h1 class="encabezado__titulo">QuizQuest Editor</h1>
         {{/isOnLobbyEditorView}}
-        {{^isOnLobbyEditorView}}
+        {{#isOnLobbyUsuarioView}}
             <h1 class="encabezado__titulo">QuizQuest</h1>
-        {{/isOnLobbyEditorView}}
+        {{/isOnLobbyUsuarioView}}
     </header>

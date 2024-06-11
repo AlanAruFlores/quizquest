@@ -17,18 +17,12 @@
 
 body{
     display: grid;
-    background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
+    background-image: url(/quizquest/public/imagenes/fondo.svg);
     grid-template-columns: 1fr;
     grid-template-rows: auto 590px auto;
     grid-template-areas: "encabezado" "contenido" "pie";
 }
 
-/*ENCABEZADO*/
-.encabezado{
-    background-color: #fff;
-    padding: 10px 20px;
-    grid-area: encabezado;
-}
 .encabezado__titulo{
     font-family: bebas;
     background-image: linear-gradient(to top, #00c6fb 90%, #005bea 10%); /* Cambia los colores según lo desees */

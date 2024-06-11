@@ -149,3 +149,33 @@ body{
     margin-left: 4px;
 
 }
+@media (min-width:950px) {
+    /*PIE DE PAGINA*/
+    .pie__pagina{
+        padding: 20px 70px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: 1fr;
+    }
+    .pie__titulo{
+        font-size: 45px;
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+
+    .pie__subtitulo{
+        font-size: 25px;
+    }
+    .pie__integrantes{
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+    .pie__integrantes li{
+        margin-top: 2px;
+        font-size: 18px;
+    }
+
+    .pie__parrafo{
+        font-size: 18px;
+    }
+}
