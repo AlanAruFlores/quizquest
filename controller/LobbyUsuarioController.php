@@ -19,10 +19,11 @@ class LobbyUsuarioController
 
     public function get()
     {
-        // $temporizador = new Temporizador();
-        // $temporizador->run();
-        // die();
-        $this->presenter->render("view/viewLobbyUsuario.mustache", [...$this->mainSettings]);
+        //Mando al lobby el usuario actual logeado
+        $this->presenter->render("view/viewLobbyUsuario.mustache", [
+            "usuarioLogeado" => $_SESSION["usuarioLogged"],
+            ...$this->mainSettings
+        ]);
     }
 
     public function createNewPartida()

@@ -14,6 +14,7 @@ function cambiarEstadoDeLYeti(flag){
     }
 }
 
+//Se mueve el yeti
 setInterval(()=>{
     setTimeout(()=>{
         cambiarEstadoDeLYeti(true);

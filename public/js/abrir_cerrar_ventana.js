@@ -1,3 +1,4 @@
+//Para abri y cerrar ventanas
 export function abrirVentana(ventana) {
     const $ventanaElem = document.querySelector(ventana);
     $ventanaElem.style.setProperty("visibility", "visible");
