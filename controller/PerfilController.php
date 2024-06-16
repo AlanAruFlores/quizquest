@@ -9,8 +9,13 @@
             $this->mainSettings = $mainSettings;
         }
 
-        public function get(){
-            $this->presenter->render("view/Perfil.mustache", [...$this->mainSettings]);
+        public function get(){  
+            $usuarioLogeado = $_SESSION["usuarioLogged"];
+            $this->presenter->render("view/Perfil.mustache",
+            [
+                "usuarioLogeado"=>$usuarioLogeado,    
+                ...$this->mainSettings
+            ]);
         }
     }
 ?>

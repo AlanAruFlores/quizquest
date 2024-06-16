@@ -53,6 +53,27 @@
             <h1 class="encabezado__titulo">QuizQuest Editor</h1>
         {{/isOnLobbyEditorView}}
         {{#isOnLobbyUsuarioView}}
+        <a href="/quizquest/lobbyusuario/get">
             <h1 class="encabezado__titulo">QuizQuest</h1>
+        </a>
         {{/isOnLobbyUsuarioView}}
+
+        {{#isOnPerfilView}}
+        <a href="/quizquest/lobbyusuario/get">
+            <h1 class="encabezado__titulo">QuizQuest</h1>
+        </a>
+        {{/isOnPerfilView}}
+
+        {{#isOnRankingView}}
+        <a href="/quizquest/lobbyusuario/get">
+            <h1 class="encabezado__titulo">QuizQuest</h1>
+        </a>
+        {{/isOnRankingView}}
+
+        {{#isOnJuegoView}}
+        <a>
+            <h1 class="encabezado__titulo">QuizQuest</h1>
+        </a>
+        {{/isOnJuegoView}}
+        
     </header>

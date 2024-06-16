@@ -47,9 +47,22 @@
                 <option value="deportes">Deportes</option>
                 <option value="entretenimiento">Entretenimiento</option>        
        </select>
-        <button href="#" class="popup__boton boton__formulario">Crear Pregunta</button>
+
+       <label>Cantidad de Respuestas</label>
+       <select id="cantidad_preguntas" name="cantidad_preguntas">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>                     
+            <option value="4">4</option>
+       </select>
+
+       <label>Posibles respuestas</label>
+       <div id="posibles_respuestas">
+
+       </div>
+        <button type="submit" href="#" class="popup__boton boton__formulario">Sugerir Pregunta</button>
     </form>
 </div>
-
-<script src="/quizquest/public/js/animacion_yeti.js"></script>
 <script src="/quizquest/public/js/main.js" type="module"></script>
+<script src="/quizquest/public/js/cantidad_preguntas.js"></script>
+<script src="/quizquest/public/js/animacion_yeti.js"></script>

@@ -33,7 +33,7 @@ header.encabezado {
 }
 
 .encabezado__titulo {
-    font-size: 50px;
+    font-size: 40px;
     font-family: bebas;
     background-image: linear-gradient(to top, #00c6fb 90%, #005bea 10%);
     -webkit-background-clip: text;
@@ -247,6 +247,9 @@ option{
     font-weight: bold;
 }
 @media (min-width:950px) {
+    .encabezado__titulo{
+        font-size: 45px;
+    }
     /*PIE DE PAGINA*/
     .pie__pagina{
         padding: 20px 70px;

@@ -38,6 +38,7 @@ body{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 1px;
+    font-size: 40px;
 }
 
 .yeti__imagen{
@@ -259,6 +260,24 @@ body{
     color: #303030;
 }
 
+#posibles_respuestas{
+    width: 80%;
+}
+.respuesta_pregunta{
+    display: block;
+    width: 100% !important;
+    margin: 7px 0px;
+}
+.label_respuesta{
+    font-size: 15px !important;
+    width: 80%;
+}
+input[type="radio"].input_esCorrecta{
+    display: inline-block;
+    width: 10px !important;
+    height: 10px !important;
+    accent-color: #22e710;
+}
 .boton__formulario{
     border: none;
     background-image:none;

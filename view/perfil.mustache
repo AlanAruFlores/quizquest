@@ -6,7 +6,6 @@
         <a href="../../Vistas_Preguntados/html/lobby_usuario.html" class="volver">volver</a>
     </div> }}
 
-
     <h1 class="contenido__titulo">Perfil de Usuario</h1>
     <div class="formulario">
 
@@ -17,31 +16,31 @@
 
         <div class="formulario__grupo">
             <label for="nombre_completo" class="formulario__label">Nombre completo:</label>
-            <input type="text" id="nombre_completo" class="formulario__input" value="John Doe">
+            <input type="text" id="nombre_completo" class="formulario__input" value="{{usuarioLogeado.nombreCompleto}}">
         </div>
         <div class="formulario__grupo">
             <label for="anio_nacimiento" class="formulario__label">Año de nacimiento:</label>
-            <input type="text" id="anio_nacimiento" class="formulario__input" value="1990">
+            <input type="text" id="anio_nacimiento" class="formulario__input" value="{{usuarioLogeado.anoNacimiento}}">
         </div>
         <div class="formulario__grupo">
             <label for="sexo" class="formulario__label">Sexo:</label>
-            <input type="text" id="sexo" class="formulario__input" value="Masculino">
+            <input type="text" id="sexo" class="formulario__input" value="{{usuarioLogeado.Sexo}}">
         </div>
         <div class="formulario__grupo">
             <label for="pais_ciudad" class="formulario__label">País y ciudad:</label>
-            <input type="text" id="pais_ciudad" class="formulario__input" value="México, Ciudad de México">
+            <input type="text" id="pais_ciudad" class="formulario__input" value="Argentina">
         </div>
         <div class="formulario__grupo">
             <label for="correo" class="formulario__label">Correo electrónico:</label>
-            <input type="email" id="correo" class="formulario__input" value="john.doe@example.com">
+            <input type="email" id="correo" class="formulario__input" value="{{usuarioLogeado.CorreoElectronico}}">
         </div>
         <div class="formulario__grupo">
             <label for="contrasenia" class="formulario__label">Contraseña:</label>
-            <input type="password" id="contrasenia" class="formulario__input" value="••••••••">
+            <input type="password" id="contrasenia" class="formulario__input" value="{{usuarioLogeado.contrasena}}">
         </div>
         <div class="formulario__grupo">
             <label for="nombre_usuario" class="formulario__label">Nombre de usuario:</label>
-            <input type="text" id="nombre_usuario" class="formulario__input" value="johnny_d">
+            <input type="text" id="nombre_usuario" class="formulario__input" value="{{usuarioLogeado.nombrerUsuario}}">
         </div>
     </div>
     <div class="wave wave_abajo"></div>
