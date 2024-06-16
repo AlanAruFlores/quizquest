@@ -24,120 +24,29 @@
     <section class="popup__contenido">
         <h2 class="popup__titulo">Lista de Sugerencias</h2>
         <div class="scrollable-content">
-        
-            <ul class="sugerencias__lista">
-                <li><a href="#" class="sugerencia__item" data-opcion="opcion1">Sugerencia de Pedrit058</a></li>
-                <div id="opcion1" class="detalle__contenido">
-                    <p>¿A cuanta velocidad se puede cagar?</p>
+        <ul class="sugerencias__lista">
+            {{#sugeridasPreguntas}}
+                <li><a href="#" class="sugerencia__item" data-opcion="opcion{{preguntaSugerida.pregunta_sugerida_id}}">Sugerencia de {{preguntaSugerida.nombrerUsuario}}</a></li>
+                <div id="opcion{{preguntaSugerida.pregunta_sugerida_id}}" class="detalle__contenido">
+                    <p>{{preguntaSugerida.pregunta_descripcion}}</p>
                     <div class="respuestas">
-                        <button class="but__ejemplo correcta">3678392652978 k/h</button>
-                        <button class="but__ejemplo">Depende el tamaño de tu ano</button>
-                        <button class="but__ejemplo">Ahora me fijo</button>
-                        <button class="but__ejemplo">Ahora me fijo</button>
+                        {{#respuestasSugeridas}}
+                            {{#esCorrecto}}
+                               <button class="but__ejemplo correcta">{{descripcion}}</button>
+                            {{/esCorrecto}}
+                            {{^esCorrecto}}
+                                <button class="but__ejemplo">{{descripcion}}</button>
+                            {{/esCorrecto}}
+                        {{/respuestasSugeridas}}
                     </div>
                     <br>
-                    <p>Tipo de pregunta: Pop</p>
+                    <p>Tipo de pregunta: {{preguntaSugerida.categoria}}</p>
                     <div class="botones">
                         <button href="#" class="boton">Aceptar</button>
                         <button href="#" class="boton">Rechazar</button>
                     </div>
                 </div>
-                <li><a href="#" class="sugerencia__item" data-opcion="opcion2">Sugerencia de Pedrit058</a></li>
-                <div id="opcion2" class="detalle__contenido">
-                    <p>¿A cuanta velocidad se puede cagar?</p>
-                    <div class="respuestas">
-                        <button class="but__ejemplo correcta">3678392652978 k/h</button>
-                        <button class="but__ejemplo">Depende el tamaño de tu ano</button>
-                        <button class="but__ejemplo">Ahora me fijo</button>
-                        <button class="but__ejemplo">nO c</button>
-                    </div>
-                    <br>
-                    <p>Tipo de pregunta: Historia</p>
-                    <div class="botones">
-                        <button href="#" class="boton">Aceptar</button>
-                        <button href="#" class="boton">Rechazar</button>
-                    </div>
-                </div>
-                <li><a href="#" class="sugerencia__item" data-opcion="opcion3">Sugerencia de Pedrit058</a></li>
-                <div id="opcion3" class="detalle__contenido">
-                    <p>¿A cuanta velocidad se puede cagar?</p>
-                    <div class="respuestas">
-                        <button class="but__ejemplo correcta">3678392652978 k/h</button>
-                        <button class="but__ejemplo">Depende el tamaño de tu ano</button>
-                        <button class="but__ejemplo">Ahora me fijo</button>
-                        <button class="but__ejemplo">nO c</button>
-                    </div>
-                    <br>
-                    <p>Tipo de pregunta: Historia</p>
-                    <div class="botones">
-                        <button href="#" class="boton">Aceptar</button>
-                        <button href="#" class="boton">Rechazar</button>
-                    </div>
-                </div>
-                <li><a href="#" class="sugerencia__item" data-opcion="opcion4">Sugerencia de Pedrit058</a></li>
-                <div id="opcion4" class="detalle__contenido">
-                    <p>¿A cuanta velocidad se puede cagar?</p>
-                    <div class="respuestas">
-                        <button class="but__ejemplo correcta">3678392652978 k/h</button>
-                        <button class="but__ejemplo">Depende el tamaño de tu ano</button>
-                        <button class="but__ejemplo">Ahora me fijo</button>
-                        <button class="but__ejemplo">nO c</button>
-                    </div>
-                    <br>
-                    <p>Tipo de pregunta: Historia</p>
-                    <div class="botones">
-                        <button href="#" class="boton">Aceptar</button>
-                        <button href="#" class="boton">Rechazar</button>
-                    </div>
-                </div>
-                <li><a href="#" class="sugerencia__item" data-opcion="opcion5">Sugerencia de Pedrit058</a></li>
-                <div id="opcion5" class="detalle__contenido">
-                    <p>¿A cuanta velocidad se puede cagar?</p>
-                    <div class="respuestas">
-                        <button class="but__ejemplo correcta">3678392652978 k/h</button>
-                        <button class="but__ejemplo">Depende el tamaño de tu ano</button>
-                        <button class="but__ejemplo">Ahora me fijo</button>
-                        <button class="but__ejemplo">nO c</button>
-                    </div>
-                    <br>
-                    <p>Tipo de pregunta: Historia</p>
-                    <div class="botones">
-                        <button href="#" class="boton">Aceptar</button>
-                        <button href="#" class="boton">Rechazar</button>
-                    </div>
-                </div>
-                <li><a href="#" class="sugerencia__item" data-opcion="opcion6">Sugerencia de Pedrit058</a></li>
-                <div id="opcion6" class="detalle__contenido">
-                    <p>¿A cuanta velocidad se puede cagar?</p>
-                    <div class="respuestas">
-                        <button class="but__ejemplo correcta">3678392652978 k/h</button>
-                        <button class="but__ejemplo">Depende el tamaño de tu ano</button>
-                        <button class="but__ejemplo">Ahora me fijo</button>
-                        <button class="but__ejemplo">nO c</button>
-                    </div>
-                    <br>
-                    <p>Tipo de pregunta: Historia</p>
-                    <div class="botones">
-                        <button href="#" class="boton">Aceptar</button>
-                        <button href="#" class="boton">Rechazar</button>
-                    </div>
-                </div>
-                <li><a href="#" class="sugerencia__item" data-opcion="opcion7">Sugerencia de Pedrit058</a></li>
-                <div id="opcion7" class="detalle__contenido">
-                    <p>¿A cuanta velocidad se puede cagar?</p>
-                    <div class="respuestas">
-                        <button class="but__ejemplo">3678392652978 k/h</button>
-                        <button class="but__ejemplo correcta">Depende el tamaño de tu ano</button>
-                        <button class="but__ejemplo">Ahora me fijo</button>
-                        <button class="but__ejemplo">nO c</button>
-                    </div>
-                    <br>
-                    <p>Tipo de pregunta: Historia</p>
-                    <div class="botones">
-                        <button href="#" class="boton">Aceptar</button>
-                        <button href="#" class="boton">Rechazar</button>
-                    </div>
-                </div>
+            {{/sugeridasPreguntas}}
             </ul>
         </div>
     </section>
