@@ -30,8 +30,18 @@
                 header("Location:/quizquest/login/get");
                 return;
             }
+
+            /*Guardo en la sesion al usuario*/
             $_SESSION["usuarioLogged"] = $usuarioEncontrado;
 
+            /*Si es editor lo mando a su vista */
+            if($usuarioEncontrado["rol"] == "Editor"){
+                header("Location:/quizquest/lobbyeditor/get");
+                return;
+            }
+
+            
+            /*Si no es editor ni administrador, es un usuario normal */
             header("Location:/quizquest/lobbyusuario/get");
         }
     }

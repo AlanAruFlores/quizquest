@@ -46,6 +46,11 @@ class LobbyUsuarioController
     }
 
 
+    public function suggestNewQuestion(){
+        
+    }
+
+
     public function exit()
     {
         unset($_SESSION["usuarioLogged"]);
