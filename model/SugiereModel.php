@@ -9,9 +9,8 @@
         }
 
         public function insertNewSugiere($sugiere){
-            $this->database->execute("INSERT INTO sugiere(usuario_id,preguntasugerida_id,respuestasugerida_id) VALUES('".$sugiere->getUsuarioId()."','".$sugiere.getPreguntaSugeridaId()."','".$sugiere->getRespuestaSugeridaId()."')");
+            $this->database->execute("INSERT INTO sugiere(usuario_id,preguntasugerida_id,respuestasugerida_id) VALUES('".$sugiere->getUsuarioId()."','".$sugiere->getPreguntaSugeridaId()."','".$sugiere->getRespuestaSugeridaId()."')");
         }
-
 
 
     }
