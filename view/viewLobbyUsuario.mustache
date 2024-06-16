@@ -34,12 +34,12 @@
 <div class="popup crear__pregunta" id="crear__pregunta__ventana">
     <a href="#" class="popup__button popup__cerrar" id="cerrar__pregunta__ventana"><i class="fa-solid fa-xmark"></i></a>
     <h2 class="popup__titulo">Sugiere una pregunta!</h2>
-    <form class="popup__formulario">
+    <form class="popup__formulario" action="/quizquest/lobbyusuario/suggestNewQuestion" method="POST">
         <h3 class="popup__subtitulo">Nueva pregunta</h3>
         <label>Pregunta</label>
-        <input type="text" name="" id="" value="">
+        <input type="text" name="descripcionPregunta" id="descripcionPregunta">
         <label>Tipo de pregunta</label>
-        <select name="categoria_id">
+        <select name="preguntaCategoriaId">
                 <option value="1">Cultura</option>
                 <option value="2">Ciencia</option>
                 <option value="3">Entretenimiento</option>
@@ -49,7 +49,7 @@
        </select>
 
        <label>Cantidad de Respuestas</label>
-       <select id="cantidad_preguntas" name="cantidad_preguntas">
+       <select id="cantidad_preguntas" name="cantidadPreguntas">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>                     
@@ -58,9 +58,8 @@
 
        <label>Posibles respuestas</label>
        <div id="posibles_respuestas">
-
        </div>
-        <button type="submit" href="#" class="popup__boton boton__formulario">Sugerir Pregunta</button>
+        <button type="submit" class="popup__boton boton__formulario">Sugerir Pregunta</button>
     </form>
 </div>
 <script src="/quizquest/public/js/main.js" type="module"></script>

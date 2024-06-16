@@ -12,6 +12,15 @@
             $this->database->execute("INSERT INTO preguntasugerida (id,descripcion,categoria_id) VALUES ('".$preguntaSugerida->getId()."', '".$preguntaSugerida->getDescripcion()."', '".$preguntaSugerida->getCategoriaId()."')");
         }
 
+        //Obtener siempre el ultimo id de la ultima pregunta 
+        public function getLastPreguntaSugeridaId(){
+            $preguntaSugeridaId = $this->database->query("select id from preguntasugerida order by id desc limit 1");
+            if($preguntaSugeridaId == null)
+                return 1;
+        
+            return ++$preguntaSugeridaId["id"];
+        }
+
     }
 
 ?>

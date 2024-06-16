@@ -19,6 +19,9 @@ include_once("model/PartidaModel.php");
 include_once("model/RespuestaModel.php");
 include_once("model/PreguntaModel.php");
 include_once("model/UsuarioPreguntaModel.php");
+include_once("model/PreguntaSugeridaModel.php");
+include_once("model/RespuestaSugeridaModel.php");
+include_once("model/SugiereModel.php");
 include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
 //Clase tipo Factory que retornara las instancias del proyecto y donde vamos a tener los controllers a usar
@@ -57,7 +60,7 @@ class Configuration
 
     public static function getLobbyUsuarioController()
     {
-        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(), self::getMainSettings());
+        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(),self::getPreguntaSugeridaModel(),self::getRespuestaSugeridaModel(),self::getSugiereModel(),self::getMainSettings());
     }
 
     public static function getLobbyEditorController()
@@ -114,6 +117,18 @@ class Configuration
 
     public static function getUsuarioPreguntaModel(){
         return new UsuarioPreguntaModel(self::getDatabase());
+    }
+
+    public static function getPreguntaSugeridaModel(){
+        return new PreguntaSugeridaModel(self::getDatabase());
+    }
+
+    public static function getRespuestaSugeridaModel(){
+        return new RespuestaSugeridaModel(self::getDatabase());
+    }
+
+    public static function getSugiereModel(){
+        return new SugiereModel(self::getDatabase());
     }
 
     /*Configuracion principal */
