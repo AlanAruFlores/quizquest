@@ -401,8 +401,67 @@ VALUES
 (119, FALSE, 'Buzz Aldrin', 'C', 30),
 (120, FALSE, 'John Glenn', 'D', 30);
 
-/*Consultas multitabla para evitar repetidos*/
-        
+/*TABLAS PARA REPORTAR UNA PREGUNTA CON RESPUESTAS*/
+
+create table reporta(
+	usuario_id int not null,
+	pregunta_id int not null,
+    razon text not null,
+    constraint pk_reporta primary key(usuario_id, pregunta_id),
+    constraint fk_reporta_usuario foreign key(usuario_id) references usuario(id),
+    constraint fk_reporta_pregunta foreign key(pregunta_id) references pregunta(id)
+);
+
+/*TABLAS PARA LAS PREGUNTAS SUGERIDAS*/
+create table preguntasugerida(
+	id int not null,
+    descripcion text not null,
+    categoria_id int not null,
+    constraint pk_preguntasugerida primary key (id),
+    constraint fk_categoria_preguntasugerida foreign key(categoria_id) references categoria(id)
+);
+
+create table respuestasugerida(
+	id int not null,
+    descripcion text not null,
+    esCorrecto bool not null,
+	constraint pk_respuestasugerida primary key (id)
+);
+
+create table sugiere(
+	usuario_id int not null,
+    preguntasugerida_id int not null,
+	respuestasugerida_id int not null,
+    constraint pk_sugiere primary key (preguntasugerida_id, respuestasugerida_id),
+    constraint fk_preguntasugerida foreign key (preguntasugerida_id) references preguntasugerida(id),
+    constraint fk_respuestasugerida foreign key (respuestasugerida_id) references  respuestasugerida(id)
+);
+
+select id from respuestasugerida order by id desc limit 1;
+select id from  preguntasugerida order by id desc limit 1;
+select * from categoria;
+
+select * from preguntasugerida;
+select * from respuestasugerida;
+select * from sugiere;
+select * from usuario;
+
+select u.id as "usuario_id" , u.nombrerUsuario, ps.id as "pregunta_sugerida_id", ps.descripcion as "pregunta_descripcion", rs.id , rs.descripcion as "respuesta_descripcion", rs.esCorrecto from sugiere s 
+join usuario u on s.usuario_id = u.id
+join preguntasugerida ps on s.preguntasugerida_id = ps.id
+join respuestasugerida rs on s.respuestasugerida_id = rs.id;
+
+select distinct u.id as "usuario_id" , u.nombrerUsuario, ps.id as "pregunta_sugerida_id", ps.descripcion as "pregunta_descripcion", c.nombre as "categoria" from sugiere s 
+join usuario u on s.usuario_id = u.id
+join preguntasugerida ps on s.preguntasugerida_id = ps.id
+join categoria c on ps.categoria_id = c.id;
+
+select rs.id, rs.descripcion,rs.esCorrecto from sugiere s 
+join respuestasugerida rs on s.respuestasugerida_id = rs.id
+join preguntasugerida ps on s.preguntasugerida_id = ps.id
+where s.preguntasugerida_id = 3;
+
+/*Consultas multitabla para evitar repetidos*/        
 /*SELECTS PARA OBTENER FACILES O INTERMEDIOS O DIFICILES*/
 select p.*, c.nombre as categoria from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
                     select r.pregunta_id from realiza r
