@@ -2,6 +2,8 @@
 include_once ("model/Pregunta.php");
 include_once ("model/Respuesta.php");
 include_once("model/UsuarioPregunta.php");
+include_once("model/reporta.php");
+
 class JuegoController
 {
 
@@ -120,6 +122,18 @@ class JuegoController
         header("Location:/quizquest/lobbyusuario/get");
     }
 
+
+    /*METODO PARA REPORTAR UNA PREGUNTA */
+
+    public function reportQuestion(){
+        $razon = isset($_POST["razon"]) ? $_POST["razon"] : "Razon indefinida";
+        $preguntaId= $_POST["pregunta_id"]; //Id de la pregunta a reportar 
+        $usuarioId = $_SESSION["usuarioLogged"]["id"]; // Accedo al id del usuario
+        $this->preguntaModel->changePreguntaToInvalidById($preguntaId);
+
+
+
+    }
 }
 
 

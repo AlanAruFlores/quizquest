@@ -79,6 +79,12 @@
             return $this->database->query("select * from pregunta order by id desc limit 1");
         }
 
+        public function getPreguntaById($id){
+            return $this->database->query("select * from pregunta where id = '$id'");
+        }
 
+        public function changePreguntaToInvalidById($id){
+            $this->database->execute("update pregunta set esValido = 'false' where id = '$id'");
+        }
     }
 ?>
