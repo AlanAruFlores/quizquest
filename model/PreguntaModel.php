@@ -6,6 +6,13 @@
             $this->database = $database;
         }
 
+
+
+        //Creo una nueva pregunta
+        public function insertNewPregunta($preguntaNueva){
+            $this->database->execute("INSERT INTO pregunta (id,descripcion,punto,esValido,cantidad_dadas,acertadas,porcentaje,categoria_id) VALUES ('null','".$preguntaNueva["descripcion"]."','10','true','0','0','100','".$preguntaNueva["categoria_id"]."')");
+        }
+
         private function getPreguntasNoRepeatedByLevel($level){
             $porcentajeDificultadConditional = ($level == "FACIL") ? "p.porcentaje between 50 and 100" :
                     (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje between 0 and 24");
@@ -67,5 +74,11 @@
             $_SESSION["preguntaActualExistente"] = $pregunta;
             self::update($pregunta);
         }
+
+        public function getLastPregunta(){
+            return $this->database->query("select * from pregunta order by id desc limit 1");
+        }
+
+
     }
 ?>

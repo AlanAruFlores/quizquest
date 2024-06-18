@@ -14,7 +14,13 @@
             return $this->database->query("select * from respuesta where id='$respuestaId' and pregunta_id='$preguntaId'");
         }
 
-        //Metodo para crear un nuevo Usuario
+        public function insertAllRespuestas($respuestasArray,$preguntaId){
+            $letras = ['A','B','C','D'];
+            $i = 0 ;
+            foreach($respuestasArray as $respuestaNueva){
 
+                $this->database->execute("insert into respuesta (id,esCorreto,descripción,letra,pregunta_id) values ('null','".$respuestaNueva["esCorrecto"]."','".$respuestaNueva["descripcion"]."','".$letras[$i++]."','$preguntaId')");
+            }
+        }
     }
 ?>

@@ -44,11 +44,13 @@ class SugiereModel
         return $respuestas;
     }
 
-    public function deletePreguntaSugeridaById($id){
+    public function deleteRespuestasSugeridasByPreguntaSugeridaId($id){
+        $respuestasSugeridas = self::getRespuestasSugeridasByPreguntaSugeridaId($id);
         $this->database->execute("DELETE FROM sugiere WHERE preguntasugerida_id='$id'");
+        foreach($respuestasSugeridas as $respuesta)
+            $this->database->execute("DELETE FROM respuestasugerida WHERE id = '".$respuesta["id"]."'");
         $this->database->execute("DELETE FROM preguntasugerida WHERE id = '$id'");
     }
-
 
     //Obtengo un arreglo de sugeridas mediante las preguntas.
     public function gerArraySugestsByPreguntas($preguntasSugeridas){

@@ -21,6 +21,10 @@
             return ++$preguntaSugeridaId["id"];
         }
 
+        public function getPreguntaSugeridaById($id){
+            return $this->database->query("SELECT * FROM preguntasugerida WHERE id = '$id'");           
+        }
+
     }
 
 ?>
