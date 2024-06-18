@@ -69,7 +69,7 @@ CREATE TABLE Categoria
 -- Creación de la tabla Pregunta
 CREATE TABLE Pregunta
 (
-    id           INT PRIMARY KEY,
+    id           INT PRIMARY KEY AUTO_INCREMENT,
     descripcion  TEXT,
     punto        INT     NOT NULL,
     esValido     BOOLEAN NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE Realiza
 -- Creación de la tabla Respuesta
 CREATE TABLE Respuesta
 (
-    id          INT PRIMARY KEY,
+    id          INT PRIMARY KEY AUTO_INCREMENT,
     esCorreto   BOOLEAN NOT NULL,
     descripción TEXT    NOT NULL,
     letra varchar(10) NOT NULL,
@@ -445,6 +445,14 @@ select * from preguntasugerida;
 select * from respuestasugerida;
 select * from sugiere;
 select * from usuario;
+select * from pregunta;
+select * from respuesta;
+select * from reporta;
+select * from pregunta order by id desc limit 1;
+
+desc pregunta;
+DELETE FROM sugiere where preguntasugerida_id=  3;
+DELETE FROM preguntasugerida WHERE id = 3;
 
 select u.id as "usuario_id" , u.nombrerUsuario, ps.id as "pregunta_sugerida_id", ps.descripcion as "pregunta_descripcion", rs.id , rs.descripcion as "respuesta_descripcion", rs.esCorrecto from sugiere s 
 join usuario u on s.usuario_id = u.id
@@ -460,6 +468,8 @@ select rs.id, rs.descripcion,rs.esCorrecto from sugiere s
 join respuestasugerida rs on s.respuestasugerida_id = rs.id
 join preguntasugerida ps on s.preguntasugerida_id = ps.id
 where s.preguntasugerida_id = 3;
+
+
 
 /*Consultas multitabla para evitar repetidos*/        
 /*SELECTS PARA OBTENER FACILES O INTERMEDIOS O DIFICILES*/

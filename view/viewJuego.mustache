@@ -33,7 +33,7 @@
 
 <div class="popup pop__up__reportar">
     <a href="#" class="popup__button reportar__cerrar" id="reportar__cerrar"><i class="fa-solid fa-xmark"></i></a>
-    <form href="/quizquest/juego/reportQuestion" class="reportar__formulario" method="POST">
+    <form action="/quizquest/juego/reportQuestion" class="reportar__formulario" method="POST">
         <h2 class="popup__titulo">Reportar pregunta</h2>
         <label class="reportar__label">Razon</label>
         <textarea class="reportar__razon" name="razon" cols="20" rows="5"></textarea>
@@ -65,5 +65,5 @@
 {{/hayPopUp}}
 
 
-<script src="/quizquest/public/js/main.js" type="module"></script>
+<script src="/quizquest/public/js/juego.js" type="module"></script>
 {{! <script src="/quizquest/public/js/ajax/temporizadorAjax.js"></script> }}

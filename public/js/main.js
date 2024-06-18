@@ -35,13 +35,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             document.getElementById(opcion).classList.add("activo");
             e.target.classList.add("activo");
         }
-
-        //Cerrar reportar popup de la vista juego
-        if(e.target.matches("#reportar__cerrar") || e.target.matches("#reportar__cerrar *"))
-            cerrarVentana(".pop__up__reportar");
-        if(e.target.matches("#boton__reportar") || e.target.matches("#boton__reportar *"))
-            abrirVentana(".pop__up__reportar");
-
+        
         //Ver reportes popup
         if(e.target.matches("#abrir__reportes__ventana") || e.target.matches("#abrir__reportes__ventana *"))
             abrirVentana("#ver__reportes__ventana");

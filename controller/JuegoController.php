@@ -13,7 +13,9 @@ class JuegoController
     private $preguntaModel;
     private $usuarioPreguntaModel;
     private $respuestaModel;
-    public function __construct($presenter, $partidaModel, $preguntaModel, $respuestaModel, $usuarioPreguntaModel, $mainSettings)
+    private $reporteModel;
+
+    public function __construct($presenter, $partidaModel, $preguntaModel, $respuestaModel, $usuarioPreguntaModel,$reporteModel, $mainSettings)
     {
         $this->presenter = $presenter;
         $this->partidaModel = $partidaModel;
@@ -21,6 +23,7 @@ class JuegoController
         $this->usuarioPreguntaModel = $usuarioPreguntaModel;
         $this->mainSettings = $mainSettings;
         $this->respuestaModel = $respuestaModel;
+        $this->reporteModel = $reporteModel;
     }
 
     //Muestra las preguntas y sus respuestas.
@@ -131,8 +134,10 @@ class JuegoController
         $usuarioId = $_SESSION["usuarioLogged"]["id"]; // Accedo al id del usuario
         $this->preguntaModel->changePreguntaToInvalidById($preguntaId);
 
+        $nuevoReporte = new Reporta($usuarioId, $preguntaId, $razon);
+        $this->reporteModel->insertNewReporte($nuevoReporte);
 
-
+        header("Location:/quizquest/juego/get");
     }
 }
 

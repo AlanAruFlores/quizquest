@@ -22,6 +22,7 @@ include_once("model/UsuarioPreguntaModel.php");
 include_once("model/PreguntaSugeridaModel.php");
 include_once("model/RespuestaSugeridaModel.php");
 include_once("model/SugiereModel.php");
+include_once("model/ReportaModel.php");
 include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
 //Clase tipo Factory que retornara las instancias del proyecto y donde vamos a tener los controllers a usar
@@ -55,7 +56,7 @@ class Configuration
     /*Controladores */
     public static function getJuegoController()
     {
-        return new JuegoController(self::getPresenter(),self::getPartidaModel(), self::getPreguntaModel(),self::getRespuestaModel(), self::getUsuarioPreguntaModel(), self::getMainSettings());
+        return new JuegoController(self::getPresenter(),self::getPartidaModel(), self::getPreguntaModel(),self::getRespuestaModel(), self::getUsuarioPreguntaModel(), self::getReportaModel(), self::getMainSettings());
     }
 
     public static function getLobbyUsuarioController()
@@ -129,6 +130,10 @@ class Configuration
 
     public static function getSugiereModel(){
         return new SugiereModel(self::getDatabase());
+    }
+
+    public static function getReportaModel(){
+        return new ReportaModel(self::getDatabase());
     }
 
     /*Configuracion principal */
