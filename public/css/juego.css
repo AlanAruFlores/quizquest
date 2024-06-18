@@ -280,6 +280,68 @@ body{
 }
 
 
+/*FORMULARIO DE REPORTE*/
+.pop__up__reportar{
+    visibility: hidden;
+    opacity: 0;
+    transition: .5s;
+}
+.reportar__formulario{
+    background-color: #00c6fb;
+    padding: 40px 40px;
+    width: 90%;    
+    max-width: 400px;
+}
+
+.reportar__formulario h2{
+    background-image: linear-gradient(to top, #ffffff 100%, #ffffff 10%); /* Cambia los colores según lo desees */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 35px;
+}
+
+.reportar__label{
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: bebas;
+    letter-spacing: 2px;
+}
+.reportar__razon{
+    width: 100%;
+    max-width: 300px;
+    font-size: 40px;
+    display: block;
+    border: none;
+    color: #303030;
+    font-size: 15px;
+}
+
+.reportar__cerrar{
+    background-color: #00c6fb;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+.reportar__formulario .popup__boton{
+    background: none;
+    background-color: #fff;
+    border: none;
+    color: #00c6fb;
+    display: block;
+    font-size: 20px;
+}
+
+
 @media(min-width:580px){
     .contenedor__titulo{
         font-size: 30px;

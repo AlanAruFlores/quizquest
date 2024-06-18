@@ -18,7 +18,7 @@
         <div class="contenedor__titulo">{{categoria}}</div>
         <div class="contenedor__pregunta">
             <span class="contenedor_dificultad" style="background-color:{{colorDificultad}}">{{nivelPregunta}}</span>
-            <a href="#" class="contenedor__reportar">
+            <a class="contenedor__reportar" id="boton__reportar">
                 <i class="fa-solid fa-flag"></i>
             </a>
             <p>{{descripcion}}</p>
@@ -52,4 +52,15 @@
     {{/popUpCorrectoOError}}
 {{/hayPopUp}}
 
-<script src="/quizquest/public/js/ajax/temporizadorAjax.js"></script>
+<div class="popup pop__up__reportar">
+    <a href="#" class="popup__button reportar__cerrar" id="reportar__cerrar"><i class="fa-solid fa-xmark"></i></a>
+    <form class="reportar__formulario">
+        <h2 class="popup__titulo">Reportar pregunta</h2>
+        <label class="reportar__label">Razon</label>
+        <textarea class="reportar__razon" name="razon" cols="20" rows="5"></textarea>
+        <button type="submit" class="popup__boton">Reportar</button>
+    </form>
+</div>
+
+<script src="/quizquest/public/js/main.js" type="module"></script>
+{{! <script src="/quizquest/public/js/ajax/temporizadorAjax.js"></script> }}
