@@ -43,6 +43,49 @@ class SugiereModel
 
         return $respuestas;
     }
+
+    public function deletePreguntaSugeridaById($id){
+        $this->database->execute("DELETE FROM sugiere WHERE preguntasugerida_id='$id'");
+        $this->database->execute("DELETE FROM preguntasugerida WHERE id = '$id'");
+    }
+
+
+    //Obtengo un arreglo de sugeridas mediante las preguntas.
+    public function gerArraySugestsByPreguntas($preguntasSugeridas){
+        $arraySugeridas = array();
+        //Si tiene varias filas
+        if(self::isBidimentionalResult($preguntasSugeridas)){
+            foreach ($preguntasSugeridas as $pregunta) {
+                $respuestas = self::getRespuestasSugeridasByPreguntaSugeridaId($pregunta["pregunta_sugerida_id"]);
+                    array_push($arraySugeridas, [
+                    "preguntaSugerida"=>$pregunta,
+                    "respuestasSugeridas"=>$respuestas
+                ]);
+            }
+        }
+        //Si solo tiene una fila como resultado
+        else if (count($preguntasSugeridas) > 0){
+            $respuestas = self::getRespuestasSugeridasByPreguntaSugeridaId($preguntasSugeridas["pregunta_sugerida_id"]);
+            array_push($arraySugeridas, [
+                "preguntaSugerida"=>$preguntasSugeridas,
+                "respuestasSugeridas"=>$respuestas
+            ]);  
+         }
+
+         return $arraySugeridas;
+    }
+
+    public function isBidimentionalResult($result__array){
+        if(!is_array($result__array))
+            return false;
+    
+        foreach ($result__array as $element) {
+            if(is_array($element))
+                return true;
+        }
+
+        return false;
+    }
 }
 
 ?>

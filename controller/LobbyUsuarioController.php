@@ -64,9 +64,7 @@ class LobbyUsuarioController
 
         for($i = 1; $i<=intval($_POST["cantidadPreguntas"]); $i++){
             $this->respuestaSugeridaModel->insertNewRespuestaSugerida(new RespuestaSugerida($lastIdRespuestaSugerida,$_POST["respuesta$i"], ($i== $_POST["esCorrecta"]) ? TRUE : FALSE));
-            
             $sugerir = new Sugiere($_SESSION["usuarioLogged"]["id"], $lastIdPreguntaSugerida,$lastIdRespuestaSugerida++);
-
             $this->sugiereModel->insertNewSugiere($sugerir);
         }
         

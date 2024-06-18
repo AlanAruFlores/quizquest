@@ -14,24 +14,23 @@ class LobbyEditorController {
 
     public function get(){
         $preguntasSugeridas = $this->sugiereModel->getPreguntasSugeridas();
-        //var_dump($preguntasSugeridas);
-        //echo "-----------------";
-
-        $arraySugeridas = array();
-        foreach ($preguntasSugeridas as $pregunta) {
-            $respuestas = $this->sugiereModel->getRespuestasSugeridasByPreguntaSugeridaId($pregunta["pregunta_sugerida_id"]);
-             array_push($arraySugeridas, [
-                "preguntaSugerida"=>$pregunta,
-                "respuestasSugeridas"=>$respuestas
-            ]);
-        }
-
-        //var_dump($arraySugeridas);
-
-        //die();
+        $arraySugeridas = $this->sugiereModel->gerArraySugestsByPreguntas($preguntasSugeridas);
         $this->presenter->render("view/viewLobbyEditor.mustache",
             ["sugeridasPreguntas" => $arraySugeridas,
             ...$this->mainSettings]);
+    }
+
+
+    //Agrego una sugerencia
+    public function acceptSuggest(){
+        $idPreguntaSugerida = $_GET["id"];
+
+    }
+
+    //Elimino una sugerencia
+    public function deleteSuggest(){
+        $this->sugiereModel->deletePreguntaSugeridaById($_GET["id"]);
+        header("Location:/quizquest/lobbyeditor/get");
     }
 
 }

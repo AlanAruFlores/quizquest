@@ -42,8 +42,8 @@
                     <br>
                     <p>Tipo de pregunta: {{preguntaSugerida.categoria}}</p>
                     <div class="botones">
-                        <button href="#" class="boton">Aceptar</button>
-                        <button href="#" class="boton">Rechazar</button>
+                        <a href="/quizquest/lobbyeditor/acceptSuggest?id={{preguntaSugerida.pregunta_sugerida_id}}" class="boton boton__sugerencia">Aceptar</a>
+                        <a href="/quizquest/lobbyeditor/deleteSuggest?id={{preguntaSugerida.pregunta_sugerida_id}}" class="boton boton__sugerencia">Rechazar</a>
                     </div>
                 </div>
             {{/sugeridasPreguntas}}
