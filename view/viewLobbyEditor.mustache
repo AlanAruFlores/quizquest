@@ -59,22 +59,29 @@
         <h2 class="popup__titulo">Lista de Reportes</h2>
         <div class="scrollable-content">
             <ul class="reportes__lista">
-                <li><a href="#" class="reporte__item" data-opcion="reporte1">Pregunta de JuanDiabloXXX</a></li>
-                <div id="reporte1" class="detalle__contenido">
-                    <p>Motivo: incluye contenido sexual</p>
-                    <div class="muestra">
-                        <p>¿A qué edad te enteraste que tu papá es gay?</p>
-                        <div class="respuestas">
-                            <button class="but__ejemplo">Siempre supe</button>
-                            <button class="but__ejemplo">Gay tu hermana</button>
-                            <button class="but__ejemplo">Me pica el testiculo</button>
+                {{#reportesPreguntas}}    
+                    <li><a href="#" class="reporte__item" data-opcion="reporte{{preguntaReportada.reportada_id}}">Reporte de {{preguntaReportada.nombrerUsuario}}</a></li>
+                    <div id="reporte{{preguntaReportada.reportada_id}}" class="detalle__contenido">
+                        <p>Motivo: {{preguntaReportada.razon}}</p>
+                        <div class="muestra">
+                            <p>{{preguntaReportada.descripcion}}</p>
+                            <div class="respuestas">
+                                {{#respuestasReportadas}}
+                                    {{#esCorrecto}}
+                                    <button class="but__ejemplo correcta">{{descripcion}}</button>
+                                    {{/esCorrecto}}
+                                    {{^esCorrecto}}
+                                        <button class="but__ejemplo">{{descripcion}}</button>
+                                    {{/esCorrecto}}
+                                {{/respuestasReportadas}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="botones">
-                        <button href="#" class="boton">Eliminar</button>
-                        <button href="#" class="boton">Mantener</button>
-                    </div>
-                </div>
+                        <div class="botones">
+                            <a href="/quizquest/lobbyeditor/deleteReport?id={{preguntaReportada.reportada_id}}&idPregunta={{preguntaReportada.pregunta_reportada_id}}" class="boton boton__reportar">Eliminar</a>
+                            <a href="/quizquest/lobbyeditor/cancelReport?id={{preguntaReportada.reportada_id}}&idPregunta={{preguntaReportada.pregunta_reportada_id}}" class="boton boton__reportar">Mantener</a>
+                        </div>
+                    </div>        
+                {{/reportesPreguntas}}
             </ul>
         </div>
     </section>

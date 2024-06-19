@@ -66,7 +66,7 @@ class Configuration
 
     public static function getLobbyEditorController()
     {
-        return new LobbyEditorController(self::getPresenter(), self::getSugiereModel(),self::getPreguntaSugeridaModel(), self::getRespuestaSugeridaModel(),self::getPreguntaModel(), self::getRespuestaModel(), self::getMainSettings());
+        return new LobbyEditorController(self::getPresenter(), self::getSugiereModel(),self::getPreguntaSugeridaModel(), self::getRespuestaSugeridaModel(),self::getPreguntaModel(), self::getRespuestaModel(), self::getReportaModel(), self::getMainSettings());
     }
 
     public static function getRankingController()

@@ -404,10 +404,11 @@ VALUES
 /*TABLAS PARA REPORTAR UNA PREGUNTA CON RESPUESTAS*/
 
 create table reporta(
+	id int not null auto_increment,
 	usuario_id int not null,
 	pregunta_id int not null,
     razon text not null,
-    constraint pk_reporta primary key(usuario_id, pregunta_id),
+    constraint pk_reporta primary key(id),
     constraint fk_reporta_usuario foreign key(usuario_id) references usuario(id),
     constraint fk_reporta_pregunta foreign key(pregunta_id) references pregunta(id)
 );
@@ -446,8 +447,22 @@ select * from respuestasugerida;
 select * from sugiere;
 select * from usuario;
 select * from pregunta;
+select * from realiza;
 select * from respuesta;
 select * from reporta;
+
+
+#Consultas para el reporte
+select r.id as reporte_id, p.id as pregunta_reportada_id, p.descripcion, r.razon, u.nombrerUsuario from reporta r 
+join pregunta p on r.pregunta_id = p.id
+join usuario u on r.usuario_id = u.id;
+
+select rs.id, rs.descripción as descripcion, rs.esCorreto as esCorrecto from reporta r 
+join pregunta p on r.pregunta_id = p.id
+join respuesta rs on rs.pregunta_id = r.pregunta_id
+where rs.pregunta_id = 7;
+
+
 select * from pregunta order by id desc limit 1;
 
 desc pregunta;

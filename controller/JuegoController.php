@@ -134,7 +134,7 @@ class JuegoController
         $usuarioId = $_SESSION["usuarioLogged"]["id"]; // Accedo al id del usuario
         $this->preguntaModel->changePreguntaToInvalidById($preguntaId);
 
-        $nuevoReporte = new Reporta($usuarioId, $preguntaId, $razon);
+        $nuevoReporte = new Reporta(null,$usuarioId, $preguntaId, $razon);
         $this->reporteModel->insertNewReporte($nuevoReporte);
 
         header("Location:/quizquest/juego/get");

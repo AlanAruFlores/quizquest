@@ -7,8 +7,9 @@ class LobbyEditorController {
     private $preguntaSugeridaModel;
     private $preguntaModel;
     private $respuestaModel;
+    private $reportaModel;
 
-    public function __construct($presenter,$sugiereModel, $preguntaSugeridaModel, $respuestaSugeridaModel,$preguntaModel,$respuestaModel,$mainSettings){
+    public function __construct($presenter,$sugiereModel, $preguntaSugeridaModel, $respuestaSugeridaModel,$preguntaModel,$respuestaModel,$reportaModel,$mainSettings){
         $this->presenter = $presenter;
         $this->sugiereModel = $sugiereModel;
         $this->preguntaSugeridaModel = $preguntaSugeridaModel;
@@ -16,13 +17,22 @@ class LobbyEditorController {
         $this->preguntaModel=$preguntaModel;
         $this->respuestaModel = $respuestaModel;
         $this->mainSettings = $mainSettings;
+        $this->reportaModel = $reportaModel;
     }
 
     public function get(){
+        
+        //Obtengo preguntas sugeridas con sus respuestas
         $preguntasSugeridas = $this->sugiereModel->getPreguntasSugeridas();
         $arraySugeridas = $this->sugiereModel->gerArraySugestsByPreguntas($preguntasSugeridas);
+
+        //Obtengo respuestas reportadas con sus respuestas
+        $preguntasReportadas = $this->reportaModel->getPreguntasReportadas();
+        $arrayReportadas = $this->reportaModel->getArrayReportsByPreguntas($preguntasReportadas);
+
         $this->presenter->render("view/viewLobbyEditor.mustache",
             ["sugeridasPreguntas" => $arraySugeridas,
+            "reportesPreguntas" => $arrayReportadas,
             ...$this->mainSettings]);
     }
 
@@ -45,7 +55,17 @@ class LobbyEditorController {
     //Elimino una sugerencia
     public function deleteSuggest(){
         $this->sugiereModel->deleteRespuestasSugeridasByPreguntaSugeridaId($_GET["id"]);
+        header("Location:/quizquest/lobbyeditor/get");
+    }
 
+
+    public function deleteReport(){
+        $this->reportaModel->deleteRespuestasReportadasAndPreguntaReportada($_GET["id"],$_GET["idPregunta"]);
+        header("Location:/quizquest/lobbyeditor/get");
+    }
+
+    public function cancelReport(){
+        $this->reportaModel->cancelReport($_GET["id"],$_GET["idPregunta"]);
         header("Location:/quizquest/lobbyeditor/get");
     }
 
