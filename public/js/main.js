@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if(!e.target.matches("#ir__ranking") && !e.target.matches("#ir__partida") && !e.target.matches("#salir") 
            && !e.target.matches("#crear__partida__boton") && !e.target.matches("#ver__sugerencias__ventana")
             && !e.target.matches(".input_esCorrecta") && !e.target.matches(".popup__boton") && !e.target.matches(".boton__sugerencia")
-                && !e.target.matches(".boton__reportar"))
+                && !e.target.matches(".boton__reportar") && !e.target.matches("#ir__gestor_preguntas"))
             e.preventDefault();
 
         //Crear partida popup

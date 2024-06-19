@@ -11,6 +11,7 @@ include_once("controller/LoginController.php");
 include_once("controller/PerfilController.php");
 include_once("controller/RegistroController.php");
 include_once("controller/ContarController.php");
+include_once("controller/QuestionManagementController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/UsuarioModel.php");
@@ -95,6 +96,10 @@ class Configuration
         return new ContarController(self::getPresenter());
     }
 
+    public static function getQuestionManagementController(){
+        return new QuestionManagementController(self::getPresenter(),self::getMainSettings());
+    }
+
     /*MODELOS*/
     public static function getRegistroModel(){
         return new RegistroModel(self::getDatabase());
@@ -149,7 +154,8 @@ class Configuration
             "isOnLoginView" => (isset($_GET["controller"]) && $_GET["controller"] == "login") ? true : false,
             "isOnRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "registro") ? true : false,
             "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil") ? true : false,
-            "isOnValidateView" => (isset($_GET["controller"]) && ($_GET["controller"] == "registro" && $_GET["action"]=="validate")) ? true : false
+            "isOnValidateView" => (isset($_GET["controller"]) && ($_GET["controller"] == "registro" && $_GET["action"]=="validate")) ? true : false,
+            "isOnQuestionManagementView" => (isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement") ? true : false
         );
         return $main_settings;
     }

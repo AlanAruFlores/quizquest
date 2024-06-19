@@ -183,3 +183,18 @@ body{
         font-size: 18px;
     }
 }
+
+/*
+@keyframes scale-a-lil {
+    from {
+      scale: .5;
+    }
+  }
+    
+  @media (prefers-reduced-motion: no-preference) {
+    table {
+      animation: scale-a-lil linear both;
+      animation-timeline: view();
+      animation-range: 25vh 75vh;
+    }
+  }*/
