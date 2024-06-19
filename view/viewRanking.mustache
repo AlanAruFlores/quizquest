@@ -10,77 +10,42 @@
             </tr>
         </thead>
         <tbody class="tabla__contenedor">
-            <tr>
-                <td>1</td>
-                <td>JugadorTop1</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>JugadorTop2</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>JugadorTop4</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>JugadorTop5</td>
-                <td>1000</td>
-            </tr>
 
-            <tr>
-                <td>5</td>
-                <td>JugadorTop6</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>JugadorTop7</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>JugadorTop8</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>JugadorTop9</td>
-                <td>1000</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>JugadorTop10</td>
-                <td>1000</td>
-            </tr>
-            <tr class="jugador__tu">
-                <td>400</td>
-                <td>Tu</td>
-                <td>10</td>
-            </tr>
+            {{#usuariosTop}}
+                <tr>
+                    <td>{{top}}</td>
+                    <td>{{nombrerUsuario}}</td>
+                    <td>{{puntajeMaximo}}</td>
+                </tr>
+            {{/usuariosTop}}
+
+            {{#usuarioDatos}}
+                <tr class="jugador__tu">
+                    <td>{{top}}</td>
+                    <td>{{nombrerUsuario}}</td>
+                    <td>{{puntajeMaximo}}</td>
+                </tr>
+            {{/usuarioDatos}}
+
         </tbody>
     </table>
 
     <h2 class="contenido__titulo">Partidas Jugadas</h2>
     <table class="tabla tabla__jugadores">
         <thead class="tabla__cabecera">
-            <tr>
+             <tr>
                 <th>PARTIDA</th>
                 <th>RESULTADO</th>
             </tr>
         </thead>
         <tbody class="tabla__contenedor">
+
+        {{#obtenerPartidasJugador}}
             <tr>
-                <td>Partida 1</td>
-                <td>Ganada</td>
+                <td>{{nombre}}</td>
+                <td>{{puntaje}}</td>
             </tr>
-            <tr>
-                <td>Partida 2</td>
-                <td>Perdida</td>
-            </tr>
+        {{/obtenerPartidasJugador}}
         </tbody>
     </table>
     <div class="wave wave_abajo"></div>
