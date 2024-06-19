@@ -14,6 +14,7 @@ include_once("controller/ContarController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/UsuarioModel.php");
+include_once("model/RankingModel.php");
 
 include_once("model/PartidaModel.php");
 include_once("model/RespuestaModel.php");
@@ -71,7 +72,7 @@ class Configuration
 
     public static function getRankingController()
     {
-        return new RankingController(self::getPresenter(), self::getMainSettings());
+        return new RankingController(self::getPresenter(), self::getRankingModel(), self::getMainSettings());
     }
 
     public static function getPartidaController()
@@ -135,7 +136,9 @@ class Configuration
     public static function getReportaModel(){
         return new ReportaModel(self::getDatabase());
     }
-
+    public static function getRankingModel(){
+        return new RankingModel(self::getDatabase());
+    }
     /*Configuracion principal */
     public static function getMainSettings()
     {
