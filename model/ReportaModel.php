@@ -79,8 +79,9 @@
             $this->database->execute("DELETE FROM pregunta WHERE id = '$idPregunta'");
         }
 
-        public function cancelReport($id, $idPregunta){
-            
+        public function cancelReport($idPregunta){
+            $this->database->execute("DELETE FROM reporta WHERE pregunta_id='$idPregunta'");
+            $this->database->execute("UPDATE pregunta SET esValido = true WHERE id=$idPregunta");
         }
     }
 

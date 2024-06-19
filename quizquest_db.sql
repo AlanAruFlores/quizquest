@@ -447,6 +447,7 @@ select * from respuestasugerida;
 select * from sugiere;
 select * from usuario;
 select * from pregunta;
+UPDATE pregunta SET esValido = true WHERE id=7;
 select * from realiza;
 select * from respuesta;
 select * from reporta;
@@ -457,11 +458,12 @@ select r.id as reporte_id, p.id as pregunta_reportada_id, p.descripcion, r.razon
 join pregunta p on r.pregunta_id = p.id
 join usuario u on r.usuario_id = u.id;
 
+select * from reporta;
+
 select rs.id, rs.descripción as descripcion, rs.esCorreto as esCorrecto from reporta r 
 join pregunta p on r.pregunta_id = p.id
 join respuesta rs on rs.pregunta_id = r.pregunta_id
-where rs.pregunta_id = 7;
-
+where r.id = 2;
 
 select * from pregunta order by id desc limit 1;
 
