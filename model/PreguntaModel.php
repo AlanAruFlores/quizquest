@@ -97,5 +97,9 @@
         public function changePreguntaToInvalidById($id){
             $this->database->execute("update pregunta set esValido = 'false' where id = '$id'");
         }
+
+        public function deletePreguntaById($id){
+            $this->database->execute("delete from pregunta where id = '$id'");
+        }
     }
 ?>

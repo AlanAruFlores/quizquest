@@ -6,13 +6,17 @@
         private $preguntaModel;
         private $respuestaModel;
         private $categoriaModel;
+        private $reportaModel;
+        private $usuarioPreguntaModel;
 
-        public function __construct($presenter,$preguntaModel,$respuestaModel,$categoriaModel, $mainSettings){
+        public function __construct($presenter,$preguntaModel,$respuestaModel,$categoriaModel, $reportaModel, $usuarioPreguntaModel, $mainSettings){
             $this->presenter = $presenter;
             $this->mainSettings = $mainSettings;
             $this->preguntaModel = $preguntaModel;
             $this->respuestaModel = $respuestaModel;
             $this->categoriaModel= $categoriaModel;
+            $this->reportaModel = $reportaModel;
+            $this->usuarioPreguntaModel=$usuarioPreguntaModel;
         }
 
 
@@ -74,6 +78,15 @@
             header("Location:/quizquest/questionmanagement/goToEdit?id=".$pregunta["id"]);
         }
 
+        public function deleteQuestion(){
+            /*La eliminamos de reporta y realiza tablas */
+            $this->reportaModel->deletePreguntasById($_GET["id"]);
+            $this->usuarioPreguntaModel->deletePreguntasById($_GET["id"]);
+            $this->respuestaModel->deleteRespuestasByPreguntaId($_GET["id"]);
+            $this->preguntaModel->deletePreguntaById($_GET["id"]);
+
+            header("Location:/quizquest/questionmanagement/get");
+        }
     }
 
 

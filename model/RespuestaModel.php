@@ -26,5 +26,9 @@
         public function updateRespuesta($respuesta){
             $this->database->execute("update respuesta SET descripción = '".$respuesta["descripcion_respuesta"]."', esCorreto = '".$respuesta["esCorreto"]."' where id = '".$respuesta["res_id"]."'");
         }
+
+        public function deleteRespuestasByPreguntaId($id){
+            $this->database->execute("delete from respuesta where pregunta_id = '$id'");
+        }
     }
 ?>

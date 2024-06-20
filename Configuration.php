@@ -100,7 +100,7 @@ class Configuration
     }
 
     public static function getQuestionManagementController(){
-        return new QuestionManagementController(self::getPresenter(),self::getPreguntaModel(), self::getRespuestaModel(),self::getCategoriaModel(), self::getMainSettings());
+        return new QuestionManagementController(self::getPresenter(),self::getPreguntaModel(), self::getRespuestaModel(),self::getCategoriaModel(), self::getReportaModel(), self::getUsuarioPreguntaModel(), self::getMainSettings());
     }
 
     /*MODELOS*/

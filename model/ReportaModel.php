@@ -83,6 +83,10 @@
             $this->database->execute("DELETE FROM reporta WHERE pregunta_id='$idPregunta'");
             $this->database->execute("UPDATE pregunta SET esValido = true WHERE id=$idPregunta");
         }
+
+        public function deletePreguntasById($id){
+            $this->database->execute("DELETE FROM reporta WHERE pregunta_id = '$id'");
+        }
     }
 
 ?>
