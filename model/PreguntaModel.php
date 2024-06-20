@@ -8,6 +8,10 @@
 
 
 
+        public function getAllPreguntas(){
+            return $this->database->query("SELECT * FROM pregunta");
+        }
+        
         //Creo una nueva pregunta
         public function insertNewPregunta($preguntaNueva){
             $this->database->execute("INSERT INTO pregunta (id,descripcion,punto,esValido,cantidad_dadas,acertadas,porcentaje,categoria_id) VALUES ('null','".$preguntaNueva["descripcion"]."','10',true,'0','0','100','".$preguntaNueva["categoria_id"]."')");

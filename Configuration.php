@@ -98,7 +98,7 @@ class Configuration
     }
 
     public static function getQuestionManagementController(){
-        return new QuestionManagementController(self::getPresenter(),self::getMainSettings());
+        return new QuestionManagementController(self::getPresenter(),self::getPreguntaModel(), self::getRespuestaModel(), self::getMainSettings());
     }
 
     /*MODELOS*/
@@ -158,7 +158,8 @@ class Configuration
             "isOnRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "registro") ? true : false,
             "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil") ? true : false,
             "isOnValidateView" => (isset($_GET["controller"]) && ($_GET["controller"] == "registro" && $_GET["action"]=="validate")) ? true : false,
-            "isOnQuestionManagementView" => (isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement") ? true : false
+            "isOnQuestionManagementView" => (isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement") ? true : false,
+            "isOnEditView"=>(isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement" && $_GET["action"] == "goToEdit") ? true:false
         );
         return $main_settings;
     }
