@@ -5,13 +5,14 @@
         private $mainSettings;
         private $preguntaModel;
         private $respuestaModel;
+        private $categoriaModel;
 
-
-        public function __construct($presenter,$preguntaModel,$respuestaModel, $mainSettings){
+        public function __construct($presenter,$preguntaModel,$respuestaModel,$categoriaModel, $mainSettings){
             $this->presenter = $presenter;
             $this->mainSettings = $mainSettings;
             $this->preguntaModel = $preguntaModel;
             $this->respuestaModel = $respuestaModel;
+            $this->categoriaModel= $categoriaModel;
         }
 
 
@@ -23,7 +24,29 @@
         }
 
         public function goToEdit(){
-            $this->presenter->render("view/viewEditQuestion.mustache", [...$this->mainSettings]);
+
+            //Obtengo la pregunta con sus respuestas
+            $pregunta = $this->preguntaModel->getPreguntaWithCategoria($_GET["id"]); 
+            $categorias = $this->categoriaModel->getAllCategoriasBasedPreguntaCategoria($pregunta);
+            /*
+            var_dump($categorias);
+            die();
+            */
+
+            $respuestasAux  = $this->respuestaModel->getRespuestaByPreguntaId($_GET["id"]); //[[... , ...] , [...., ...]]
+            $respuestas = [];
+            foreach($respuestasAux as $respuesta){
+                $respuesta["esCorreto"] = $respuesta["esCorreto"] == "1" ? true : false;
+                $respuestas[]  = $respuesta;
+            }
+
+            
+            $this->presenter->render("view/viewEditQuestion.mustache", [
+                "pregunta" => $pregunta,
+                "respuestas" => $respuestas,
+                "categorias" => $categorias,
+                ...$this->mainSettings
+            ]);
         }
     
 

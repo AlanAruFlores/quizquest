@@ -4,25 +4,31 @@
  <div class="div__formulario">
       <h2 class="contenido__titulo">Editar pregunta</h2>
         <form class="formulario">
-            <label for="" id="pregunta">Pregunta</label>
-            <input type ="text" value="Pregunta 1">
+            {{#pregunta}}
+              <label for="pregunta" id="pregunta">Pregunta</label>
+              <input type ="text" name="preguntaDescripcion" value="{{descripcion}}">
+              <label>Categoria</label>
+              <select name="categoriaPregunta">
+                {{#categorias}}
+                  <option value="{{id}}" {{#esSuCategoria}}selected{{/esSuCategoria}}>{{nombre}}</option>
+                {{/categorias}}
+              </select>
+            {{/pregunta}}
             <br>
-            <label for="">Respuesta 1 <input type="radio" name="esCorrecta"></label>
-            <input type ="text" value="Respuesta 1">
-            
-            <label for="">Respuesta 2 <input type="radio" name="esCorrecta"></label>
-            <input type ="text" value="Respuesta 2">
-            
-            <label for="">Respuesta 3 <input type="radio" name="esCorrecta"></label>
-            <input type ="text" value="Respuesta 3"> 
-            
-            <label for="">Respuesta 4 <input type="radio" name="esCorrecta"></label>
-            <input type ="text" value="Respuesta 4">
-
+            {{#respuestas}}
+              {{#esCorreto}}
+                <label for="">Respuesta <input type="radio" name="esCorrecta" checked></label>
+              {{/esCorreto}}
+              {{^esCorreto}}
+                <label for="">Respuesta <input type="radio" name="esCorrecta"></label>
+              {{/esCorreto}}
+              <input type ="text" value="{{descripcion_respuesta}}">
+            {{/respuestas}}
             <button type="submit" id="editar__boton">Editar</button>
         </form>
       </div>
-        
+        {{#pregunta}}
+
         <div class="div__estadisticas">
           <div class="contenido__box">
               <h2 class="contenido__subtitulo">Dificultad</h2>
@@ -30,18 +36,21 @@
           </div>
           <div class="contenido__box">
               <h2 class="contenido__subtitulo">Cantidad Dadas</h2>
-              <p class="contenido__cantidad">140</p>
+              <p class="contenido__cantidad">{{cantidad_dadas}}</p>
           </div>
           <div class="contenido__box">
               <h2 class="contenido__subtitulo">Cantidad Acertadas</h2>
-              <p class="contenido__cantidad">140</p>
+              <p class="contenido__cantidad">{{acertadas}}</p>
           </div>
         </div>
       </div>
+        {{/pregunta}}
+
     <div class="wave wave_abajo"></div>
 </main>
 
 <script src="https://www.gstatic.com/charts/loader.js"></script>
+{{#pregunta}}
 <script>
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
@@ -49,8 +58,8 @@
   function drawChart(){
     var data = google.visualization.arrayToDataTable([
           ["Grafico", "Grafico"],
-          ['Acertadas', 100],
-          ['No Acertadas', 120]
+          ['Acertadas', {{acertadas}}],
+          ['No Acertadas',{{no_acertadas}}]
         ]);
 
         var options = {
@@ -73,3 +82,4 @@
         chart.draw(data, options);
   }
 </script>
+{{/pregunta}}

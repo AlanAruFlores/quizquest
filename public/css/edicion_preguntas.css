@@ -68,7 +68,7 @@
     font-size: 20px;
 
 }
-.formulario input{
+.formulario input, select{
     background-color: #581845;
     border: none;
     border: #f44122 1px solid;

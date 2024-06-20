@@ -25,6 +25,8 @@ include_once("model/PreguntaSugeridaModel.php");
 include_once("model/RespuestaSugeridaModel.php");
 include_once("model/SugiereModel.php");
 include_once("model/ReportaModel.php");
+include_once("model/CategoriaModel.php");
+
 include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
 //Clase tipo Factory que retornara las instancias del proyecto y donde vamos a tener los controllers a usar
@@ -98,7 +100,7 @@ class Configuration
     }
 
     public static function getQuestionManagementController(){
-        return new QuestionManagementController(self::getPresenter(),self::getPreguntaModel(), self::getRespuestaModel(), self::getMainSettings());
+        return new QuestionManagementController(self::getPresenter(),self::getPreguntaModel(), self::getRespuestaModel(),self::getCategoriaModel(), self::getMainSettings());
     }
 
     /*MODELOS*/
@@ -143,6 +145,9 @@ class Configuration
     }
     public static function getRankingModel(){
         return new RankingModel(self::getDatabase());
+    }
+    public static function getCategoriaModel(){
+        return new CategoriaModel(self::getDatabase());
     }
     /*Configuracion principal */
     public static function getMainSettings()

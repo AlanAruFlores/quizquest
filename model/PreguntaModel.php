@@ -87,6 +87,10 @@
             return $this->database->query("select * from pregunta where id = '$id'");
         }
 
+        public function getPreguntaWithCategoria($id){
+            return $this->database->query("select p.*,p.cantidad_dadas-p.acertadas as no_acertadas, c.nombre as descripcion_categoria from pregunta p  join categoria c on p.categoria_id = c.id where p.id = '$id';");
+        }
+
         public function changePreguntaToInvalidById($id){
             $this->database->execute("update pregunta set esValido = 'false' where id = '$id'");
         }
