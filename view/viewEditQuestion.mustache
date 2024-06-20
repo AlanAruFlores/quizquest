@@ -1,37 +1,43 @@
 <main class="contenido">
     <div class="wave wave_arriba"></div>
-        <h2 class="contenido__titulo">Editar pregunta</h2>
-
+      <div class="container">
+ <div class="div__formulario">
+      <h2 class="contenido__titulo">Editar pregunta</h2>
         <form class="formulario">
             <label for="" id="pregunta">Pregunta</label>
             <input type ="text" value="Pregunta 1">
             <br>
-            <label for="">Respuesta 1</label>
+            <label for="">Respuesta 1 <input type="radio" name="esCorrecta"></label>
             <input type ="text" value="Respuesta 1">
             
-            <label for="">Respuesta 2</label>
+            <label for="">Respuesta 2 <input type="radio" name="esCorrecta"></label>
             <input type ="text" value="Respuesta 2">
             
-            <label for="">Respuesta 3</label>
+            <label for="">Respuesta 3 <input type="radio" name="esCorrecta"></label>
             <input type ="text" value="Respuesta 3"> 
             
-            <label for="">Respuesta 4</label>
+            <label for="">Respuesta 4 <input type="radio" name="esCorrecta"></label>
             <input type ="text" value="Respuesta 4">
 
             <button type="submit" id="editar__boton">Editar</button>
         </form>
-        <div class="contenido__box">
-            <h2 class="contenido__subtitulo">Dificultad</h2>
-            <div id ="grafico" ></div>  
+      </div>
+        
+        <div class="div__estadisticas">
+          <div class="contenido__box">
+              <h2 class="contenido__subtitulo">Dificultad</h2>
+              <div id ="grafico" ></div>  
+          </div>
+          <div class="contenido__box">
+              <h2 class="contenido__subtitulo">Cantidad Dadas</h2>
+              <p class="contenido__cantidad">140</p>
+          </div>
+          <div class="contenido__box">
+              <h2 class="contenido__subtitulo">Cantidad Acertadas</h2>
+              <p class="contenido__cantidad">140</p>
+          </div>
         </div>
-        <div class="contenido__box">
-            <h2 class="contenido__subtitulo">Cantidad Dadas</h2>
-            <p class="contenido__cantidad">140</p>
-        </div>
-        <div class="contenido__box">
-            <h2 class="contenido__subtitulo">Cantidad Acertadas</h2>
-            <p class="contenido__cantidad">140</p>
-        </div>
+      </div>
     <div class="wave wave_abajo"></div>
 </main>
 
