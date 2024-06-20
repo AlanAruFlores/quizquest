@@ -22,5 +22,9 @@
                 $this->database->execute("insert into respuesta (id,esCorreto,descripción,letra,pregunta_id) values ('null','".$respuestaNueva["esCorrecto"]."','".$respuestaNueva["descripcion"]."','".$letras[$i++]."','$preguntaId')");
             }
         }
+
+        public function updateRespuesta($respuesta){
+            $this->database->execute("update respuesta SET descripción = '".$respuesta["descripcion_respuesta"]."', esCorreto = '".$respuesta["esCorreto"]."' where id = '".$respuesta["res_id"]."'");
+        }
     }
 ?>

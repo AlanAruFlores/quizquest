@@ -29,7 +29,7 @@
             $pregunta = $this->preguntaModel->getPreguntaWithCategoria($_GET["id"]); 
             $categorias = $this->categoriaModel->getAllCategoriasBasedPreguntaCategoria($pregunta);
             /*
-            var_dump($categorias);
+            var_dump($pregunta);
             die();
             */
 
@@ -40,8 +40,10 @@
                 $respuestas[]  = $respuesta;
             }
 
-            
-            $this->presenter->render("view/viewEditQuestion.mustache", [
+            // var_dump($respuestas);
+            // die();
+    
+            $this->presenter->render    ("view/viewEditQuestion.mustache", [
                 "pregunta" => $pregunta,
                 "respuestas" => $respuestas,
                 "categorias" => $categorias,
@@ -49,6 +51,28 @@
             ]);
         }
     
+
+        public function editQuestion(){
+            //Busco y actualizo la pregunta
+            $pregunta = $this->preguntaModel->getPreguntaWithCategoria($_POST["pregunta_id"]); 
+            $pregunta["descripcion"] = $_POST["preguntaDescripcion"];
+            $pregunta["categoria_id"] = $_POST["categoriaPregunta"];
+            $this->preguntaModel->updateDescripcionAndCategoriaPregunta($pregunta);
+
+
+            //Obtener todas las respuestas del POST y las actualizo
+            $respuestasAux = $this->respuestaModel->getRespuestaByPreguntaId($pregunta["id"]); //[[... , ...] , [...., ...]]
+            foreach($respuestasAux as $respuesta){
+                $respuesta["descripcion_respuesta"] = $_POST["respuesta".$respuesta["res_id"]];
+                $respuesta["esCorreto"] = $_POST["esCorrecto"] == $respuesta["res_id"] ? true : false;
+                $this->respuestaModel->updateRespuesta($respuesta);
+            }
+
+            // var_dump($respuestas);
+            // die();
+            
+            header("Location:/quizquest/questionmanagement/goToEdit?id=".$pregunta["id"]);
+        }
 
     }
 

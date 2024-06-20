@@ -3,8 +3,9 @@
       <div class="container">
  <div class="div__formulario">
       <h2 class="contenido__titulo">Editar pregunta</h2>
-        <form class="formulario">
+        <form action="/quizquest/questionmanagement/editQuestion" class="formulario" method="POST">
             {{#pregunta}}
+              <input type="hidden" name="pregunta_id" value="{{id}}">
               <label for="pregunta" id="pregunta">Pregunta</label>
               <input type ="text" name="preguntaDescripcion" value="{{descripcion}}">
               <label>Categoria</label>
@@ -17,12 +18,12 @@
             <br>
             {{#respuestas}}
               {{#esCorreto}}
-                <label for="">Respuesta <input type="radio" name="esCorrecta" checked></label>
+                <label for="">Respuesta <input type="radio" name="esCorrecto" checked value={{res_id}}></label>
               {{/esCorreto}}
               {{^esCorreto}}
-                <label for="">Respuesta <input type="radio" name="esCorrecta"></label>
+                <label for="">Respuesta <input type="radio" name="esCorrecto" value={{res_id}}></label>
               {{/esCorreto}}
-              <input type ="text" value="{{descripcion_respuesta}}">
+              <input type ="text" name="respuesta{{res_id}}" value="{{descripcion_respuesta}}">
             {{/respuestas}}
             <button type="submit" id="editar__boton">Editar</button>
         </form>
