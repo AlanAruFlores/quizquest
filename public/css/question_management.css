@@ -93,6 +93,17 @@ body{
     transform: rotate(180deg)
 }
 
+.icono__agregar{
+    text-decoration: none;
+    margin-left: 10px;
+    background-color: #4aea00;
+    border-radius: 50px;
+    padding: 0px 10px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+}
+
 .tabla{
     background-color: #581845;
     width: 80%;
@@ -216,4 +227,134 @@ body{
     .pie__parrafo{
         font-size: 18px;
     }
+}
+
+
+/*Pop Ups*/
+.popup{
+    background-blend-mode: darken;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;   
+    overflow-y: scroll;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 50px 15px;
+    visibility: hidden;
+    opacity: 0;
+}
+.popup__titulo{
+    font-family: bebas;
+    font-size: 40px;
+    background-image: linear-gradient(to top, #f45d22 90%, #005bea 10%); /* Cambia los colores según lo desees */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.popup__subtitulo{
+    font-size: 30px;
+}
+
+
+.popup__parrafo{
+    color:#303030;
+    font-size: 20px;
+    font-family: opensans;
+    text-align: center;
+    font-weight: 400;
+    line-height: 33px;
+}
+.popup__boton{
+    background-image: linear-gradient(to top, #f45d22 100%, #005bea 10%); 
+    text-decoration: none;
+    font-family: bebas;
+    padding: 10px 40px;
+    font-size: 30px;
+    margin-top: 50px;
+}
+
+.popup__cerrar{
+    background-color: #f45d22;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+/* Formulario CSS */
+.popup__formulario{
+    background-color: #581845;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 500px;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0px;
+}
+.popup__formulario .popup__subtitulo{
+    color: #fff;
+    font-family: bebas;
+    font-size: 35px;
+    letter-spacing: 2px;
+}
+.popup__formulario label{
+    width: 80%;
+    font-family: opensans;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+.popup__formulario input, select{
+    width: 80%;
+    height: 30px;
+    border: none;
+    color: #fff;
+    background-color: #f45d22;
+    border: none;
+}
+.popup__formulario select option{
+    color: #fff;
+}
+
+#posibles_respuestas{
+    width: 80%;
+}
+.respuesta_pregunta{
+    display: block;
+    width: 100% !important;
+    margin: 7px 0px;
+}
+.label_respuesta{
+    font-size: 15px !important;
+    width: 80%;
+}
+input[type="radio"].input_esCorrecta{
+    display: inline-block;
+    width: 10px !important;
+    height: 10px !important;
+    accent-color: #22e710;
+}
+.boton__formulario{
+    border: none;
+    background-image:none;
+    background-color: #fff;
+    color: #f44122;
+    width: 80%;
+    cursor: pointer;
 }

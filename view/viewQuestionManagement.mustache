@@ -1,6 +1,6 @@
 <main class="contenido">
     <div class="wave wave_arriba"></div>
-        <h2 class="contenido__titulo">Gestor de preguntas</h2>
+        <h2 class="contenido__titulo">Gestor de preguntas <a id="abrir__pregunta__ventana" class="tabla__icono icono__agregar">+</a></h2>
         <table class="tabla">
             <thead class="tabla__header">
                 <tr>
@@ -14,8 +14,8 @@
                 {{#preguntas}}
                     <tr>
                         <td>{{descripcion}}</td>
-                        <td class="tabla__icono"><a href="/quizquest/questionmanagement/goToEdit/id={{id}}"><i class="fa-solid fa-pen"></i></a></td>
-                        <td class="tabla__icono"><a href="/quizquest/questionmanagement/deleteQuestion/id={{id}}"><i class="fa-solid fa-trash"></i></a></td>
+                        <td class="tabla__boton tabla__icono"><a href="/quizquest/questionmanagement/goToEdit/id={{id}}"><i class="fa-solid fa-pen"></i></a></td>
+                        <td class="tabla__boton tabla__icono"><a href="/quizquest/questionmanagement/deleteQuestion/id={{id}}"><i class="fa-solid fa-trash"></i></a></td>
                     </tr>
                 {{/preguntas}}
 
@@ -23,3 +23,37 @@
         </table>
     <div class="wave wave_abajo"></div>
 </main>
+
+<div class="popup crear__pregunta" id="crear__pregunta__ventana">
+    <a href="#" class="popup__button popup__cerrar" id="cerrar__pregunta__ventana"><i class="fa-solid fa-xmark"></i></a>
+    <h2 class="popup__titulo">Sugiere una pregunta!</h2>
+    <form class="popup__formulario" action="/quizquest/questionmanagement/addNewQuestion" method="POST">
+        <h3 class="popup__subtitulo">Nueva pregunta</h3>
+        <label>Pregunta</label>
+        <input type="text" name="descripcionPregunta" id="descripcionPregunta">
+        <label>Tipo de pregunta</label>
+        <select name="preguntaCategoriaId">
+                <option value="1">Cultura</option>
+                <option value="2">Ciencia</option>
+                <option value="3">Entretenimiento</option>
+                <option value="4">Deportes</option>
+                <option value="5">Geografia</option>
+                <option value="6">Historia</option>        
+       </select>
+
+       <label>Cantidad de Respuestas</label>
+       <select id="cantidad_preguntas" name="cantidadPreguntas">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>                     
+            <option value="4">4</option>
+       </select>
+
+       <label>Posibles respuestas</label>
+       <div id="posibles_respuestas">
+       </div>
+        <button type="submit" class="popup__boton boton__formulario">Sugerir Pregunta</button>
+    </form>
+</div>
+<script src="/quizquest/public/js/mainEditor.js" type="module"></script>
+<script src="/quizquest/public/js/cantidad_preguntas.js"></script>

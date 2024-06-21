@@ -12,6 +12,12 @@
             return $this->database->query("SELECT * FROM pregunta");
         }
         
+        public function createNewPregunta($pregunta){
+            $this->database->execute("INSERT INTO pregunta (id,descripcion,punto,esValido,cantidad_dadas,acertadas,porcentaje,categoria_id) VALUES ('".$pregunta->getId()."','".$pregunta->getDescripcion()."','10','".$pregunta->getEsValido()."','0','0','100','".$pregunta->getCategoriaId()."')");
+            
+        }
+
+
         //Creo una nueva pregunta
         public function insertNewPregunta($preguntaNueva){
             $this->database->execute("INSERT INTO pregunta (id,descripcion,punto,esValido,cantidad_dadas,acertadas,porcentaje,categoria_id) VALUES ('null','".$preguntaNueva["descripcion"]."','10',true,'0','0','100','".$preguntaNueva["categoria_id"]."')");
@@ -84,6 +90,14 @@
 
         public function getLastPregunta(){
             return $this->database->query("select * from pregunta order by id desc limit 1");
+        }
+        
+        public function getLastPreguntaId(){
+            $preguntaId = $this->database->query("select id from pregunta order by id desc limit 1");
+            if($preguntaId == null)
+                return 1;
+        
+            return ++$preguntaId["id"];
         }
 
         public function getPreguntaById($id){
