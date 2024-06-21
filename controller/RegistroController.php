@@ -19,12 +19,12 @@
         }
 
         public function validate(){
-            $usuarioPendiente = new Usuario(null,$_POST["nombre"],"BASICO","IMAGEN",false,2024,$_POST["sexo"], $_POST["email"],$_POST["username"],$_POST["contrasenia"],0,1);
+            $usuarioPendiente = new Usuario(null,$_POST["nombre"],"BASICO","IMAGEN",true,$_POST["nacimiento"],$_POST["sexo"], $_POST["email"],$_POST["username"],$_POST["contrasenia"],$_POST["pais"], $_POST["ciudad"]);
 
-            if(!isset($_SESSION["code_verification"])){
+//            if(!isset($_SESSION["code_verification"])){
                 $this->registroModel->sendValidation();
                 $_SESSION["usuarioPendiente"] = serialize($usuarioPendiente);
-            }
+  //          }
         
             $this->presenter->render("view/viewValidar.mustache",[...$this->mainSettings]);
         }

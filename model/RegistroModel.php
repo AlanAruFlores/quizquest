@@ -57,9 +57,10 @@ class RegistroModel{
 
     //Registrar usuario
     public function registerNewUser($usuario){
-        $sql = "INSERT INTO Usuario (nombreCompleto, rol, imagen, esHabilitado, anoNacimiento, Sexo, CorreoElectronico, contrasena, nombrerUsuario, puntaje, localidad_id)
-        VALUES ('".$usuario->getNombreCompleto()."', '".$usuario->getRol()."', '".$usuario->getImagen()."',1, '".$usuario->getAnoNacimiento()."', '".$usuario->getSexo()."', '".$usuario->getCorreoElectronico()."', '".$usuario->getContrasena()."', '".$usuario->getNombreUsuario()."', ".$usuario->getPuntaje().", ".$usuario->getLocalidadId().")";
-
+        // var_dump($usuario);
+        // die();
+        $sql = "INSERT INTO Usuario (nombreCompleto, rol, imagen, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena, nombrerUsuario, pais, ciudad)
+        VALUES ('".$usuario->getNombreCompleto()."', '".$usuario->getRol()."', '".$usuario->getImagen()."','".$usuario->getEsHabilitado()."', '".$usuario->getFechaNacimiento()."', '".$usuario->getSexo()."', '".$usuario->getCorreoElectronico()."', '".$usuario->getContrasena()."', '".$usuario->getNombreUsuario()."', '".$usuario->getPais()."', '".$usuario->getCiudad()."')";
         $this->database->execute($sql);
     }
 }

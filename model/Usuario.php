@@ -4,30 +4,29 @@ class Usuario
     private $id;
     private $nombreCompleto;
     private $rol;
-    private $imagen;    
+    private $imagen;
     private $esHabilitado;
-    private $anoNacimiento;
+    private $fechaNacimiento;
     private $sexo;
     private $correoElectronico;
     private $nombreUsuario;
     private $contrasena;
-    private $puntaje;
-    private $localidadId;
-
-    public function __construct($id = null, $nombreCompleto = null, $rol = null, $imagen = null, $esHabilitado = null, $anoNacimiento = null, $sexo = null,$correoElectronico=null, $nombreUsuario = null, $contrasena = null, $puntaje = null, $localidadId = null)
+    private $pais;
+    private $ciudad;
+    public function __construct($id = null, $nombreCompleto = null, $rol = null, $imagen = null, $esHabilitado = null, $fechaNacimiento = null, $sexo = null, $correoElectronico = null, $nombreUsuario = null, $contrasena = null, $pais = null, $ciudad = null)
     {
         $this->id = $id;
         $this->nombreCompleto = $nombreCompleto;
         $this->rol = $rol;
         $this->imagen = $imagen;
         $this->esHabilitado = $esHabilitado;
-        $this->anoNacimiento = $anoNacimiento;
+        $this->fechaNacimiento = $fechaNacimiento;
         $this->sexo = $sexo;
         $this->correoElectronico = $correoElectronico;
         $this->nombreUsuario = $nombreUsuario;
         $this->contrasena = $contrasena;
-        $this->puntaje = $puntaje;
-        $this->localidadId = $localidadId;
+        $this->pais = $pais;
+        $this->ciudad = $ciudad;
     }
     // Métodos Setter
     public function setId($id)
@@ -55,16 +54,17 @@ class Usuario
         $this->esHabilitado = $esHabilitado;
     }
 
-    public function setAnoNacimiento($anoNacimiento)
+    public function setFechaNacimiento($fechaNacimiento)
     {
-        $this->anoNacimiento = $anoNacimiento;
+        $this->fechaNacimiento = $fechaNacimiento;
     }
 
     public function setSexo($sexo)
     {
         $this->sexo = $sexo;
     }
-    public function setCorreoElectronico($correoElectronico){
+    public function setCorreoElectronico($correoElectronico)
+    {
         $this->correoElectronico = $correoElectronico;
     }
     public function setNombreUsuario($nombreUsuario)
@@ -75,16 +75,6 @@ class Usuario
     public function setContrasena($contrasena)
     {
         $this->contrasena = $contrasena;
-    }
-
-    public function setPuntaje($puntaje)
-    {
-        $this->puntaje = $puntaje;
-    }
-
-    public function setLocalidadId($localidadId)
-    {
-        $this->localidadId = $localidadId;
     }
 
     // Métodos Getter
@@ -113,9 +103,9 @@ class Usuario
         return $this->esHabilitado;
     }
 
-    public function getAnoNacimiento()
+    public function getFechaNacimiento()
     {
-        return $this->anoNacimiento;
+        return $this->fechaNacimiento;
     }
 
     public function getSexo()
@@ -123,7 +113,8 @@ class Usuario
         return $this->sexo;
     }
 
-    public function getCorreoElectronico(){
+    public function getCorreoElectronico()
+    {
         return $this->correoElectronico;
     }
 
@@ -137,16 +128,27 @@ class Usuario
         return $this->contrasena;
     }
 
-    public function getPuntaje()
+    // Getter para $pais
+    public function getPais()
     {
-        return $this->puntaje;
+        return $this->pais;
     }
 
-    public function getLocalidadId()
+    // Setter para $pais
+    public function setPais($pais)
     {
-        return $this->localidadId;
+        $this->pais = $pais;
     }
 
-}
+    // Getter para $ciudad
+    public function getCiudad()
+    {
+        return $this->ciudad;
+    }
 
-?>
+    // Setter para $ciudad
+    public function setCiudad($ciudad)
+    {
+        $this->ciudad = $ciudad;
+    }
+} ?>
