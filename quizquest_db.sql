@@ -1,13 +1,6 @@
 DROP DATABASE quizquest_db;
 CREATE DATABASE quizquest_db;
-use quizquest_db;
--- Creación de la tabla Localidad
-CREATE TABLE Localidad
-(
-    id     INT PRIMARY KEY,
-    País   VARCHAR(100) NOT NULL,
-    Ciudad VARCHAR(100) NOT NULL
-);
+USE quizquest_db;
 
 -- Creación de la tabla Usuario
 CREATE TABLE Usuario
@@ -17,14 +10,13 @@ CREATE TABLE Usuario
     rol                VARCHAR(50)  NOT NULL,
     nombreCompleto     VARCHAR(150) NOT NULL,
     esHabilitado       BOOLEAN      NOT NULL,
-    anoNacimiento      INT          NOT NULL,
-    Sexo               CHAR(1)      NOT NULL,
+    fechaNacimiento    DATE          NOT NULL,
+    Sexo               VARCHAR(100)   NOT NULL,
     CorreoElectronico VARCHAR(100) NOT NULL,
     contrasena         VARCHAR(100) NOT NULL,
     nombrerUsuario    VARCHAR(100) NOT NULL,
-    puntaje            INT          NOT NULL,
-    localidad_id       INT,
-    FOREIGN KEY (localidad_id) REFERENCES Localidad (id)
+	pais VARCHAR(100) NOT NULL,
+    ciudad VARCHAR(100) NOT NULL
 );
 
 -- Creación de la tabla Administrador
@@ -100,22 +92,50 @@ CREATE TABLE Respuesta
     pregunta_id INT,
     FOREIGN KEY (pregunta_id) REFERENCES Pregunta (id)
 );
+/* TABLAS PARA REPORTAR UNA PREGUNTA CON RESPUESTAS */
 
+CREATE TABLE reporta (
+    id INT NOT NULL AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    pregunta_id INT NOT NULL,
+    razon TEXT NOT NULL,
+    CONSTRAINT pk_reporta PRIMARY KEY (id),
+    CONSTRAINT fk_reporta_usuario FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+    CONSTRAINT fk_reporta_pregunta FOREIGN KEY (pregunta_id) REFERENCES pregunta(id)
+);
 
--- Datos base
+/* TABLAS PARA LAS PREGUNTAS SUGERIDAS */
 
--- Insertar datos en la tabla Localidad
-INSERT INTO Localidad (id, País, Ciudad)
-VALUES (1, 'Argentina', 'Buenos Aires');
+CREATE TABLE preguntasugerida (
+    id INT NOT NULL,
+    descripcion TEXT NOT NULL,
+    categoria_id INT NOT NULL,
+    CONSTRAINT pk_preguntasugerida PRIMARY KEY (id),
+    CONSTRAINT fk_categoria_preguntasugerida FOREIGN KEY (categoria_id) REFERENCES categoria(id)
+);
+
+CREATE TABLE respuestasugerida (
+    id INT NOT NULL,
+    descripcion TEXT NOT NULL,
+    esCorrecto BOOL NOT NULL,
+    CONSTRAINT pk_respuestasugerida PRIMARY KEY (id)
+);
+
+CREATE TABLE sugiere (
+    usuario_id INT NOT NULL,
+    preguntasugerida_id INT NOT NULL,
+    respuestasugerida_id INT NOT NULL,
+    CONSTRAINT pk_sugiere PRIMARY KEY (preguntasugerida_id, respuestasugerida_id),
+    CONSTRAINT fk_preguntasugerida FOREIGN KEY (preguntasugerida_id) REFERENCES preguntasugerida(id),
+    CONSTRAINT fk_respuestasugerida FOREIGN KEY (respuestasugerida_id) REFERENCES respuestasugerida(id)
+);
 
 -- Insertar datos en la tabla Usuario
-INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, anoNacimiento, Sexo, CorreoElectronico, contrasena,
-                     nombrerUsuario, puntaje, localidad_id)
-VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, 1985, 'M', 'juan.perez@example.com', 'password123', 'juanp', 100,
-        1),
-       (2, NULL, 'Basico', 'Ana López', TRUE, 1990, 'F', 'ana.lopez@example.com', 'password456', 'anal', 50, 1),
-       (3, NULL, 'Editor', 'Carlos García', TRUE, 1978, 'M', 'carlos.garcia@example.com', 'password789', 'carlosg', 75,
-        1);
+INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
+                     nombrerUsuario,pais,ciudad)
+VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, "19850102", "Masculino", 'juan.perez@example.com', 'password123', 'juanperez', "Argentina", "Buenos Aires"),
+       (2, NULL, 'Basico', 'Ana López', TRUE,  "19900102", "Femenino" , 'ana.lopez@example.com', 'password456', 'analia123', "Argentina", "Buenos Aires"),
+       (3, NULL, 'Editor', 'Carlos García', TRUE,  "19750102", "Masculino" , 'carlos.garcia@example.com', 'password789', 'carlosgomez',"Argentina", "Buenos Aires");
 
 -- Insertar datos en la tabla Administrador
 INSERT INTO Administrador (Usuario_id)
@@ -401,147 +421,4 @@ VALUES
 (119, FALSE, 'Buzz Aldrin', 'C', 30),
 (120, FALSE, 'John Glenn', 'D', 30);
 
-/*TABLAS PARA REPORTAR UNA PREGUNTA CON RESPUESTAS*/
 
-create table reporta(
-	id int not null auto_increment,
-	usuario_id int not null,
-	pregunta_id int not null,
-    razon text not null,
-    constraint pk_reporta primary key(id),
-    constraint fk_reporta_usuario foreign key(usuario_id) references usuario(id),
-    constraint fk_reporta_pregunta foreign key(pregunta_id) references pregunta(id)
-);
-
-/*TABLAS PARA LAS PREGUNTAS SUGERIDAS*/
-create table preguntasugerida(
-	id int not null,
-    descripcion text not null,
-    categoria_id int not null,
-    constraint pk_preguntasugerida primary key (id),
-    constraint fk_categoria_preguntasugerida foreign key(categoria_id) references categoria(id)
-);
-
-create table respuestasugerida(
-	id int not null,
-    descripcion text not null,
-    esCorrecto bool not null,
-	constraint pk_respuestasugerida primary key (id)
-);
-
-create table sugiere(
-	usuario_id int not null,
-    preguntasugerida_id int not null,
-	respuestasugerida_id int not null,
-    constraint pk_sugiere primary key (preguntasugerida_id, respuestasugerida_id),
-    constraint fk_preguntasugerida foreign key (preguntasugerida_id) references preguntasugerida(id),
-    constraint fk_respuestasugerida foreign key (respuestasugerida_id) references  respuestasugerida(id)
-);
-
-select id from respuestasugerida order by id desc limit 1;
-select id from  preguntasugerida order by id desc limit 1;
-select * from categoria;
-
-select * from preguntasugerida;
-select * from respuestasugerida;
-select * from sugiere;
-select * from usuario;
-select * from pregunta;
-UPDATE pregunta SET esValido = true WHERE id=7;
-select * from realiza;
-select * from respuesta;
-select * from reporta;
-
-
-#Consultas para el reporte
-select r.id as reporte_id, p.id as pregunta_reportada_id, p.descripcion, r.razon, u.nombrerUsuario from reporta r 
-join pregunta p on r.pregunta_id = p.id
-join usuario u on r.usuario_id = u.id;
-
-select * from reporta;
-
-select rs.id, rs.descripción as descripcion, rs.esCorreto as esCorrecto from reporta r 
-join pregunta p on r.pregunta_id = p.id
-join respuesta rs on rs.pregunta_id = r.pregunta_id
-where r.id = 2;
-
-select * from pregunta order by id desc limit 1;
-
-desc pregunta;
-DELETE FROM sugiere where preguntasugerida_id=  3;
-DELETE FROM preguntasugerida WHERE id = 3;
-
-select u.id as "usuario_id" , u.nombrerUsuario, ps.id as "pregunta_sugerida_id", ps.descripcion as "pregunta_descripcion", rs.id , rs.descripcion as "respuesta_descripcion", rs.esCorrecto from sugiere s 
-join usuario u on s.usuario_id = u.id
-join preguntasugerida ps on s.preguntasugerida_id = ps.id
-join respuestasugerida rs on s.respuestasugerida_id = rs.id;
-
-select distinct u.id as "usuario_id" , u.nombrerUsuario, ps.id as "pregunta_sugerida_id", ps.descripcion as "pregunta_descripcion", c.nombre as "categoria" from sugiere s 
-join usuario u on s.usuario_id = u.id
-join preguntasugerida ps on s.preguntasugerida_id = ps.id
-join categoria c on ps.categoria_id = c.id;
-
-select rs.id, rs.descripcion,rs.esCorrecto from sugiere s 
-join respuestasugerida rs on s.respuestasugerida_id = rs.id
-join preguntasugerida ps on s.preguntasugerida_id = ps.id
-where s.preguntasugerida_id = 3;
-
-
-
-/*Consultas multitabla para evitar repetidos*/        
-/*SELECTS PARA OBTENER FACILES O INTERMEDIOS O DIFICILES*/
-select p.*, c.nombre as categoria from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
-                    select r.pregunta_id from realiza r
-                    where r.usuario_id = 2
-                    ) and p.porcentaje between 25 and 49 order by rand() limit 1;
-                    
-/*SELECT*/
-select p.id, p.descripcion, p.punto, c.nombre as categoria, c.color as color from pregunta p join categoria c on p.categoria_id = c.id order by rand() limit 1;
-select r.id as res_id, r.esCorreto, r.descripción as descripcion_respuesta, p.id as preg_id, p.descripcion as descripcion_pregunta, p.punto, p.esValido from respuesta r join pregunta p on r.pregunta_id = p.id where p.id = 3;
-select * from partida;
-select * from realiza;
-select * from pregunta;
-select * from usuario;
-
-select * from realiza r join pregunta p on r.pregunta_id  = p.id where  usuario_id = 2;
-select p.id, p.descripcion, p.porcentaje from pregunta p where p.id
-		not in(
-				select r.pregunta_id from realiza r
-				where r.usuario_id =2
-            );
-      
-/*30 PREGUNTAS EN TOTAL , 12 FACILES, 10 INTERMEDIOS, 8 DIFICILES*/
-select count(*)from pregunta;
-select count(*) as faciles from pregunta p where p.porcentaje between 50 and 100;
-select count(*) as intermedios from pregunta p where p.porcentaje between 25 and 49;
-select count(*) as dificiles from pregunta p where p.porcentaje between 0 and 24;
-
-
-
-
-
-
-
-
-
-/*
-#Evitar repetidos
-
-select * from realiza;
-
-DELETE realiza
-FROM realiza 
-WHERE usuario_id = 2 and pregunta_id = 1;
-
-
-Obtener preguntas de un realiza
-select p.id, p.descripcion, p.punto,p.cantidad_dadas,p.porcentaje, p.esValido, c.nombre, c.color as categoria from realiza r join pregunta p 	
-	on r.pregunta_id = p.id
-    join categoria c on c.id = p.categoria_id
-    where r.partida_id = 3 order by rand();
-    
-    select p.id, p.descripcion, p.punto, p.esValido, p.cantidad_dadas, p.porcentaje, c.nombre as categoria , c.color from realiza r join pregunta p 	
-            on r.pregunta_id = p.id
-            join categoria c on c.id = p.categoria_id
-            where partida_id = '4' order by rand();
-  */  
