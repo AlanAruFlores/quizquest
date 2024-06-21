@@ -7,8 +7,8 @@ $selectCantidadPreguntas.addEventListener("change",()=>{
     let cantidad  = $selectCantidadPreguntas.value;
     for(i = 1; i<=cantidad; i++){
         $divPosiblesRespuestas.innerHTML +=`<label class='label_respuesta'>Respuesta ${i}
-        </label><input type="radio" class="input_esCorrecta" name="esCorrecta" value="${i}">`;
+        </label><input type="radio" class="input_esCorrecta" name="esCorrecta" value="${i}" required>`;
 
-        $divPosiblesRespuestas.innerHTML += "<input class='respuesta_pregunta' type='text' name='respuesta"+i+"'>";
+        $divPosiblesRespuestas.innerHTML += "<input class='respuesta_pregunta' type='text' name='respuesta"+i+"' required>";
     }
 });

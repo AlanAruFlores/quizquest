@@ -11,7 +11,7 @@
     <div class="menu">
         <h3 class="contenido__titulo menu__titulo">Seleccione una opcion</h3>
         <a class="menu__opcion" id="abrir__crear__ventana">Crear Partida</a>
-        <a class="menu__opcion" id="abrir__pregunta__ventana">Crear Pregunta</a>
+        <a class="menu__opcion" id="abrir__pregunta__ventana">Sugerir Pregunta</a>
         <a class="menu__opcion" id="ir__ranking" href="/quizquest/ranking/get">Ver Ranking</a>
         <a class="menu__opcion" id="ir__ranking" href="/quizquest/perfil/get">Ver Perfil</a>
         <a class="menu__opcion" id="salir" href="/quizquest/lobbyusuario/exit">Salir</a>
@@ -37,9 +37,9 @@
     <form class="popup__formulario" action="/quizquest/lobbyusuario/suggestNewQuestion" method="POST">
         <h3 class="popup__subtitulo">Nueva pregunta</h3>
         <label>Pregunta</label>
-        <input type="text" name="descripcionPregunta" id="descripcionPregunta">
+        <input type="text" name="descripcionPregunta" id="descripcionPregunta" required>
         <label>Tipo de pregunta</label>
-        <select name="preguntaCategoriaId">
+        <select name="preguntaCategoriaId" required>
                 <option value="1">Cultura</option>
                 <option value="2">Ciencia</option>
                 <option value="3">Entretenimiento</option>
@@ -49,8 +49,7 @@
        </select>
 
        <label>Cantidad de Respuestas</label>
-       <select id="cantidad_preguntas" name="cantidadPreguntas">
-            <option value="1">1</option>
+       <select id="cantidad_preguntas" name="cantidadPreguntas" required>
             <option value="2">2</option>
             <option value="3">3</option>                     
             <option value="4">4</option>
