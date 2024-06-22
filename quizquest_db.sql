@@ -16,7 +16,11 @@ CREATE TABLE Usuario
     contrasena         VARCHAR(100) NOT NULL,
     nombrerUsuario    VARCHAR(100) NOT NULL,
 	pais VARCHAR(100) NOT NULL,
-    ciudad VARCHAR(100) NOT NULL
+    ciudad VARCHAR(100) NOT NULL,
+    cantidad_dadas INT NOT NULL,
+    cantidad_acertadas INT NOT NULL,
+    ratio INT NOT NULL,
+    nivel VARCHAR (100) NOT NULL
 );
 
 -- Creación de la tabla Administrador
@@ -132,10 +136,10 @@ CREATE TABLE sugiere (
 
 -- Insertar datos en la tabla Usuario
 INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
-                     nombrerUsuario,pais,ciudad)
-VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, "19850102", "Masculino", 'juan.perez@example.com', 'password123', 'juanperez', "Argentina", "Buenos Aires"),
-       (2, NULL, 'Basico', 'Ana López', TRUE,  "19900102", "Femenino" , 'ana.lopez@example.com', 'password456', 'analia123', "Argentina", "Buenos Aires"),
-       (3, NULL, 'Editor', 'Carlos García', TRUE,  "19750102", "Masculino" , 'carlos.garcia@example.com', 'password789', 'carlosgomez',"Argentina", "Buenos Aires");
+                     nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel)
+VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, "19850102", "Masculino", 'juan.perez@example.com', 'password123', 'juanperez', "Argentina", "Buenos Aires",0,0,0,"NOVATO"),
+       (2, NULL, 'Basico', 'Ana López', TRUE,  "19900102", "Femenino" , 'ana.lopez@example.com', 'password456', 'analia123', "Argentina", "Buenos Aires",0,0,0,"NOVATO"),
+       (3, NULL, 'Editor', 'Carlos García', TRUE,  "19750102", "Masculino" , 'carlos.garcia@example.com', 'password789', 'carlosgomez',"Argentina", "Buenos Aires",0,0,0,"NOVATO");
 
 -- Insertar datos en la tabla Administrador
 INSERT INTO Administrador (Usuario_id)
@@ -422,3 +426,8 @@ VALUES
 (120, FALSE, 'John Glenn', 'D', 30);
 
 
+use quizquest_db;
+select * from usuario;
+select * from partida where usuario_id  = 4;
+update usuario set CorreoElectronico ="alanaruquipa242@gmail.com" , Sexo ="Masculino" WHERE id = 4;
+update usuario set nivel ="NOVATO" WHERE id = 1;
