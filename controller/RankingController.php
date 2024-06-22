@@ -1,4 +1,5 @@
 <?php 
+    include_once("third-party/phpqrcode/qrlib.php");
 
     class RankingController{
         private $presenter;
@@ -23,6 +24,10 @@
 
             $this->presenter->render("view/viewRanking.mustache", ["obtenerPartidasJugador"=>$obtenerPartidasJugador,"usuarioDatos"=>$usuarioDatos,"usuariosTop"=>$usuariosTop,...$this->mainSettings]);
 
+        }
+
+        public function showQrCode(){
+            QRcode::png("192.168.0.213/quizquest/perfil/showPerfil", false , QR_ECLEVEL_L, 10, 7);
         }
     }
 ?>

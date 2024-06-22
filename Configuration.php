@@ -161,7 +161,8 @@ class Configuration
             "isOnLoginOrRegisterView" => (isset($_GET["controller"]) && ($_GET["controller"] == "login" || $_GET["controller"]=="registro")) ? true : false,
             "isOnLoginView" => (isset($_GET["controller"]) && $_GET["controller"] == "login") ? true : false,
             "isOnRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "registro") ? true : false,
-            "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil") ? true : false,
+            "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil" && $_GET["action"] == "get") ? true : false,
+            "isOnShowPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil" && $_GET["action"] == "showperfil") ? true : false,
             "isOnValidateView" => (isset($_GET["controller"]) && ($_GET["controller"] == "registro" && $_GET["action"]=="validate")) ? true : false,
             "isOnQuestionManagementView" => (isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement") ? true : false,
             "isOnEditView"=>(isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement" && $_GET["action"] == "goToEdit") ? true:false

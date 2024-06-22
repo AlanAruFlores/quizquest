@@ -30,14 +30,16 @@ class LobbyUsuarioController
 
     public function get()
     {
-        //Mando al lobby el usuario actual logeado
-        // var_dump($_SESSION["usuarioLogged"]);
-        // die();
+
+        // QRcode::png("192.168.0.213/quizquest/lobbyusuario/get", false , QR_ECLEVEL_L, 10, 7);
+
         self::updateDataUser();
         $this->presenter->render("view/viewLobbyUsuario.mustache", [
             "usuarioLogeado" => $_SESSION["usuarioLogged"],
             ...$this->mainSettings
         ]);
+
+
     }
 
     public function createNewPartida()

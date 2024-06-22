@@ -17,5 +17,14 @@
                 ...$this->mainSettings
             ]);
         }
+
+        public function showPerfil(){
+            //$idUsuario = $_GET["id"];
+            $this->presenter->render("view/viewShowPerfil.mustache",
+            [
+                ...$this->mainSettings
+            ]);
+            
+        }
     }
 ?>

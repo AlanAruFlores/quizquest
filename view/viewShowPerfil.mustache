@@ -1,0 +1,84 @@
+<main class="contenido">
+    <div class="wave wave_arriba"></div>
+        <div class="perfil">
+            <div>
+                <h2 class="contenido__titulo perfil__titulo">Juansito</h2>
+                <h3 class="contenido__titulo perfil__subtitulo">Ranking #4</h3>
+                <img src="/quizquest/public/imagenes/perfil.png" alt="perfil" class="perfil__imagen">
+            </div>
+            <div>
+                <p class="perfil__parrafo">Nombre de usuario: <span>Juansito</span></p>
+                <p class="perfil__parrafo">Pais y Ciudad: <span>Argentina, Buenos Aires</span></p>
+                <div id="map"></div>
+                <p class="perfil__parrafo">Max. Puntaje: <span>1000 puntos</span></p>
+                <p class="perfil__parrafo">Partidas Recientes:</p>
+                <table class="perfil__tabla">
+                    <thead>
+                        <tr>
+                            <th>Partida</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>La parti!</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>La parti!</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>La parti!</td>
+                            <td>100</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <div class="wave wave_abajo"></div>
+</main>
+
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+<script>
+setCityAndCountry("Argentina", "Buenos Aires");
+
+var map = L.map('map').setView([0,0], 10);
+var circle = L.circle([0,0], {
+    color: '#00c6fb',
+    fillColor: '#00c6fb',
+    fillOpacity: 0.5,
+    radius: 5000
+}).addTo(map);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+
+function setCityAndCountry(pais, ciudad){
+  let url = `https://nominatim.openstreetmap.org/search?q=${pais}+${ciudad}&format=json&limit=1`;
+
+  fetch(url)
+  .then(response=> response.json())
+  .then(data =>{
+     let longitud = data[0].lon;
+     let latitud = data[0].lat;
+     if(circle)
+        map.removeLayer(circle);
+            
+     map.setView([latitud, longitud], 10);
+     circle = L.circle([latitud,longitud], {
+        color: '#00c6fb',
+        fillColor: '#00c6fb',
+        fillOpacity: 0.5,
+        radius: 5000
+        }).addTo(map);
+  })
+  .catch(error => console.error('Error:', error));
+}
+</script>

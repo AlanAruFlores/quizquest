@@ -45,7 +45,9 @@
     {{#isOnPerfilView}}
         <link rel="stylesheet" href="/quizquest/public/css/perfil.css">
     {{/isOnPerfilView}}
-
+    {{#isOnShowPerfilView}}
+            <link rel="stylesheet" href="/quizquest/public/css/verPerfil.css">
+    {{/isOnShowPerfilView}}
     {{#isOnValidateView}}
         <link rel="stylesheet" href="/quizquest/public/css/validacion.css">
     {{/isOnValidateView}}
@@ -72,10 +74,16 @@
         {{/isOnLobbyUsuarioView}}
 
         {{#isOnPerfilView}}
-        <a href="/quizquest/lobbyusuario/get">
-            <h1 class="encabezado__titulo">QuizQuest</h1>
-        </a>
+            <a href="/quizquest/lobbyusuario/get">
+                <h1 class="encabezado__titulo">QuizQuest</h1>
+            </a>
         {{/isOnPerfilView}}
+
+        {{#isOnShowPerfilView}}
+            <a href="/quizquest/lobbyusuario/get">
+                <h1 class="encabezado__titulo">QuizQuest</h1>
+            </a>
+        {{/isOnShowPerfilView}}
 
         {{#isOnRankingView}}
         <a href="/quizquest/lobbyusuario/get">

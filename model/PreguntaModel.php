@@ -43,7 +43,7 @@
         private function clearQuestionsByLevel($level){
            
             $porcentajeDificultConditional = ($level == "FACIL") ? "p.porcentaje between 50 and 100" :
-                (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje.between 0 and 24");
+                (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje between 0 and 24");
             
             $preguntasToDelete = self::getPreguntasRepeatedByLevel($porcentajeDificultConditional);
             

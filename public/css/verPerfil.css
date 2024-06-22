@@ -1,0 +1,232 @@
+@font-face {
+    font-family: bebas;
+    src: url(/quizquest/public/fuentes/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+    font-family: opensans;
+    src: url(/quizquest/public/fuentes/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: opensans;
+    color: #fff;
+}
+
+body{
+    display: grid;
+    /* background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%); */
+    background-image: url(/quizquest/public/imagenes/fondo.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "encabezado" "contenido" "pie";
+}
+
+header.encabezado {
+    background-color: #fff;
+    padding: 10px 20px;
+    grid-area: encabezado;
+}
+
+.encabezado__titulo {
+    font-size: 40px;
+    font-family: bebas;
+    background-image: linear-gradient(to top, #00c6fb 90%, #005bea 10%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+main.contenido {
+    grid-area: contenido;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 20px;
+    gap: 20px;
+}
+
+.contenido__titulo {
+    color: #F5F5F5;
+    font-family: bebas;
+    letter-spacing: 2px;
+    font-size: auto;
+}
+
+.perfil{
+    background-color: #fff;
+    width: 90%;
+    padding: 35px 10px;
+    border-radius: 20px;
+}
+
+.perfil__titulo{
+    color:#00c6fb;
+    text-align: center;
+    font-size: 40px;
+}
+.perfil__subtitulo{
+    font-size: 24px;
+    color:#00c6fb;
+    text-align: center;
+    text-shadow: 0px 0px 8px #5affd6;
+}
+
+.perfil__imagen{
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px #00c6fb;
+    margin-bottom: 30px;
+}
+
+.perfil__parrafo{
+    color: #00c6fb;
+    font-family: bebas;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.perfil__parrafo span{
+    font-family: opensans;
+    color: #303030;
+    letter-spacing: 0px;
+    font-size: 15px;
+}
+
+.perfil__tabla{
+    width: 100%;
+    border-collapse: collapse
+}
+
+.perfil__tabla thead tr{
+   background-color: #F5F5F5;    
+}
+.perfil__tabla th{
+    color: #00c6fb;
+    font-family: bebas;
+    font-size: 20px;
+    letter-spacing: 1px;
+    padding: 4px 0px;
+}
+
+
+.perfil__tabla tbody tr:nth-child(odd){
+    background-color: #00c6fb;
+}
+
+.perfil__tabla tbody tr:nth-child(even){
+    background-color: #31cefae5;
+    
+}
+
+.perfil__tabla td{
+    font-family: bebas;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+}
+
+#map{
+    width: 100%;
+    height: 200px;
+}
+
+/*PIE DE PAGINA*/
+footer.pie__pagina {
+    grid-area: pie;
+    background-color: #fff;
+    padding: 20px 20px;
+}
+
+.pie__titulo {
+    color: #303030;
+    font-family: bebas;
+    letter-spacing: 1px;
+    font-size: 35px;
+}
+
+.pie__subtitulo {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.pie__integrantes {
+    margin-top: 8px;
+    list-style: none;
+    margin-left: 4px;
+}
+
+.pie__integrantes li {
+    color: #303030;
+    font-family: opensans;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.pie__parrafo {
+    color: #303030;
+    font-family: opensans;
+    font-weight: 400;
+    font-size: 15px;
+    margin-left: 4px;
+}
+.wave{
+    background-image: url(/quizquest/public/imagenes/wave.svg);
+    height: 80px;
+    width: 100%;
+    position: absolute;
+    background-repeat:repeat-x;
+}
+.wave_abajo{
+    bottom:0;
+    left: 0;
+}
+.wave_arriba{
+    top: 0;
+    left: 0;
+    transform: rotate(180deg)
+}
+
+
+
+
+@media (min-width:950px) {
+    .encabezado__titulo{
+        font-size: 45px;
+    }
+    /*PIE DE PAGINA*/
+    .pie__pagina{
+        padding: 20px 70px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: 1fr;
+    }
+    .pie__titulo{
+        font-size: 45px;
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+
+    .pie__subtitulo{
+        font-size: 25px;
+    }
+    .pie__integrantes{
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+    .pie__integrantes li{
+        margin-top: 2px;
+        font-size: 18px;
+    }
+
+    .pie__parrafo{
+        font-size: 18px;
+    }
+}
