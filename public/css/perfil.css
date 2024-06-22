@@ -57,7 +57,10 @@ main.contenido {
     letter-spacing: 2px;
     font-size: 38px;
 }
-
+#map {
+    height: 300px; /* Ajusta el tamaño según sea necesario */
+    width: 100%; /* O ajusta el tamaño según sea necesario */
+}
 form.formulario {
     width: 100%;
     max-width: 600px;

@@ -10,7 +10,7 @@
     <div class="formulario">
 
         <div class="formulario_perfil">
-            <img src="../public/imagenes/perfil.png" height="225" width="225"/>
+            <img src="{{usuarioLogeado.imagen}}" height="225" width="225"/>
 
         </div>
 
@@ -20,16 +20,21 @@
         </div>
         <div class="formulario__grupo">
             <label for="anio_nacimiento" class="formulario__label">Año de nacimiento:</label>
-            <input type="text" id="anio_nacimiento" class="formulario__input" value="{{usuarioLogeado.anoNacimiento}}">
+            <input type="date" id="anio_nacimiento" class="formulario__input" value="{{usuarioLogeado.fechaNacimiento}}">
         </div>
         <div class="formulario__grupo">
             <label for="sexo" class="formulario__label">Sexo:</label>
             <input type="text" id="sexo" class="formulario__input" value="{{usuarioLogeado.Sexo}}">
         </div>
         <div class="formulario__grupo">
-            <label for="pais_ciudad" class="formulario__label">País y ciudad:</label>
-            <input type="text" id="pais_ciudad" class="formulario__input" value="Argentina">
+            <label for="pais_ciudad" class="formulario__label">País:</label>
+            <input type="text" id="pais" class="formulario__input" value="{{usuarioLogeado.pais}}">
         </div>
+       <div class="formulario__grupo">
+            <label for="pais_ciudad" class="formulario__label">Ciudad:</label>
+            <input type="text" id="ciudad" class="formulario__input" value="{{usuarioLogeado.ciudad}}">
+        </div>
+        <div id="map"></div>
         <div class="formulario__grupo">
             <label for="correo" class="formulario__label">Correo electrónico:</label>
             <input type="email" id="correo" class="formulario__input" value="{{usuarioLogeado.CorreoElectronico}}">
@@ -45,3 +50,92 @@
     </div>
     <div class="wave wave_abajo"></div>
 </main>
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+<script>
+
+
+setCityAndCountry("{{usuarioLogeado.pais}}", "{{usuarioLogeado.ciudad}}");
+
+var map = L.map('map').setView([0,0], 10);
+var circle = L.circle([0,0], {
+    color: '#00c6fb',
+    fillColor: '#00c6fb',
+    fillOpacity: 0.5,
+    radius: 5000
+}).addTo(map);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+
+// Función para obtener ciudad y país
+function getCityAndCountry(lat, lon) {
+  let url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
+    
+  if(circle)
+    map.removeLayer(circle);
+
+  circle = L.circle([lat,lon], {
+    color: '#00c6fb',
+    fillColor: '#00c6fb',
+    fillOpacity: 0.5,
+    radius: 5000
+    }).addTo(map);
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let city = data.address.city || data.address.town || data.address.village;
+      let country = data.address.country;
+
+      document.getElementById("pais").value= (country==undefined) ? "" : country;
+      document.getElementById("ciudad").value= (city==undefined) ? "" :city;
+
+    })
+    .catch(error => console.error('Error:', error));    
+}
+
+
+function setCityAndCountry(pais, ciudad){
+  let url = `https://nominatim.openstreetmap.org/search?q=${pais}+${ciudad}&format=json&limit=1`;
+
+  fetch(url)
+  .then(response=> response.json())
+  .then(data =>{
+     let longitud = data[0].lon;
+     let latitud = data[0].lat;
+     if(circle)
+        map.removeLayer(circle);
+            
+     map.setView([latitud, longitud], 10);
+     circle = L.circle([latitud,longitud], {
+        color: '#00c6fb',
+        fillColor: '#00c6fb',
+        fillOpacity: 0.5,
+        radius: 5000
+        }).addTo(map);
+  })
+  .catch(error => console.error('Error:', error));
+
+}
+
+// Evento de clic en el mapa para obtener ciudad y país
+map.on('click', function(e) {
+  let lat = e.latlng.lat;
+  let lon = e.latlng.lng;
+  getCityAndCountry(lat, lon);
+});
+
+document.getElementById("ciudad").addEventListener("change", ()=>{
+    setCityAndCountry(document.getElementById("pais").value, document.getElementById("ciudad").value);
+});
+
+
+document.getElementById("pais").addEventListener("change", ()=>{
+    setCityAndCountry(document.getElementById("pais").value, document.getElementById("ciudad").value);    
+});
+</script>
