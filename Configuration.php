@@ -60,12 +60,12 @@ class Configuration
     /*Controladores */
     public static function getJuegoController()
     {
-        return new JuegoController(self::getPresenter(),self::getPartidaModel(), self::getPreguntaModel(),self::getRespuestaModel(), self::getUsuarioPreguntaModel(), self::getReportaModel(), self::getMainSettings());
+        return new JuegoController(self::getPresenter(),self::getPartidaModel(), self::getPreguntaModel(),self::getRespuestaModel(), self::getUsuarioPreguntaModel(), self::getReportaModel(),self::getUsuarioModel() ,self::getMainSettings());
     }
 
     public static function getLobbyUsuarioController()
     {
-        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(),self::getPreguntaSugeridaModel(),self::getRespuestaSugeridaModel(),self::getSugiereModel(),self::getMainSettings());
+        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(),self::getPreguntaSugeridaModel(),self::getRespuestaSugeridaModel(),self::getSugiereModel(),self::getUsuarioModel(),self::getMainSettings());
     }
 
     public static function getLobbyEditorController()

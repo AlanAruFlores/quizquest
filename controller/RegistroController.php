@@ -1,5 +1,6 @@
 <?php
 include_once ("model/Usuario.php");
+include_once ("model/NivelUsuario.php");
 
 class RegistroController
 {
@@ -18,25 +19,22 @@ class RegistroController
 
     public function get()
     {
+        unset($_SESSION["code_verification"]);
+        $_SESSION["code_verification"] = null;
         $this->presenter->render("view/registro.mustache", [...$this->mainSettings]);
     }
 
     public function validate()
     {
-
-        $imagen = $_FILES["imagen"];
-        $rutaImagen = "/quizquest/public/imagenes/perfiles/".$imagen["name"];
-        $usuarioPendiente = new Usuario(null, $_POST["nombre"], "Basico", $rutaImagen, true, $_POST["nacimiento"], $_POST["sexo"], $_POST["email"], $_POST["username"], $_POST["contrasenia"], $_POST["pais"], $_POST["ciudad"]);
-        $_SESSION["datosImagen"] = ["rutaImagen" => $rutaImagen, "tmpName" => $imagen["tmp_name"]];
-        move_uploaded_file($imagen["tmp_name"], $_SERVER["DOCUMENT_ROOT"].$rutaImagen);
-
-
-
-       // die();
-//            if(!isset($_SESSION["code_verification"])){
-        $this->registroModel->sendValidation();
-        $_SESSION["usuarioPendiente"] = serialize($usuarioPendiente);
-        //          }
+        if (!isset($_SESSION["code_verification"])) {
+            $imagen = $_FILES["imagen"];
+            $rutaImagen = "/quizquest/public/imagenes/perfiles/" . $imagen["name"];
+            $usuarioPendiente = new Usuario(null, $_POST["nombre"], "Basico", $rutaImagen, true, $_POST["nacimiento"], $_POST["sexo"], $_POST["email"], $_POST["username"], $_POST["contrasenia"], $_POST["pais"], $_POST["ciudad"], 0, 0, 0, NivelUsuario::NOVATO);
+            $_SESSION["datosImagen"] = ["rutaImagen" => $rutaImagen, "tmpName" => $imagen["tmp_name"]];
+            move_uploaded_file($imagen["tmp_name"], $_SERVER["DOCUMENT_ROOT"] . $rutaImagen);
+            $this->registroModel->sendValidation();
+            $_SESSION["usuarioPendiente"] = serialize($usuarioPendiente);
+        }
         $this->presenter->render("view/viewValidar.mustache", [...$this->mainSettings]);
     }
 

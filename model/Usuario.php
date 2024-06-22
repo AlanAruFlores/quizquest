@@ -13,7 +13,12 @@ class Usuario
     private $contrasena;
     private $pais;
     private $ciudad;
-    public function __construct($id = null, $nombreCompleto = null, $rol = null, $imagen = null, $esHabilitado = null, $fechaNacimiento = null, $sexo = null, $correoElectronico = null, $nombreUsuario = null, $contrasena = null, $pais = null, $ciudad = null)
+
+    private $cantidad_dadas;
+    private $cantidad_acertadas;
+    private $ratio;
+    private $nivel;
+    public function __construct($id = null, $nombreCompleto = null, $rol = null, $imagen = null, $esHabilitado = null, $fechaNacimiento = null, $sexo = null, $correoElectronico = null, $nombreUsuario = null, $contrasena = null, $pais = null, $ciudad = null, $cantidad_dadas=null, $cantidad_acertadas=null, $ratio = null, $nivel = null)
     {
         $this->id = $id;
         $this->nombreCompleto = $nombreCompleto;
@@ -27,6 +32,10 @@ class Usuario
         $this->contrasena = $contrasena;
         $this->pais = $pais;
         $this->ciudad = $ciudad;
+        $this->cantidad_dadas = $cantidad_dadas;
+        $this->cantidad_acertadas = $cantidad_acertadas;
+        $this->ratio = $ratio;
+        $this->nivel = $nivel;
     }
     // Métodos Setter
     public function setId($id)
@@ -151,4 +160,42 @@ class Usuario
     {
         $this->ciudad = $ciudad;
     }
+
+
+      // Getter and Setter for cantidad_dadas
+      public function getCantidadDadas() {
+        return $this->cantidad_dadas;
+    }
+
+    public function setCantidadDadas($cantidad_dadas) {
+        $this->cantidad_dadas = $cantidad_dadas;
+    }
+
+    // Getter and Setter for cantidad_acertadas
+    public function getCantidadAcertadas() {
+        return $this->cantidad_acertadas;
+    }
+
+    public function setCantidadAcertadas($cantidad_acertadas) {
+        $this->cantidad_acertadas = $cantidad_acertadas;
+    }
+
+    // Getter and Setter for ratio
+    public function getRatio() {
+        return $this->ratio;
+    }
+
+    private function setRatio($ratio) {
+        $this->ratio = $ratio;
+    }
+
+    // Getter and Setter for nivel
+    public function getNivel() {
+        return $this->nivel;
+    }
+
+    public function setNivel($nivel) {
+        $this->nivel = $nivel;
+    }
+
 } ?>

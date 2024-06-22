@@ -14,8 +14,9 @@ class JuegoController
     private $usuarioPreguntaModel;
     private $respuestaModel;
     private $reporteModel;
+    private $usuarioModel;
 
-    public function __construct($presenter, $partidaModel, $preguntaModel, $respuestaModel, $usuarioPreguntaModel,$reporteModel, $mainSettings)
+    public function __construct($presenter, $partidaModel, $preguntaModel, $respuestaModel, $usuarioPreguntaModel,$reporteModel,$usuarioModel, $mainSettings)
     {
         $this->presenter = $presenter;
         $this->partidaModel = $partidaModel;
@@ -24,6 +25,7 @@ class JuegoController
         $this->mainSettings = $mainSettings;
         $this->respuestaModel = $respuestaModel;
         $this->reporteModel = $reporteModel;
+        $this->usuarioModel = $usuarioModel;
     }
 
     //Muestra las preguntas y sus respuestas.
@@ -72,20 +74,30 @@ class JuegoController
     //Se ejecuta cuando seleccion una respuesta
     public function selectAnswer()
     {
+        $usuarioActualizado = $_SESSION["usuarioLogged"];
+
         //Obtengo la respuesta seleccionada
         $respuestaSeleccionadaObject = $this->respuestaModel->getRespuestaByRespuestaIdAndPreguntaId($_GET["idRespSeleccionada"], $_SESSION["preguntaActualExistente"]["id"]);
       
         //Veo si se equivoco o no
         $estaEquivocado = $respuestaSeleccionadaObject["esCorreto"] == "0" ? true : false;
-
+        
         $this->preguntaModel->increaseCantidadOfPregunta($_SESSION["preguntaActualExistente"]);
+        $usuarioActualizado["cantidad_dadas"] += 1;
         //Si acierta
         if (!$estaEquivocado) {
             $_SESSION["partidaActual"] = $this->partidaModel->increasePartidaPoints($_SESSION["partidaActual"], $_SESSION["preguntaActualExistente"]["punto"]);
             $this->preguntaModel->increaseAcertadasOfPregunta($_SESSION["preguntaActualExistente"]);
+            $usuarioActualizado["cantidad_acertadas"] += 1;
         }else{
             $_SESSION["isIncorrectQuestion"] = true;
         }
+        //Actualizo el usuario
+        $usuarioActualizado["ratio"] = ($usuarioActualizado["cantidad_acertadas"] / $usuarioActualizado["cantidad_dadas"]) * 100;
+        $this->usuarioModel->update($usuarioActualizado);
+        $_SESSION["usuarioLogged"] = $this->usuarioModel->findById($usuarioActualizado["id"]);
+
+        //Actualizo el ratio de la pregunta
         $this->preguntaModel->updatePorcentaje($_SESSION["preguntaActualExistente"]);
 
         //Retorno el popup con el mensaje correspondiente

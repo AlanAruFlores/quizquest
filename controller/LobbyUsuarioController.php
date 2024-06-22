@@ -4,6 +4,7 @@ include_once("model/Temporizador.php");
 include_once("model/PreguntaSugerida.php");
 include_once("model/RespuestaSugerida.php");
 include_once("model/Sugiere.php");
+include_once("model/NivelUsuario.php");
 
 class LobbyUsuarioController
 {
@@ -14,7 +15,9 @@ class LobbyUsuarioController
     private $preguntaSugeridaModel;
     private $respuestaSugeridaModel;
     private $sugiereModel;
-    public function __construct($presenter, $partidaModel,$preguntaSugeridaModel, $respuestaSugeridaModel, $sugiereModel, $mainSettings)
+    private $usuarioModel;
+
+    public function __construct($presenter, $partidaModel,$preguntaSugeridaModel, $respuestaSugeridaModel, $sugiereModel, $usuarioModel, $mainSettings)
     {
         $this->presenter = $presenter;
         $this->mainSettings = $mainSettings;
@@ -22,11 +25,15 @@ class LobbyUsuarioController
         $this->preguntaSugeridaModel = $preguntaSugeridaModel;
         $this->respuestaSugeridaModel = $respuestaSugeridaModel;
         $this->sugiereModel = $sugiereModel;
+        $this->usuarioModel = $usuarioModel;
     }
 
     public function get()
     {
         //Mando al lobby el usuario actual logeado
+        // var_dump($_SESSION["usuarioLogged"]);
+        // die();
+        self::updateDataUser();
         $this->presenter->render("view/viewLobbyUsuario.mustache", [
             "usuarioLogeado" => $_SESSION["usuarioLogged"],
             ...$this->mainSettings
@@ -78,5 +85,16 @@ class LobbyUsuarioController
         header("Location:/quizquest/login/get");
     }
 
-}
+    public function updateDataUser(){
+        $usuarioAActualizar = $this->usuarioModel->findById($_SESSION["usuarioLogged"]["id"]);
+        // var_dump($usuarioAActualizar);
+        // die();
+        if($usuarioAActualizar["ratio"] > 70 && $usuarioAActualizar["cantidad_dadas"] > 50){
+            $usuarioAActualizar["nivel"] = NivelUsuario::AVANZADO;
+            $this->usuarioModel->update($usuarioAActualizar);
+        }
+        $_SESSION["usuarioLogged"] = $usuarioAActualizar;
+    }
+
+}   
 ?>
