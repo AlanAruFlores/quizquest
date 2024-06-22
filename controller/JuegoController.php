@@ -40,13 +40,15 @@ class JuegoController
 
         //Pregunta actual a responder y preparo sus respuestas
         if (!isset($_SESSION["preguntaActualExistente"])) {
-            $_SESSION["preguntaActualExistente"] = $this->preguntaModel->generateARandomQuestion($_SESSION["partidaActual"]["puntaje"]);
+            $_SESSION["preguntaActualExistente"] = $this->preguntaModel->generateARandomQuestion($_SESSION["partidaActual"]["puntaje"], $_SESSION["usuarioLogged"]["nivel"]);
+
             $_SESSION["respuestasActuales"] = $this->respuestaModel->getRespuestaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
             $up = new UsuarioPregunta($_SESSION["preguntaActualExistente"]["id"], $_SESSION["usuarioLogged"]["id"]);
             $this->usuarioPreguntaModel->insertNewUsuarioPregunta($up);
             //Itero para la siguiente pregunta que venga
-            $_SESSION["levelOfQuestion"] = ($_SESSION["partidaActual"]["puntaje"] <= 100 && $_SESSION["partidaActual"]["puntaje"] >= 0) ? "FACIL" :
-            (($_SESSION["partidaActual"]["puntaje"] > 100 && $_SESSION["partidaActual"]["puntaje"] <=150) ? "INTERMEDIO": "DIFICIL");
+            $_SESSION["levelOfQuestion"] = $this->preguntaModel->getLevelOfQuestion($_SESSION["partidaActual"]["puntaje"],$_SESSION["usuarioLogged"]["nivel"]);
+            // ($_SESSION["partidaActual"]["puntaje"] <= 100 &&  >= 0) ? "FACIL" :
+            // (($_SESSION["partidaActual"]["puntaje"] > 100 && $_SESSION["partidaActual"]["puntaje"] <=150) ? "INTERMEDIO": "DIFICIL");
            
             $_SESSION["indicePregunta"] += 1;
         }

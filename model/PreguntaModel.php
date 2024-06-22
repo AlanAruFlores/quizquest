@@ -55,8 +55,12 @@
                 // die();
             }
 
-        public function generateARandomQuestion($puntaje){
-            $level = ($puntaje>=0 && $puntaje <=100) ? "FACIL" : (($puntaje >100 && $puntaje <=150) ? "INTERMEDIO" : "DIFICIL");
+        public function generateARandomQuestion($puntaje, $nivelUsuario){
+            // if($nivelUsuario == "NOVATO")
+            //     $level = ($puntaje>=0 && $puntaje <=100) ? "FACIL" : "INTERMEDIO";
+            // else
+            //     $level  = "DIFICIL";
+            $level = self::getLevelOfQuestion($puntaje,$nivelUsuario);            
  
             if(!self::getPreguntasNoRepeatedByLevel($level))
                 self::clearQuestionsByLevel($level);
@@ -65,6 +69,26 @@
             return $questionGenerated;
             
         }
+
+        public function getLevelOfQuestion($puntaje, $nivelUsuario){
+            $level = "";
+            if($nivelUsuario == "NOVATO")
+                $level = ($puntaje>=0 && $puntaje <=100) ? "FACIL" : "INTERMEDIO";
+            else
+                $level  = "DIFICIL";
+            return $level;
+        }
+        
+        // public function generateARandomQuestion($puntaje){
+        //     $level = ($puntaje>=0 && $puntaje <=100) ? "FACIL" : (($puntaje >100 && $puntaje <=150) ? "INTERMEDIO" : "DIFICIL");
+ 
+        //     if(!self::getPreguntasNoRepeatedByLevel($level))
+        //         self::clearQuestionsByLevel($level);
+
+        //     $questionGenerated = self::getPreguntasNoRepeatedByLevel($level);
+        //     return $questionGenerated;
+            
+        // }
         
         public function update($pregunta){
             $this->database->execute("UPDATE pregunta SET cantidad_dadas='".$pregunta["cantidad_dadas"]."', acertadas='".$pregunta["acertadas"]."' , porcentaje='".$pregunta["porcentaje"]."' WHERE id = '".$pregunta["id"]."'");  
