@@ -1,5 +1,5 @@
  <main class="contenido">    
-        <form class="formulario" action="/quizquest/registro/validate" method="POST">
+        <form class="formulario" action="/quizquest/registro/validate" method="POST" enctype="multipart/form-data">
             <h2 class="contenido__titulo">Crea tu cuenta</h2>
             <div class="formulario__grupo">
                 <label for="nombre">Nombre completo:</label>
@@ -48,7 +48,7 @@
     
             <div class="formulario__grupo">
                 <label for="foto">Foto de perfil:</label>
-                <input type="file" id="foto" name="foto" accept="image/*">
+                <input type="file" id="foto" name="imagen" accept="image/*">
             </div>
     
             <div class="formulario__grupo">
