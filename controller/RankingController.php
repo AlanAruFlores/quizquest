@@ -18,7 +18,10 @@
             var_dump($usuariosTop);
             die();
                 */
-            $usuarioDatos = $this->rankingModel->obtenerTopUsuarioId($usuariosTop);
+            $usuarioDatos = $this->rankingModel->obtenerTopUsuarioId($_SESSION["usuarioLogged"]["id"]);
+            // var_dump($usuarioDatos);
+            // die();
+
             $obtenerPartidasJugador = $this->rankingModel->obtenerPartidasJugador();
             
 

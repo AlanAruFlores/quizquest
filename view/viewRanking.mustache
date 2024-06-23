@@ -7,6 +7,7 @@
                 <th>TOP</th>
                 <th>NOMBRE</th>
                 <th>PUNTAJE MAXIMO</th>
+                <th>NIVEL</th>
             </tr>
         </thead>
         <tbody class="tabla__contenedor">
@@ -15,7 +16,8 @@
                 <tr>
                     <td>{{top}}</td>
                     <td><a href="/quizquest/perfil/showPerfil/?id={{id_usuario}}">{{nombrerUsuario}}</a></td>
-                    <td>{{puntajeMaximo}}</td>
+                    <td>{{max_puntaje}}</td>
+                    <td style="font-weight:bold">{{nivel}}</td>
                 </tr>
             {{/usuariosTop}}
 
@@ -23,7 +25,17 @@
                 <tr class="jugador__tu">
                     <td>{{top}}</td>
                     <td>{{nombrerUsuario}}</td>
-                    <td>{{puntajeMaximo}}</td>
+                    <td>{{max_puntaje}}</td>
+                    <td style="font-weight:bold">{{nivel}}</td>
+                </tr>
+            {{/usuarioDatos}}
+
+
+            {{^usuarioDatos}}
+                <tr class="jugador__tu">
+                    <td colspan=4>
+                        No te estas en el top (juega minimo 1 partida)
+                    </td>
                 </tr>
             {{/usuarioDatos}}
 

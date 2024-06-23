@@ -65,7 +65,7 @@ class Configuration
 
     public static function getLobbyUsuarioController()
     {
-        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(),self::getPreguntaSugeridaModel(),self::getRespuestaSugeridaModel(),self::getSugiereModel(),self::getUsuarioModel(),self::getMainSettings());
+        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(),self::getPreguntaSugeridaModel(),self::getRespuestaSugeridaModel(),self::getSugiereModel(),self::getUsuarioModel(),self::getRankingModel(),self::getMainSettings());
     }
 
     public static function getLobbyEditorController()

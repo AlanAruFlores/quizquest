@@ -17,7 +17,8 @@ class LobbyUsuarioController
     private $sugiereModel;
     private $usuarioModel;
 
-    public function __construct($presenter, $partidaModel,$preguntaSugeridaModel, $respuestaSugeridaModel, $sugiereModel, $usuarioModel, $mainSettings)
+    private $rankingModel; 
+    public function __construct($presenter, $partidaModel,$preguntaSugeridaModel, $respuestaSugeridaModel, $sugiereModel, $usuarioModel, $rankingModel, $mainSettings)
     {
         $this->presenter = $presenter;
         $this->mainSettings = $mainSettings;
@@ -26,6 +27,7 @@ class LobbyUsuarioController
         $this->respuestaSugeridaModel = $respuestaSugeridaModel;
         $this->sugiereModel = $sugiereModel;
         $this->usuarioModel = $usuarioModel;
+        $this->rankingModel = $rankingModel;
     }
 
     public function get()
@@ -34,8 +36,11 @@ class LobbyUsuarioController
         // QRcode::png("192.168.0.213/quizquest/lobbyusuario/get", false , QR_ECLEVEL_L, 10, 7);
 
         self::updateDataUser();
+        $usuarioRanking = $this->rankingModel->obtenerTopUsuarioId($_SESSION["usuarioLogged"]["id"]);
+
         $this->presenter->render("view/viewLobbyUsuario.mustache", [
             "usuarioLogeado" => $_SESSION["usuarioLogged"],
+            "usuarioRanking" => $usuarioRanking,
             ...$this->mainSettings
         ]);
 

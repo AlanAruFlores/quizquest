@@ -7,25 +7,45 @@
         }
 
         public function obtenerJugadoresTop(){
-            return $this->database->query("select ROW_NUMBER() OVER (ORDER BY p.puntaje DESC) AS top, max(p.puntaje) as puntajeMaximo, p.*, u.id as id_usuario, u.nombrerUsuario from partida p
-join usuario u on p.usuario_id = u.id
-group by u.id order by puntaje desc limit 10;");
+            return $this->database->query("SELECT 
+                ROW_NUMBER() OVER (ORDER BY 
+                CASE 
+                    WHEN u.nivel = 'AVANZADO' THEN 1 
+                    ELSE 2 
+                END, p.max_puntaje DESC) AS top, p.max_puntaje, u.id AS id_usuario, u.nombrerUsuario, u.nivel FROM ( SELECT usuario_id, MAX(puntaje) AS max_puntaje FROM partida GROUP BY usuario_id) p 
+            JOIN usuario u ON p.usuario_id = u.id   
+            ORDER BY top LIMIT 10");
         }
+        public function obtenerTodosTops(){
+            return $this->database->query("SELECT 
+                ROW_NUMBER() OVER (ORDER BY 
+                CASE 
+                    WHEN u.nivel = 'AVANZADO' THEN 1 
+                    ELSE 2 
+                END, p.max_puntaje DESC) AS top, p.max_puntaje, u.id AS id_usuario, u.nombrerUsuario, u.nivel FROM ( SELECT usuario_id, MAX(puntaje) AS max_puntaje FROM partida GROUP BY usuario_id) p 
+            JOIN usuario u ON p.usuario_id = u.id   
+            ORDER BY top");
+        }
+
+
+
+
 
         public function obtenerPartidasJugador(){
             return $this->database->query("select * from partida p where usuario_id =" . $_SESSION["usuarioLogged"]["id"]);
         }
-        public function obtenerTopUsuarioId($usuariosTop){
-            $usuarioDatos= "";
+        public function obtenerTopUsuarioId($id){
+            $usuarioDatos= null;
+            $usuariosTop = self::obtenerTodosTops();
             if(self::isBidimentionalResult($usuariosTop)){
                 foreach($usuariosTop as $usuario){
-                    if($usuario["usuario_id"] == $_SESSION["usuarioLogged"]["id"]){
+                    if($usuario["id_usuario"] == $id){
                         $usuarioDatos = $usuario;
                     }
                 }
             }
             else{
-                if($usuariosTop["usuario_id"] == $_SESSION["usuarioLogged"]["id"])
+                if($usuariosTop["usuario_id"] == $id)
                     $usuarioDatos = $usuariosTop;
             }
             return $usuarioDatos;
