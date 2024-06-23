@@ -60,11 +60,15 @@
 <body>
     <header class="encabezado">
         {{#isOnLobbyEditorView}}
-            <h1 class="encabezado__titulo">QuizQuest Editor</h1>
+            <a href="/quizquest/lobbyeditor/get" style="text-decoration:none" id="inicio">
+                <h1 class="encabezado__titulo">QuizQuest Editor</h1>
+            </a>
         {{/isOnLobbyEditorView}}
 
         {{#isOnQuestionManagementView}}
-            <h1 class="encabezado__titulo">QuizQuest Editor</h1>
+            <a href="/quizquest/lobbyeditor/get" style="text-decoration:none" id="inicio">
+                <h1 class="encabezado__titulo">QuizQuest Editor</h1>
+            </a>
         {{/isOnQuestionManagementView}}
 
         {{#isOnLobbyUsuarioView}}
