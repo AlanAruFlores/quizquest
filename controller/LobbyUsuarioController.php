@@ -38,9 +38,11 @@ class LobbyUsuarioController
         self::updateDataUser();
         $usuarioRanking = $this->rankingModel->obtenerTopUsuarioId($_SESSION["usuarioLogged"]["id"]);
 
+        $esAvanzado = $_SESSION["usuarioLogged"]["nivel"] == "AVANZADO" ? true : false;
         $this->presenter->render("view/viewLobbyUsuario.mustache", [
             "usuarioLogeado" => $_SESSION["usuarioLogged"],
             "usuarioRanking" => $usuarioRanking,
+            "esAvanzado" => $esAvanzado,
             ...$this->mainSettings
         ]);
 

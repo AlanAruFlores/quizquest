@@ -1,11 +1,19 @@
 <main class="contenido">
     <div class="wave wave_arriba"></div>
     <h2 class="contenido__titulo">¡¡Hola {{usuarioLogeado.nombrerUsuario}}!!</h2>
-    
-    {{#usuarioRanking}}
-        <h3 class="contenido__titulo contenido__subtitulo">Hoy te encuentras en el ranking #{{top}}</h3>
-    {{/usuarioRanking}}
 
+
+    {{#usuarioRanking}}
+        <h3 class="contenido__titulo contenido__subtitulo">Hoy te encuentras en el ranking #{{top}} 
+            {{#esAvanzado}}
+                    y tu nivel es AVANZADO <img src="/quizquest/public/imagenes/avanzado__icono.svg" alt="nivel" class="nivel__icono"></img>
+            {{/esAvanzado}}
+            {{^esAvanzado}}
+                    y tu nivel es NOVATO <img src="/quizquest/public/imagenes/novato__icono.svg" alt="nivel" class="nivel__icono"></img>
+            {{/esAvanzado}}
+        </h3>
+    {{/usuarioRanking}}
+    
     <p class="contenido__texto">"¡Bienvenido a QuizQuest, donde el conocimiento es la clave del éxito! Responde preguntas de múltiples categorías y demuestra que eres el maestro de la trivia."
     </p>
     

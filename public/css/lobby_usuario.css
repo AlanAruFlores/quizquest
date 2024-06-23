@@ -50,6 +50,9 @@ body{
     transition: 1s;
     filter: drop-shadow(1px 1px 20px #fff);
 }
+.nivel__icono{
+    width: 20px;
+}
 /*CONTENIDO*/
 .contenido{
     grid-area: contenido;
