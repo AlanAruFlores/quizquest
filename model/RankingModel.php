@@ -7,9 +7,9 @@
         }
 
         public function obtenerJugadoresTop(){
-            return $this->database->query("select ROW_NUMBER() OVER (ORDER BY p.puntaje desc) AS top, max(p.puntaje) as puntajeMaximo, p.*, u.id, u.nombrerUsuario from partida p
+            return $this->database->query("select ROW_NUMBER() OVER (ORDER BY p.puntaje DESC) AS top, max(p.puntaje) as puntajeMaximo, p.*, u.id as id_usuario, u.nombrerUsuario from partida p
 join usuario u on p.usuario_id = u.id
-group by u.id order by puntaje desc limit 10");
+group by u.id order by puntaje desc limit 10;");
         }
 
         public function obtenerPartidasJugador(){

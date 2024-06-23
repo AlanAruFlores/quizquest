@@ -27,7 +27,11 @@
         }
 
         public function showQrCode(){
-            QRcode::png("192.168.0.213/quizquest/perfil/showPerfil", false , QR_ECLEVEL_L, 10, 7);
+            $fileName = "public/imagenes/qr/qrusuario.png";
+            $rutaArchivo = "/quizquest/public/imagenes/qr/qrusuario.png";
+            QRcode::png("192.168.0.213/quizquest/perfil/showPerfil",$fileName,"M",3,4);
+            echo '<img src="'.$rutaArchivo.'" alt="qr">';
+            // QRcode::png("192.168.0.213/quizquest/perfil/showPerfil", false , QR_ECLEVEL_L, 10, 7);
         }
     }
 ?>

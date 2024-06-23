@@ -23,5 +23,9 @@
             self::update($partida);
             return $partida;
         }
+
+        public function getPartidasRecientes($id){
+            return $this->database->query("select * from partida where usuario_id = '$id' order by id desc limit 3");
+        }
     }
 ?>

@@ -1,42 +1,47 @@
 <main class="contenido">
     <div class="wave wave_arriba"></div>
+        {{#usuario}}
         <div class="perfil">
             <div>
-                <h2 class="contenido__titulo perfil__titulo">Juansito</h2>
+                <h2 class="contenido__titulo perfil__titulo">{{nombrerUsuario}}</h2>
                 <h3 class="contenido__titulo perfil__subtitulo">Ranking #4</h3>
-                <img src="/quizquest/public/imagenes/perfil.png" alt="perfil" class="perfil__imagen">
+                {{#imagen}}
+                    <img src="{{imagen}}" alt="perfil" class="perfil__imagen">
+                {{/imagen}}
+                {{^imagen}}
+                    <img src="/quizquest/public/imagenes/perfil.png" alt="perfil" class="perfil__imagen">
+                {{/imagen}}
             </div>
             <div>
-                <p class="perfil__parrafo">Nombre de usuario: <span>Juansito</span></p>
-                <p class="perfil__parrafo">Pais y Ciudad: <span>Argentina, Buenos Aires</span></p>
+                <p class="perfil__parrafo">Nombre completo: <span>{{nombreCompleto}}</span></p>
+                <p class="perfil__parrafo">Pais y Ciudad: <span>{{pais}}, {{ciudad}}</span></p>
                 <div id="map"></div>
                 <p class="perfil__parrafo">Max. Puntaje: <span>1000 puntos</span></p>
                 <p class="perfil__parrafo">Partidas Recientes:</p>
                 <table class="perfil__tabla">
-                    <thead>
-                        <tr>
-                            <th>Partida</th>
-                            <th>Resultado</th>
-                        </tr>
-                    </thead>
+                      <thead>
+                            <tr>
+                                <th>Partida</th>
+                                <th>Resultado</th>
+                            </tr>
+                        </thead>
+                {{^partidaRecientes}}
+                    <div class="perfil__parrafo">No jugo ninguna partida hasta el momento</div>
+                {{/partidaRecientes}}
+                 <tbody>
+                {{#partidaRecientes}}
+                    <tr>
+                        <td>{{nombre}}</td>
+                        <td>{{puntaje}}</td>
+                    </tr>
+                            
+                {{/partidaRecientes}}
+                 </tbody>
+              </table>
 
-                    <tbody>
-                        <tr>
-                            <td>La parti!</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>La parti!</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td>La parti!</td>
-                            <td>100</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
+        {{/usuario}}
     <div class="wave wave_abajo"></div>
 </main>
 

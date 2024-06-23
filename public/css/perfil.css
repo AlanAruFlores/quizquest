@@ -221,6 +221,10 @@ option{
 .formulario_perfil{
     display: flex;
     justify-content: center;
+    
+}
+.formulario_perfil img{
+    border-radius: 50%;
 }
 
 .burbuja {

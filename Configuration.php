@@ -92,7 +92,7 @@ class Configuration
     }
 
     public static function getPerfilController(){
-        return new PerfilController(self::getPresenter(), self::getMainSettings());
+        return new PerfilController(self::getPresenter(), self::getUsuarioModel(),self::getPartidaModel(), self::getMainSettings());
     }
 
     public static function getContarController(){
@@ -162,7 +162,7 @@ class Configuration
             "isOnLoginView" => (isset($_GET["controller"]) && $_GET["controller"] == "login") ? true : false,
             "isOnRegisterView" => (isset($_GET["controller"]) && $_GET["controller"] == "registro") ? true : false,
             "isOnPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil" && $_GET["action"] == "get") ? true : false,
-            "isOnShowPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil" && $_GET["action"] == "showperfil") ? true : false,
+            "isOnShowPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil" && $_GET["action"] == "showPerfil") ? true : false,
             "isOnValidateView" => (isset($_GET["controller"]) && ($_GET["controller"] == "registro" && $_GET["action"]=="validate")) ? true : false,
             "isOnQuestionManagementView" => (isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement") ? true : false,
             "isOnEditView"=>(isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement" && $_GET["action"] == "goToEdit") ? true:false
