@@ -428,6 +428,10 @@ VALUES
 
 use quizquest_db;
 select * from usuario;
+select * from partida where usuario_id = 4 order by id desc limit 3;
+select * from pregunta;
 select * from partida where usuario_id  = 4;
 update usuario set CorreoElectronico ="alanaruquipa242@gmail.com" , Sexo ="Masculino" WHERE id = 4;
 update usuario set nivel ="NOVATO" WHERE id = 1;
+update usuario set nivel ="AVANZADO" WHERE id = 2;
+update usuario set nivel ="AVANZADO" WHERE id = 3;
