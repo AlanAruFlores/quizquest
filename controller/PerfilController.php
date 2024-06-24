@@ -39,7 +39,36 @@
                 "partidaRecientes" => $partidasRecientes,
                 ...$this->mainSettings
             ]);
-            
+        }
+
+        public function actualizarPerfil() {
+                // Aquí deberías validar y sanitizar los datos del formulario antes de pasarlos al modelo
+                // var_dump($_POST);
+                // die();
+                $datosActualizados = [
+                    "id" => $_SESSION["usuarioLogged"]["id"],
+                    "nombreCompleto" => $_POST["nombreCompleto"],
+                    "rol" => $_SESSION["usuarioLogged"]["rol"],
+                    "imagen" => $_SESSION["usuarioLogged"]["imagen"],
+                    "esHabilitado" => $_SESSION["usuarioLogged"]["esHabilitado"],
+                    "fechaNacimiento" => $_POST["fechaNacimiento"],
+                    "Sexo" => $_POST["sexo"],
+                    "CorreoElectronico" => $_POST["correoelectronico"],
+                    "contrasena" => $_POST["contrasena"],
+                    "nombrerUsuario" => $_POST["nombreUsuario"],
+                    "pais" => $_POST["pais"],
+                    "ciudad" => $_POST["ciudad"],
+                    "cantidad_dadas" => $_SESSION["usuarioLogged"]["cantidad_dadas"],
+                    "cantidad_acertadas" => $_SESSION["usuarioLogged"]["cantidad_acertadas"],
+                    "ratio" => $_SESSION["usuarioLogged"]["ratio"],
+                    "nivel" => $_SESSION["usuarioLogged"]["nivel"]
+                ];
+    
+                // var_dump($datosActualizados);
+                // die();
+                $this->usuarioModel->update($datosActualizados);
+                $_SESSION["usuarioLogged"] = $this->usuarioModel->findById($_SESSION["usuarioLogged"]["id"]);
+                header("Location:/quizquest/perfil/get");
         }
     }
 ?>

@@ -7,7 +7,7 @@
     </div> }}
 
     <h1 class="contenido__titulo">Perfil de Usuario</h1>
-    <div class="formulario">
+    <form class="formulario" action="/quizquest/perfil/actualizarPerfil" method="POST">
 
         <div class="formulario_perfil">
             {{#usuarioLogeado.imagen}}
@@ -20,43 +20,47 @@
 
         <div class="formulario__grupo">
             <label for="nombre_completo" class="formulario__label">Nombre completo:</label>
-            <input type="text" id="nombre_completo" class="formulario__input" value="{{usuarioLogeado.nombreCompleto}}">
+            <input type="text" id="nombre_completo" class="formulario__input" name="nombreCompleto" value="{{usuarioLogeado.nombreCompleto}}">
         </div>
         <div class="formulario__grupo">
             <label for="anio_nacimiento" class="formulario__label">Año de nacimiento:</label>
-            <input type="date" id="anio_nacimiento" class="formulario__input" value="{{usuarioLogeado.fechaNacimiento}}">
+            <input type="date" id="anio_nacimiento" class="formulario__input" name="fechaNacimiento" value="{{usuarioLogeado.fechaNacimiento}}">
         </div>
         <div class="formulario__grupo">
             <label for="sexo" class="formulario__label">Sexo:</label>
-            <input type="text" id="sexo" class="formulario__input" value="{{usuarioLogeado.Sexo}}">
+            <input type="text" id="sexo" class="formulario__input" name="sexo" value="{{usuarioLogeado.Sexo}}">
         </div>
         <div class="formulario__grupo">
             <label for="pais_ciudad" class="formulario__label">País:</label>
-            <input type="text" id="pais" class="formulario__input" value="{{usuarioLogeado.pais}}">
+            <input type="text" id="pais" class="formulario__input" name="pais" value="{{usuarioLogeado.pais}}">
         </div>
        <div class="formulario__grupo">
             <label for="pais_ciudad" class="formulario__label">Ciudad:</label>
-            <input type="text" id="ciudad" class="formulario__input" value="{{usuarioLogeado.ciudad}}">
+            <input type="text" id="ciudad" class="formulario__input" name="ciudad" value="{{usuarioLogeado.ciudad}}">
         </div>
         <div id="map"></div>
         <div class="formulario__grupo">
             <label for="correo" class="formulario__label">Correo electrónico:</label>
-            <input type="email" id="correo" class="formulario__input" value="{{usuarioLogeado.CorreoElectronico}}">
+            <input type="email" id="correo" class="formulario__input" name="correoelectronico" value="{{usuarioLogeado.CorreoElectronico}}">
         </div>
         <div class="formulario__grupo">
             <label for="contrasenia" class="formulario__label">Contraseña:</label>
-            <input type="password" id="contrasenia" class="formulario__input" value="{{usuarioLogeado.contrasena}}">
+            <input type="password" id="contrasenia" class="formulario__input" name="contrasena" value="{{usuarioLogeado.contrasena}}">
         </div>
         <div class="formulario__grupo">
             <label for="nombre_usuario" class="formulario__label">Nombre de usuario:</label>
-            <input type="text" id="nombre_usuario" class="formulario__input" value="{{usuarioLogeado.nombrerUsuario}}">
+            <input type="text" id="nombre_usuario" class="formulario__input" name="nombreUsuario" value="{{usuarioLogeado.nombrerUsuario}}">
         </div>
 
         <div class="formulario__grupo">
          <label class="formulario__label">Comparte tu perfil:</label>
             <img src="{{fullPath}}" alt="qr">
         </div>
-    </div>
+
+        <div class="formulario__grupo">
+            <button id="btnActualizarPerfil" class="boton" type="submit">Actualizar Perfil</button>
+        </div>
+    </form>
     <div class="wave wave_abajo"></div>
 </main>
 <!-- Make sure you put this AFTER Leaflet's CSS -->

@@ -18,6 +18,8 @@
                 "partidas"=>$partidas,...$this->mainSettings]);
         }
 
+        
+
     }
 
 ?>

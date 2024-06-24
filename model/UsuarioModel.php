@@ -18,7 +18,7 @@
             // Construimos la consulta SQL
             // var_dump($usuario);
             // die();
-            $this->database->execute("UPDATE Usuario SET 
+            $this->database->execute("UPDATE usuario SET 
                         nombreCompleto = '".$usuario["nombreCompleto"]."',
                         rol = '".$usuario["rol"]."',
                         imagen = '".$usuario["imagen"]."',
@@ -37,6 +37,7 @@
                     WHERE id = '".$usuario["id"]."'");
     
         }
+
         //Metodo para crear un nuevo Usuario
     }
 ?>
