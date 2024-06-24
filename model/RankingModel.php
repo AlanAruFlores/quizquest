@@ -40,7 +40,7 @@
                 }
             }
             else{
-                if($usuariosTop["id_usuario"] == $id)
+                if($usuariosTop != null && $usuariosTop["id_usuario"] == $id)
                     $usuarioDatos = $usuariosTop;
             }
             return $usuarioDatos;

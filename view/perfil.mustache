@@ -10,8 +10,12 @@
     <div class="formulario">
 
         <div class="formulario_perfil">
-            <img src="{{usuarioLogeado.imagen}}" height="225" width="225"/>
-
+            {{#usuarioLogeado.imagen}}
+                <img src="{{usuarioLogeado.imagen}}" height="225" width="225"/>
+            {{/usuarioLogeado.imagen}}
+            {{^usuarioLogeado.imagen}}
+                <img src="/quizquest/public/imagenes/perfil.png" height="225" width="225"/>
+            {{/usuarioLogeado.imagen}}
         </div>
 
         <div class="formulario__grupo">
