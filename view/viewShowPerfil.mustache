@@ -42,16 +42,12 @@
 
             </div>
         </div>
-        {{/usuario}}
-    <div class="wave wave_abajo"></div>
-</main>
-
-<!-- Make sure you put this AFTER Leaflet's CSS -->
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
 <script>
-setCityAndCountry("Argentina", "Buenos Aires");
+setCityAndCountry('{{pais}}', '{{ciudad}}');
 
 var map = L.map('map').setView([0,0], 10);
 var circle = L.circle([0,0], {
@@ -88,3 +84,7 @@ function setCityAndCountry(pais, ciudad){
   .catch(error => console.error('Error:', error));
 }
 </script>
+        {{/usuario}}
+    <div class="wave wave_abajo"></div>
+</main>
+
