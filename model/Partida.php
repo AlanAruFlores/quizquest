@@ -3,12 +3,14 @@ class Partida {
     private $id;
     private $nombre;
     private $puntaje;
+    private $codigo;
     private $usuarioId;
     // Constructor
-    public function __construct($id=null, $nombre=null, $puntaje=null, $usuarioId = null) {
+    public function __construct($id=null, $nombre=null, $puntaje=null,$codigo = null, $usuarioId = null) {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->puntaje = $puntaje;
+        $this->codigo = $codigo;
         $this->usuarioId = $usuarioId;
     }
 
@@ -29,6 +31,9 @@ class Partida {
         $this->usuarioId = $usuarioId;
     }
 
+    public function setCodigo($codigo){
+        $this->codigo = $codigo;
+    }
     // Métodos Getter
     public function getId() {
         return $this->id;
@@ -45,6 +50,10 @@ class Partida {
     public function getUsuarioId(){
         return $this->usuarioId;
     }
+    public function getCodigo(){
+        return $this->codigo;
+    }
+    
 
 }
 ?>

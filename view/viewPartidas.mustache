@@ -1,22 +1,29 @@
 <main class="contenido">
     <div class="wave wave_arriba"></div>
-    <h2 class="contenido__titulo">Partidas disponibles!</h2>
+    <h2 class="contenido__titulo">Tus partidas jugadas!!</h2>
     <table class="tabla tabla__jugadores">
         <thead class="tabla__cabecera">
-            <tr>
+             <tr>
                 <th>PARTIDA</th>
-                <th>CREADOR</th>
-                <th>UNETE</th>
+                <th>CODIGO</th>
+                <th>RESULTADO</th>
             </tr>
         </thead>
         <tbody class="tabla__contenedor">
+
+        {{#partidas}}
             <tr>
-                <td>Nombre de la Partida</td>
-                <td>Jugador 1</td>
-                <td>
-                    <a href="#" class="boton__unirse">Unirse</a>
-                </td>
+                <td>{{nombre}}</td>
+                <td>{{codigo}}</td>
+                <td>{{puntaje}}</td>
             </tr>
+        {{/partidas}}
+
+        {{^partidas}}
+            <tr>
+                <td colspan="3" style="text-align:center">No jugo ninguna partida</td>
+            </tr>
+        {{/partidas}}
         </tbody>
     </table>
     <div class="wave wave_abajo"></div>

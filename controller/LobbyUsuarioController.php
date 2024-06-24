@@ -56,9 +56,10 @@ class LobbyUsuarioController
         $partida->setNombre($_POST["nombre"]);
         $partida->setPuntaje(0);
         $partida->setUsuarioId($_SESSION["usuarioLogged"]["id"]);
+        $partida->setCodigo($this->partidaModel->generateCodeRandom());
 
         $this->partidaModel->insertNewPartida($partida);
-        $partidaObject = $this->partidaModel->getPartidaByName($partida);
+        $partidaObject = $this->partidaModel->getPartidaByNameAndCode($partida);
         $_SESSION["partidaActual"] = $partidaObject;
 
         $_SESSION["indicePregunta"] = 0;

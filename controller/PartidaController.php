@@ -3,15 +3,19 @@
     class PartidaController{
 
         private $presenter;
+        private $partidaModel;
         private $mainSettings;
 
-        public function __construct($presenter, $mainSettings){
+        public function __construct($presenter,$partidaModel, $mainSettings){
             $this->presenter = $presenter;
+            $this->partidaModel = $partidaModel;
             $this->mainSettings = $mainSettings;
         }
 
         public function get(){
-            $this->presenter->render("view/viewPartidas.mustache", [...$this->mainSettings]);
+            $partidas = $this->partidaModel->obtenerPartidasJugador();
+            $this->presenter->render("view/viewPartidas.mustache", [
+                "partidas"=>$partidas,...$this->mainSettings]);
         }
 
     }

@@ -80,7 +80,7 @@ class Configuration
 
     public static function getPartidaController()
     {
-        return new PartidaController(self::getPresenter(), self::getMainSettings());
+        return new PartidaController(self::getPresenter(),self::getPartidaModel(), self::getMainSettings());
     }
 
     public static function getLoginController(){

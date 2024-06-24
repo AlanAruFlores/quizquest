@@ -26,11 +26,6 @@
             JOIN usuario u ON p.usuario_id = u.id   
             ORDER BY top");
         }
-
-
-
-
-
         public function obtenerPartidasJugador(){
             return $this->database->query("select * from partida p where usuario_id =" . $_SESSION["usuarioLogged"]["id"]);
         }

@@ -22,11 +22,8 @@
             // var_dump($usuarioDatos);
             // die();
 
-            $obtenerPartidasJugador = $this->rankingModel->obtenerPartidasJugador();
-            
-
-            $this->presenter->render("view/viewRanking.mustache", ["obtenerPartidasJugador"=>$obtenerPartidasJugador,"usuarioDatos"=>$usuarioDatos,"usuariosTop"=>$usuariosTop,...$this->mainSettings]);
-
+            //$obtenerPartidasJugador = $this->rankingModel->obtenerPartidasJugador();
+            $this->presenter->render("view/viewRanking.mustache", ["usuarioDatos"=>$usuarioDatos,"usuariosTop"=>$usuariosTop,...$this->mainSettings]);
         }
 
         public function showQrCode(){

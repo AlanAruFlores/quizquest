@@ -57,7 +57,7 @@ body{
     position: relative;
     flex-direction: column;
     align-items: center;
-    padding: 100px 0px 120px 0px;
+    padding: 200px 0px 400px 0px;
     gap: 20px;
 }
 .contenido__titulo{
@@ -69,7 +69,7 @@ body{
 .tabla{
     width: 90%;
     border-collapse: collapse;
-    max-width: 600px;
+    max-width: 900px;
 }
 .tabla__cabecera{
     text-align: left;
@@ -153,6 +153,18 @@ body{
 @media (min-width:950px) {
     .encabezado__titulo{
         font-size: 45px;
+    }
+    .contenido__titulo{
+        font-family: bebas;
+        letter-spacing: 2px;
+        font-size: 40px;
+        margin-top: 30px;
+    }
+    .tabla__cabecera th{
+        font-size: 30px;
+    }
+    .tabla td{
+        font-size: 23px;
     }
     /*PIE DE PAGINA*/
     .pie__pagina{

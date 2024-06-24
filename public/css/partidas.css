@@ -15,12 +15,14 @@
     font-family: opensans;
     color: #fff;
 }
-
 body{
     display: grid;
-    background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
+    /* background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%); */
+    background-image: url(/quizquest/public/imagenes/fondo.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 700px auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas: "encabezado" "contenido" "pie";
 }
 
@@ -37,6 +39,7 @@ body{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 1px;
+    font-size: 40px;
 }
 
 
@@ -54,7 +57,7 @@ body{
     position: relative;
     flex-direction: column;
     align-items: center;
-    padding: 100px 0px 120px 0px;
+    padding: 200px 0px 500px 0px;
     gap: 20px;
 }
 .contenido__titulo{
@@ -66,7 +69,7 @@ body{
 .tabla{
     width: 90%;
     border-collapse: collapse;
-    max-width: 600px;
+    max-width: 900px;
 }
 .tabla__cabecera{
     text-align: left;
@@ -75,9 +78,9 @@ body{
 }
 .tabla__cabecera th{
     color: #00c6fb;
-    padding: 15px 8px;
+    padding: 8px 4px;
     font-family: bebas;
-    font-size: 25px;
+    font-size: 20px;
     letter-spacing: 1px;
 }
 .tabla__contenedor tr:nth-child(odd){
@@ -89,18 +92,10 @@ body{
 .tabla__contenedor td{
     padding: 8px 4px;
 }
-.boton__unirse{
-    background-color: #fff;
-    color: #00c6fb;
-    text-align: center;
-    text-decoration: none;
-    padding: 5px 16px;
-    border-radius: 15px;
-    transition: 500ms;
-}
-.boton__unirse:hover{
-    color: #fff;
-    background-color: #00c6fb;
+
+.jugador__tu{
+    transform: scale(1.04);
+    box-shadow: 0px 0px 7px #fff;
 }
 .wave{
     background-image: url(/quizquest/public/imagenes/wave.svg);
@@ -155,3 +150,49 @@ body{
     margin-left: 4px;
 
 }
+@media (min-width:950px) {
+    .encabezado__titulo{
+        font-size: 45px;
+    }
+    .contenido__titulo{
+        font-family: bebas;
+        letter-spacing: 2px;
+        font-size: 40px;
+        margin-top: 30px;
+    }
+    .tabla__cabecera th{
+        font-size: 30px;
+    }
+    .tabla td{
+        font-size: 23px;
+    }
+    /*PIE DE PAGINA*/
+    .pie__pagina{
+        padding: 20px 70px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: 1fr;
+    }
+    .pie__titulo{
+        font-size: 45px;
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+
+    .pie__subtitulo{
+        font-size: 25px;
+    }
+    .pie__integrantes{
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+    .pie__integrantes li{
+        margin-top: 2px;
+        font-size: 18px;
+    }
+
+    .pie__parrafo{
+        font-size: 18px;
+    }
+}
+
