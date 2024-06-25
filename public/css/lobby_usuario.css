@@ -295,6 +295,13 @@ input[type="radio"].input_esCorrecta{
     transition: 500ms;
 }
 
+#crear__partida__ventana__dos{
+    visibility: hidden;
+    opacity: 0;
+    transition: 500ms;
+}
+
+
 #crear__pregunta__ventana{
     visibility: hidden;
     opacity: 0;
@@ -315,7 +322,7 @@ input[type="radio"].input_esCorrecta{
         grid-template-columns: repeat(7, 1fr);
         grid-template-rows: 60px 10px 150px 100px;
         position: relative;    
-        padding: 70px 40px;
+        padding: 100px 40px;
         gap: 8px;
     }
     .contenido__titulo{

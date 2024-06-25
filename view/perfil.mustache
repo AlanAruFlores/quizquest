@@ -8,7 +8,6 @@
 
     <h1 class="contenido__titulo">Perfil de Usuario</h1>
     <form class="formulario" action="/quizquest/perfil/actualizarPerfil" method="POST">
-
         <div class="formulario_perfil">
             {{#usuarioLogeado.imagen}}
                 <img src="{{usuarioLogeado.imagen}}" height="225" width="225"/>
@@ -56,7 +55,6 @@
          <label class="formulario__label">Comparte tu perfil:</label>
             <img src="{{fullPath}}" alt="qr">
         </div>
-
         <div class="formulario__grupo">
             <button id="btnActualizarPerfil" class="boton" type="submit">Actualizar Perfil</button>
         </div>

@@ -1,0 +1,76 @@
+{{#preguntaActual}}
+<style>
+    .encabezado__titulo{
+        background-image: linear-gradient(to top, {{color}} 90%, {{color}} 10%); /* Cambia los colores según lo desees */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>
+
+<main class="contenido" style="background-color:{{color}};" >
+    <div class="wave wave_arriba"></div>
+    <div class="contador_tiempo" id="contador_tiempo">20</div>
+    
+    <div class="contador_puntaje__bot contador_puntaje__bot__desactivado">
+        <img src="/quizquest/public/imagenes/bot.svg" alt="bot" class="bot">
+        <span id="bot__puntaje">100</span>
+    </div>
+    
+    {{#partidaActual}}
+        <div class="contador_puntaje">{{puntaje}}</div>
+    {{/partidaActual}}
+
+
+    <div class="contenedor" style="background-color:{{color}}; box-shadow: 0px 0px 10px #ff;">
+        <div class="contenedor__titulo">{{categoria}}</div>
+        <div class="contenedor__pregunta">
+            <span class="contenedor_dificultad" style="background-color:{{colorDificultad}}">{{nivelPregunta}}</span>
+            <a class="contenedor__reportar" id="boton__reportar">
+                <i class="fa-solid fa-flag"></i>
+            </a>
+            <p>{{descripcion}}</p>
+        </div>
+        {{#respuestasActuales}}
+            <a href="/quizquest/juego/selectAnswer?idRespSeleccionada={{res_id}}" class="contenedor__respuesta">{{letra}}){{descripcion_respuesta}}</a>
+        {{/respuestasActuales}}
+    </div>
+    <div class="wave wave_abajo"></div>
+</main>
+
+
+<div class="popup pop__up__reportar">
+    <a href="#" class="popup__button reportar__cerrar" id="reportar__cerrar"><i class="fa-solid fa-xmark"></i></a>
+    <form action="/quizquest/juego/reportQuestion" class="reportar__formulario" method="POST">
+        <h2 class="popup__titulo">Reportar pregunta</h2>
+        <label class="reportar__label">Razon</label>
+        <textarea class="reportar__razon" name="razon" cols="20" rows="5"></textarea>
+        <input type="hidden" name="pregunta_id" value="{{id}}" style="color:#000">
+        <button type="submit" class="popup__boton">Reportar</button>
+    </form>
+</div>
+{{/preguntaActual}}
+
+<!-- PopUps -->
+{{#hayPopUp}}
+    {{^popUpCorrectoOError}}
+        <div class="popup victoria">
+            <h2 class="popup__titulo">¡Respondiste bien la pregunta!</h2>
+            <p class="popup__parrafo">Vas Joya jugador!</p>
+            <img class="popup__imagen" src="/quizquest/public/imagenes/correct.svg">
+            <a href="/quizquest/juego/goToNextQuestion" class="popup__boton">Continuar</a>
+        </div>
+    {{/popUpCorrectoOError}}
+
+    {{#popUpCorrectoOError}}
+        <div class="popup derrota">
+            <h2 class="popup__titulo">¡Mal respondido!</h2>
+            <p class="popup__parrafo">No te preocupes que la proxima te sale!</p>
+            <img class="popup__imagen"  src="/quizquest/public/imagenes/wrong.svg">
+            <a href="/quizquest/juego/goToNextQuestion" class="popup__boton">Continuar</a>
+        </div>
+    {{/popUpCorrectoOError}}
+{{/hayPopUp}}
+
+
+<script src="/quizquest/public/js/juego.js" type="module"></script>
+<script src="/quizquest/public/js/ajax/temporizadorAjax.js"></script>

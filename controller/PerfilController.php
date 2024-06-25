@@ -19,7 +19,7 @@
             $file = "qrusuario".$usuarioLogeado["id"];
             $path = "public/imagenes/qr/$file.png";
             $fullPath ="/quizquest/$path";
-            QRcode::png("192.168.0.213/quizquest/perfil/showPerfil?id=".$usuarioLogeado["id"],$path,"M",3,4);
+            QRcode::png("192.168.8.254/quizquest/perfil/showPerfil?id=".$usuarioLogeado["id"],$path,"M",4,4);
             
             $this->presenter->render("view/Perfil.mustache",
             [
@@ -68,7 +68,7 @@
                 // die();
                 $this->usuarioModel->update($datosActualizados);
                 $_SESSION["usuarioLogged"] = $this->usuarioModel->findById($_SESSION["usuarioLogged"]["id"]);
-                header("Location:/quizquest/perfil/get");
+                header("Location:/perfil");
         }
     }
 ?>

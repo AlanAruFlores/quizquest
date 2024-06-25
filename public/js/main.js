@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if(e.target.matches("#cerrar__crear__ventana") || e.target.matches("#cerrar__crear__ventana *"))
             cerrarVentana("#crear__partida__ventana");
 
+        if(e.target.matches("#abrir__crear__ventana__dos") || e.target.matches("#abrir__crear__ventana__dos *"))
+            abrirVentana("#crear__partida__ventana__dos");
+        if(e.target.matches("#cerrar__crear__ventana__dos") || e.target.matches("#cerrar__crear__ventana__dos *"))
+            cerrarVentana("#crear__partida__ventana__dos");
+        
         //Crear pregunta popup
         if(e.target.matches("#abrir__pregunta__ventana") || e.target.matches("#abrir__pregunta__ventana *"))
             abrirVentana("#crear__pregunta__ventana");

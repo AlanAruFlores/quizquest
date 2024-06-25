@@ -71,6 +71,28 @@ class LobbyUsuarioController
     }
 
 
+    /*CREAR PARTIDA PARA JUGAR CON UN BOT */
+    public function createPartidaBot()
+    {
+        //INSERTO Y OBTENGO LA PARTIDA
+        $partida = new Partida();
+        $partida->setNombre($_POST["nombre"]);
+        $partida->setPuntaje(0);
+        $partida->setUsuarioId($_SESSION["usuarioLogged"]["id"]);
+        $partida->setCodigo($this->partidaModel->generateCodeRandom());
+
+        $this->partidaModel->insertNewPartida($partida);
+        $partidaObject = $this->partidaModel->getPartidaByNameAndCode($partida);
+        $_SESSION["partidaActual"] = $partidaObject;
+
+        $_SESSION["indicePregunta"] = 0;
+
+        //Aseguro que el usuario luego no se pueda ir libremente
+        $_SESSION["isPlaying"] = true;
+        header("Location:/quizquest/juego/playBot");
+    }
+
+
     public function suggestNewQuestion(){
 
         //Obtengo los ultimos IDS de preguntas y respuestas del bd:

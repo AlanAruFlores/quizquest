@@ -21,7 +21,8 @@
 
     <div class="menu">
         <h3 class="contenido__titulo menu__titulo">Seleccione una opcion</h3>
-        <a class="menu__opcion" id="abrir__crear__ventana">Crear Partida</a>
+        <a class="menu__opcion" id="abrir__crear__ventana">Jugar Solo</a>
+        <a class="menu__opcion" id="abrir__crear__ventana__dos">Jugar vs Bot</a>
         <a class="menu__opcion" id="abrir__pregunta__ventana">Sugerir Pregunta</a>
         <a class="menu__opcion" id="ir__ranking" href="/quizquest/ranking/get">Ver Ranking</a>
         <a class="menu__opcion" id="ir__ranking" href="/quizquest/partida/get">Ver Partidas</a>
@@ -43,6 +44,18 @@
     </form>
 </div>
 
+<div class="popup crear__partida" id="crear__partida__ventana__dos">
+    <a href="#" class="popup__button popup__cerrar" id="cerrar__crear__ventana__dos"><i class="fa-solid fa-xmark"></i></a>
+    <h2 class="popup__titulo">Nombra tu partida!</h2>
+    <form class="popup__formulario" action="/quizquest/lobbyusuario/createPartidaBot" method="POST">
+        <h3 class="popup__subtitulo">Nueva Partida</h3>
+        <label class="nombre">Nombre de la partida</label>
+        <input type="text" name="nombre" id="nombre">
+        <button type="submit" class="popup__boton boton__formulario" id="crear__partida__boton">Crear</button>
+    </form>
+</div>
+
+<!--Sugerir Pregunta-->
 <div class="popup crear__pregunta" id="crear__pregunta__ventana">
     <a href="#" class="popup__button popup__cerrar" id="cerrar__pregunta__ventana"><i class="fa-solid fa-xmark"></i></a>
     <h2 class="popup__titulo">Sugiere una pregunta!</h2>

@@ -119,13 +119,17 @@ class JuegoController
     {
         unset($_SESSION["temporizador"]);
         unset($_SESSION["preguntaActualExistente"]);
-        header("Location:/quizquest/juego/get");
+        if($_SESSION["playBot"] == false)
+            header("Location:/quizquest/juego/get");
+        if($_SESSION["playBot"] == true)
+            header("Location:/quizquest/juego/playBot");
+    
     }
 
     public function goToTheEnd(){
         $this->presenter->render("view/viewFinDePartida.mustache", [
             "partidaActual" => $_SESSION["partidaActual"],
-            "hayPopUpGanador" => $_SESSION["partidaActual"]["puntaje"] > 50,
+            "hayPopUpGanador" => $_SESSION["partidaActual"]["puntaje"] > 100,
             ...$this->mainSettings
         ]);
     }
@@ -152,6 +156,51 @@ class JuegoController
         $this->reporteModel->insertNewReporte($nuevoReporte);
 
         header("Location:/quizquest/juego/get");
+    }
+
+    /*METODO PARA JUGAR CON EL BOT*/
+    public function playBot(){
+            //Si se equivoco termina el juego 
+            $_SESSION["playBot"] = true;
+
+            if(isset($_SESSION["isIncorrectQuestion"]) && $_SESSION["isIncorrectQuestion"] == true){
+                header("Location:/quizquest/juego/goToTheEnd");
+                return ;
+            }
+    
+            //Pregunta actual a responder y preparo sus respuestas
+            if (!isset($_SESSION["preguntaActualExistente"])) {
+                $_SESSION["preguntaActualExistente"] = $this->preguntaModel->generateARandomQuestion($_SESSION["partidaActual"]["puntaje"], $_SESSION["usuarioLogged"]["nivel"]);
+    
+                $_SESSION["respuestasActuales"] = $this->respuestaModel->getRespuestaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
+                $up = new UsuarioPregunta($_SESSION["preguntaActualExistente"]["id"], $_SESSION["usuarioLogged"]["id"]);
+                $this->usuarioPreguntaModel->insertNewUsuarioPregunta($up);
+                //Itero para la siguiente pregunta que venga
+                $_SESSION["levelOfQuestion"] = $this->preguntaModel->getLevelOfQuestion($_SESSION["partidaActual"]["puntaje"],$_SESSION["usuarioLogged"]["nivel"]);
+                // ($_SESSION["partidaActual"]["puntaje"] <= 100 &&  >= 0) ? "FACIL" :
+                // (($_SESSION["partidaActual"]["puntaje"] > 100 && $_SESSION["partidaActual"]["puntaje"] <=150) ? "INTERMEDIO": "DIFICIL");
+               
+                $_SESSION["indicePregunta"] += 1;
+            }
+    
+            $colorDificultad  = "";
+    
+            if($_SESSION["levelOfQuestion"] == "FACIL")
+                $colorDificultad  = "#339900";
+            else if($_SESSION["levelOfQuestion"] == "INTERMEDIO")
+                $colorDificultad  = "#ffcc00";
+            else
+                $colorDificultad = "#cc3300";
+    
+    
+            $this->presenter->render("view/viewJuegoBot.mustache", [
+                "partidaActual" => $_SESSION["partidaActual"],
+                "preguntaActual" => $_SESSION["preguntaActualExistente"],
+                "respuestasActuales" => $_SESSION["respuestasActuales"],
+                "nivelPregunta" => $_SESSION["levelOfQuestion"],
+                "colorDificultad" => $colorDificultad,
+                ...$this->mainSettings
+            ]);
     }
 }
 
