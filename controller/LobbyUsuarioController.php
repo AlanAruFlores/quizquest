@@ -64,6 +64,7 @@ class LobbyUsuarioController
         $_SESSION["partidaActual"] = $partidaObject;
 
         $_SESSION["indicePregunta"] = 0;
+        $_SESSION["playBot"] = false;
 
         //Aseguro que el usuario luego no se pueda ir libremente
         $_SESSION["isPlaying"] = true;
@@ -86,6 +87,8 @@ class LobbyUsuarioController
         $_SESSION["partidaActual"] = $partidaObject;
 
         $_SESSION["indicePregunta"] = 0;
+        $_SESSION["botPuntaje"] = 0;
+        $_SESSION["playBot"] = true;
 
         //Aseguro que el usuario luego no se pueda ir libremente
         $_SESSION["isPlaying"] = true;

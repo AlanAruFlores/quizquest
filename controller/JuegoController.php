@@ -140,6 +140,7 @@ class JuegoController
         unset($_SESSION["isPlaying"]);
         unset($_SESSION["partidaActual"]);
         unset($_SESSION["isIncorrectQuestion"]);
+        unset($_SESSION["playBot"]);
         header("Location:/quizquest/lobbyusuario/get");
     }
 
@@ -161,8 +162,6 @@ class JuegoController
     /*METODO PARA JUGAR CON EL BOT*/
     public function playBot(){
             //Si se equivoco termina el juego 
-            $_SESSION["playBot"] = true;
-
             if(isset($_SESSION["isIncorrectQuestion"]) && $_SESSION["isIncorrectQuestion"] == true){
                 header("Location:/quizquest/juego/goToTheEnd");
                 return ;

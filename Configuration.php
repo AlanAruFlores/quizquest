@@ -12,6 +12,7 @@ include_once("controller/PerfilController.php");
 include_once("controller/RegistroController.php");
 include_once("controller/ContarController.php");
 include_once("controller/QuestionManagementController.php");
+include_once("controller/BotController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/UsuarioModel.php");
@@ -101,6 +102,10 @@ class Configuration
 
     public static function getQuestionManagementController(){
         return new QuestionManagementController(self::getPresenter(),self::getPreguntaModel(), self::getRespuestaModel(),self::getCategoriaModel(), self::getReportaModel(), self::getUsuarioPreguntaModel(), self::getMainSettings());
+    }
+
+    public static function getBotController(){
+        return new BotController(self::getPresenter(), self::getUsuarioModel(), self::getPreguntaModel(),self::getRespuestaModel(), self::getUsuarioPreguntaModel());
     }
 
     /*MODELOS*/

@@ -26,6 +26,8 @@
             $this->database->execute("UPDATE pregunta SET descripcion = '".$pregunta["descripcion"]."', categoria_id = '".$pregunta["categoria_id"]."' WHERE id = '".$pregunta["id"]."'");
         }
 
+
+        //Para el usuario
         private function getPreguntasNoRepeatedByLevel($level){
             $porcentajeDificultadConditional = ($level == "FACIL") ? "p.porcentaje between 50 and 100" :
                     (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje between 0 and 24");
@@ -35,6 +37,24 @@
                     where r.usuario_id = '".$_SESSION["usuarioLogged"]["id"]."'
                     ) and $porcentajeDificultadConditional order by rand() limit 1 ;");         
         }
+
+        //Para el bot
+        public function getPreguntaNoRepeatedForBot($botId){
+            $preguntaSeleccionada = $this->database->query("select p.*, c.nombre as categoria, c.color from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
+                    select r.pregunta_id from realiza r
+                    where r.usuario_id = '$botId'
+                    ) order by rand() limit 1 ;");         
+        
+            if(!$preguntaSeleccionada){
+                $this->database->execute("DELETE FROM realiza WHERE usuario_id = '$botId'");
+                $preguntaSeleccionada = $this->database->query("select p.*, c.nombre as categoria, c.color from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
+                    select r.pregunta_id from realiza r
+                    where r.usuario_id = '$botId'
+                    ) order by rand() limit 1 ;");    
+            }
+            return $preguntaSeleccionada;
+        }
+
 
         //Limpio si esas preguntas ya se los habia tomado a algun usuario   
         private function getPreguntasRepeatedByLevel($porcentajeDificultadConditional){
@@ -48,7 +68,7 @@
             $preguntasToDelete = self::getPreguntasRepeatedByLevel($porcentajeDificultConditional);
             
             foreach($preguntasToDelete as $preguntaItem){
-                $this->database ->execute("DELETE realiza FROM realiza WHERE usuario_id = '".$preguntaItem["usuario_id"]."' and pregunta_id = '".$preguntaItem["pregunta_id"]."';");
+                $this->database ->execute("DELETE FROM realiza WHERE usuario_id = '".$preguntaItem["usuario_id"]."' and pregunta_id = '".$preguntaItem["pregunta_id"]."';");
             }
                 // var_dump($level);
                 // var_dump($porcentajeDificultadConditional);
