@@ -161,6 +161,7 @@ class Configuration
             "isOnLobbyUsuarioView" => (isset($_GET["controller"]) && $_GET["controller"] == "lobbyusuario" || empty($_GET["controller"])) ? true : false,
             "isOnLobbyEditorView" => (isset($_GET["controller"]) && $_GET["controller"] == "lobbyeditor") ? true : false,
             "isOnJuegoView" => (isset($_GET["controller"]) && $_GET["controller"] == "juego") ? true : false,
+            "isOnJuegoToTheEnd" => (isset($_GET["controller"]) && $_GET["controller"] == "juego" && $_GET["action"] == "goToTheEnd") ? true : false,
             "isOnRankingView" => (isset($_GET["controller"]) && $_GET["controller"] == "ranking") ? true : false,
             "isOnPartidaView" => (isset($_GET["controller"]) && $_GET["controller"] == "partida") ? true : false,
             "isOnLoginOrRegisterView" => (isset($_GET["controller"]) && ($_GET["controller"] == "login" || $_GET["controller"]=="registro")) ? true : false,

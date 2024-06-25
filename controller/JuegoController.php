@@ -127,11 +127,23 @@ class JuegoController
     }
 
     public function goToTheEnd(){
-        $this->presenter->render("view/viewFinDePartida.mustache", [
-            "partidaActual" => $_SESSION["partidaActual"],
-            "hayPopUpGanador" => $_SESSION["partidaActual"]["puntaje"] > 100,
-            ...$this->mainSettings
-        ]);
+
+        //Si juega solo
+        if($_SESSION["playBot"] == false){
+            $this->presenter->render("view/viewFinDePartida.mustache", [
+                "partidaActual" => $_SESSION["partidaActual"],
+                "hayPopUpGanador" => $_SESSION["partidaActual"]["puntaje"] > 100,
+                ...$this->mainSettings
+            ]);
+            return ;
+        }
+
+        //Si juega con un bot , debemos esperar al bot y comparar puntaje
+            $this->presenter->render("view/viewFinDePartidaBot.mustache", [
+                "partidaActual" => $_SESSION["partidaActual"],
+                "esperarBot" => $_SESSION["botAcerto"] == true,
+                ...$this->mainSettings
+            ]);
     }
 
     public function goToLobby(){

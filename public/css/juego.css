@@ -160,6 +160,37 @@ body{
     background-color: #f5353596;
 }
 
+/* .bot__icono{
+    position: relative;
+    background-color: #00c6fb;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 50%;
+    padding: 10px 10px;
+    width: 70px;
+    text-align: center;
+    top: 0;
+    box-shadow: 0px 0px 8px #303030;
+    margin: 20px auto;   
+}
+
+.bot__icono span{
+    display: inline-block;
+    margin-top: 4px;
+    color: inherit;
+} 
+
+.bot__icono .bot{
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 35%;
+    color: inherit;
+}
+.bot__icono__desactivado{
+    background-color: #f5353596;
+} */
 
 .contador_puntaje{
     background-color: #fff;
@@ -276,6 +307,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     gap: 20px;
     padding: 50px 15px;
 }

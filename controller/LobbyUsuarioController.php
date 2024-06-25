@@ -88,6 +88,8 @@ class LobbyUsuarioController
 
         $_SESSION["indicePregunta"] = 0;
         $_SESSION["botPuntaje"] = 0;
+        $_SESSION["botAcerto"] = true;
+
         $_SESSION["playBot"] = true;
 
         //Aseguro que el usuario luego no se pueda ir libremente
