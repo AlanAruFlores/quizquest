@@ -20,7 +20,8 @@ CREATE TABLE Usuario
     cantidad_dadas INT NOT NULL,
     cantidad_acertadas INT NOT NULL,
     ratio INT NOT NULL,
-    nivel VARCHAR (100) NOT NULL
+    nivel VARCHAR (100) NOT NULL,
+    trampitas INT DEFAULT 0
 );
 
 -- Creación de la tabla Administrador
@@ -135,24 +136,36 @@ CREATE TABLE sugiere (
     CONSTRAINT fk_respuestasugerida FOREIGN KEY (respuestasugerida_id) REFERENCES respuestasugerida(id)
 );
 
+CREATE TABLE venta(
+	id int not null auto_increment,
+    cantidad int not null,
+    precio int not null,
+    usuario_id int not null,
+    constraint pk_venta primary key (id),
+    constraint fk_venta foreign key (usuario_id) references usuario(id)
+);
+
 -- Insertar datos en la tabla Usuario
 INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
-                     nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel)
-VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, "19850102", "Masculino", 'juan.perez@example.com', 'password123', 'juanperez', "Argentina", "Buenos Aires",100,90,90,"AVANZADO"),
-       (2, NULL, 'Basico', 'Ana López', TRUE,  "19900102", "Femenino" , 'ana.lopez@example.com', 'password456', 'analia123', "Argentina", "Buenos Aires",100,90,90,"AVANZADO"),
-       (3, NULL, 'Editor', 'Carlos García', TRUE,  "19750102", "Masculino" , 'carlos.garcia@example.com', 'password789', 'carlosgomez',"Argentina", "Buenos Aires",100,90,90,"AVANZADO"),
-       (4, NULL, 'Basico', 'Jose Gomez', TRUE, '19951115', 'Masculino', 'jose.gomez@example.com', 'password789', 'jose1234', 'México', 'Ciudad de México', 80, 75, 93, 'AVANZADO'),
-	   (5, NULL, 'Basico', 'María García', TRUE, '19870423', 'Femenino', 'maria.garcia@example.com', 'password987', 'maria.g', 'España', 'Madrid', 120, 110, 91, 'AVANZADO'),
-	   (6, NULL, 'Basico', 'Carlos Martínez', TRUE, '20000229', 'Masculino', 'carlos.martinez@example.com', 'password123', 'carlosm_29', 'Colombia', 'Bogotá', 95, 85, 89.47, 'AVANZADO'),
-	   (7, NULL, 'Basico', 'Laura Fernández', TRUE, '19980910', 'Femenino', 'laura.fernandez@example.com', 'passwordabc', 'laura_f', 'Argentina', 'Córdoba', 85, 80, 94.12, 'AVANZADO'),
-       (8, NULL, 'Basico', 'Pedro Rodríguez', TRUE, '19931205', 'Masculino', 'pedro.rodriguez@example.com', 'password456', 'pedrorod', 'Chile', 'Santiago', 110, 105, 95.45, 'AVANZADO'),
-	   (9, NULL, 'Basico', 'Ana Ramírez', TRUE, '19901008', 'Femenino', 'ana.ramirez@example.com', 'password789', 'ana_ram', 'España', 'Barcelona', 70, 65, 92.86, 'AVANZADO'),
-       (10, NULL, 'Basico', 'Jorge Sánchez', TRUE, '19970430', 'Masculino', 'jorge.sanchez@example.com', 'passwordxyz', 'jsancho', 'México', 'Guadalajara', 100, 95, 95, 'AVANZADO'),
-	   (11, NULL, 'Basico', 'Lucía Morales', TRUE, '20030214', 'Femenino', 'lucia.morales@example.com', 'password123', 'lucia_m', 'España', 'Valencia', 50, 40, 80, 'NOVATO'),
-	   (12, NULL, 'Basico', 'Martín González', TRUE, '20011203', 'Masculino', 'martin.gonzalez@example.com', 'password456', 'martin_g', 'Argentina', 'Rosario', 55, 45, 81.82, 'NOVATO'),
-	   (13, NULL, 'Basico', 'Sofía Hernández', TRUE, '20000820', 'Femenino', 'sofia.hernandez@example.com', 'password789', 'sofia_h', 'México', 'Monterrey', 40, 35, 87.5, 'NOVATO'),
-	   (14, NULL, 'Basico', 'Mateo Díaz', TRUE, '20050110', 'Masculino', 'mateo.diaz@example.com', 'passwordabc', 'mateo_d', 'Colombia', 'Medellín', 48, 42, 87.5, 'NOVATO'),
-       (15, NULL, 'Basico', 'Valentina Ruiz', TRUE, '20041025', 'Femenino', 'valentina.ruiz@example.com', 'passwordxyz', 'valen_r', 'Chile', 'Valparaíso', 38, 32, 84.21, 'NOVATO');
+                     nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, trampitas)
+VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, "19850102", "Masculino", 'juan.perez@example.com', 'password123', 'juanperez', "Argentina", "Buenos Aires",100,90,90,"AVANZADO", 0),
+       (2, NULL, 'Basico', 'Ana López', TRUE,  "19900102", "Femenino" , 'ana.lopez@example.com', 'password456', 'analia123', "Argentina", "Buenos Aires",100,90,90,"AVANZADO",0),
+       (3, NULL, 'Editor', 'Carlos García', TRUE,  "19750102", "Masculino" , 'carlos.garcia@example.com', 'password789', 'carlosgomez',"Argentina", "Buenos Aires",100,90,90,"AVANZADO",0),
+       (4, NULL, 'Basico', 'Jose Gomez', TRUE, '19951115', 'Masculino', 'jose.gomez@example.com', 'password789', 'jose1234', 'México', 'Ciudad de México', 80, 75, 93, 'AVANZADO',0),
+	   (5, NULL, 'Basico', 'María García', TRUE, '19870423', 'Femenino', 'maria.garcia@example.com', 'password987', 'maria.g', 'España', 'Madrid', 120, 110, 91, 'AVANZADO',0),
+	   (6, NULL, 'Basico', 'Carlos Martínez', TRUE, '20000229', 'Masculino', 'carlos.martinez@example.com', 'password123', 'carlosm_29', 'Colombia', 'Bogotá', 95, 85, 89.47, 'AVANZADO',0),
+	   (7, NULL, 'Basico', 'Laura Fernández', TRUE, '19980910', 'Femenino', 'laura.fernandez@example.com', 'passwordabc', 'laura_f', 'Argentina', 'Córdoba', 85, 80, 94.12, 'AVANZADO',0),
+       (8, NULL, 'Basico', 'Pedro Rodríguez', TRUE, '19931205', 'Masculino', 'pedro.rodriguez@example.com', 'password456', 'pedrorod', 'Chile', 'Santiago', 110, 105, 95.45, 'AVANZADO',0),
+	   (9, NULL, 'Basico', 'Ana Ramírez', TRUE, '19901008', 'Femenino', 'ana.ramirez@example.com', 'password789', 'ana_ram', 'España', 'Barcelona', 70, 65, 92.86, 'AVANZADO',0),
+       (10, NULL, 'Basico', 'Jorge Sánchez', TRUE, '19970430', 'Masculino', 'jorge.sanchez@example.com', 'passwordxyz', 'jsancho', 'México', 'Guadalajara', 100, 95, 95, 'AVANZADO',0),
+	   (11, NULL, 'Basico', 'Lucía Morales', TRUE, '20030214', 'Femenino', 'lucia.morales@example.com', 'password123', 'lucia_m', 'España', 'Valencia', 50, 40, 80, 'NOVATO',0),
+	   (12, NULL, 'Basico', 'Martín González', TRUE, '20011203', 'Masculino', 'martin.gonzalez@example.com', 'password456', 'martin_g', 'Argentina', 'Rosario', 55, 45, 81.82, 'NOVATO',0),
+	   (13, NULL, 'Basico', 'Sofía Hernández', TRUE, '20000820', 'Femenino', 'sofia.hernandez@example.com', 'password789', 'sofia_h', 'México', 'Monterrey', 40, 35, 87.5, 'NOVATO',0),
+	   (14, NULL, 'Basico', 'Mateo Díaz', TRUE, '20050110', 'Masculino', 'mateo.diaz@example.com', 'passwordabc', 'mateo_d', 'Colombia', 'Medellín', 48, 42, 87.5, 'NOVATO',0),
+       (15, NULL, 'Basico', 'Valentina Ruiz', TRUE, '20041025', 'Femenino', 'valentina.ruiz@example.com', 'passwordxyz', 'valen_r', 'Chile', 'Valparaíso', 38, 32, 84.21, 'NOVATO',0);
+       
+insert into usuario values
+(100, NULL, 'Basico', 'BOT', TRUE, '', '', '', '', 'BOT', '', '', 0, 0, 0, 'INDEFINIDO',0);
 
 -- Insertar partidas
 -- Insert para Juan Pérez (Usuario ID: 1)
