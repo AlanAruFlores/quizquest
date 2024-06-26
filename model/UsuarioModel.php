@@ -38,6 +38,10 @@
     
         }
 
+        public function updateTrampitas($usuario, $cantidad){
+            $this->database->execute("update usuario set trampitas = trampitas + $cantidad where id = '".$usuario["id"]."';");
+        }
+
         //Metodo para crear un nuevo Usuario
     }
 ?>

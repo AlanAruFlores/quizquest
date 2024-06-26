@@ -5,6 +5,7 @@ include_once("model/PreguntaSugerida.php");
 include_once("model/RespuestaSugerida.php");
 include_once("model/Sugiere.php");
 include_once("model/NivelUsuario.php");
+include_once("model/Venta.php");
 
 class LobbyUsuarioController
 {
@@ -18,7 +19,8 @@ class LobbyUsuarioController
     private $usuarioModel;
 
     private $rankingModel; 
-    public function __construct($presenter, $partidaModel,$preguntaSugeridaModel, $respuestaSugeridaModel, $sugiereModel, $usuarioModel, $rankingModel, $mainSettings)
+    private $ventaModel;
+    public function __construct($presenter, $partidaModel,$preguntaSugeridaModel, $respuestaSugeridaModel, $sugiereModel, $usuarioModel, $rankingModel,$ventaModel, $mainSettings)
     {
         $this->presenter = $presenter;
         $this->mainSettings = $mainSettings;
@@ -28,6 +30,7 @@ class LobbyUsuarioController
         $this->sugiereModel = $sugiereModel;
         $this->usuarioModel = $usuarioModel;
         $this->rankingModel = $rankingModel;
+        $this->ventaModel = $ventaModel;
     }
 
     public function get()
@@ -132,6 +135,18 @@ class LobbyUsuarioController
             $this->usuarioModel->update($usuarioAActualizar);
         }
         $_SESSION["usuarioLogged"] = $usuarioAActualizar;
+    }
+
+    public function buyHelados(){
+        $cantidad = $_GET["cantidad"];
+        $precio  = $_GET["precio"];
+
+        $nuevaVenta = new Venta(null,$cantidad,$precio, $_SESSION["usuarioLogged"]["id"]);
+        // var_dump($nuevaVenta);
+        // die();
+        $this->ventaModel->insertNewVenta($nuevaVenta);
+        $this->usuarioModel->updateTrampitas($_SESSION["usuarioLogged"], $cantidad);
+        header("Location:/quizquest/lobbyusuario/get");
     }
 
 }   

@@ -27,6 +27,7 @@ include_once("model/RespuestaSugeridaModel.php");
 include_once("model/SugiereModel.php");
 include_once("model/ReportaModel.php");
 include_once("model/CategoriaModel.php");
+include_once("model/VentaModel.php");
 
 include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
@@ -66,7 +67,7 @@ class Configuration
 
     public static function getLobbyUsuarioController()
     {
-        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(),self::getPreguntaSugeridaModel(),self::getRespuestaSugeridaModel(),self::getSugiereModel(),self::getUsuarioModel(),self::getRankingModel(),self::getMainSettings());
+        return new LobbyUsuarioController(self::getPresenter(),self::getPartidaModel(),self::getPreguntaSugeridaModel(),self::getRespuestaSugeridaModel(),self::getSugiereModel(),self::getUsuarioModel(),self::getRankingModel(),self::getVentaModel(),self::getMainSettings());
     }
 
     public static function getLobbyEditorController()
@@ -153,6 +154,10 @@ class Configuration
     }
     public static function getCategoriaModel(){
         return new CategoriaModel(self::getDatabase());
+    }
+
+    public static function getVentaModel(){
+        return new VentaModel(self::getDatabase());
     }
     /*Configuracion principal */
     public static function getMainSettings()
