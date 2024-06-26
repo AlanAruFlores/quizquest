@@ -40,6 +40,23 @@ body{
     letter-spacing: 1px;
     font-size: 40px;
 }
+.buy__button{
+    margin: 15px;
+    position: absolute;
+    right: 0;
+    top:0;
+    background-color: #00c6fb;
+    width: 40px;
+    border-radius: 50%;
+    padding: 8px 0px;
+    cursor: pointer;
+}
+.bolso{
+    display: block;
+    margin: 0 auto;
+    width: 25px;
+}
+
 
 .yeti__imagen{
     width: 100%;
@@ -263,6 +280,109 @@ body{
     color: #303030;
 }
 
+
+/*POPUP DE TRAMPITAS*/
+.helado__icon{
+    width: 30px;
+}
+.div__cantidad__trampitas{
+    background-color: white;
+    position: absolute;
+    top:0;
+    right: 40px;
+    margin: 15px 20px;
+    background-color: #ececec;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+.div__cantidad__trampitas span{
+    line-height: 40px;
+    color: #005bea;
+}
+
+#cerrar_popup_trampitas{
+    position: absolute;
+}
+#popup__trampitas{
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s;
+}
+
+.popup__trampitaDiv{
+    background-color: #00c5fb94;
+    width: 90%;
+    padding: 40px 15px;
+    max-width: 500px;
+}
+
+.popUpContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.popup__trampitaDiv .popup__titulo{
+    background-image: linear-gradient(to top, #ffffff 100%, #ffffff 10%); /* Cambia los colores según lo desees */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.popupDiv{
+    background-color: #fff;
+    color: #00c6fb;
+    max-width: 290px;
+
+}
+.popupDiv h2,h3,p{
+    color:#00c6fb;
+    font-family: bebas;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+.popupDiv h2{
+    background-color: #00c6fb;
+    color: white;
+    width: 100%;   
+    margin-top: 0px;
+    text-align: center;
+    padding: 10px 0px;
+}
+.popupDiv h3{
+    font-size: 20px;
+}
+
+.popupDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.helado{
+    display: block;
+    width: 50px;
+    margin: 0 auto;
+}
+
+.popupDiv button{
+    background-color: #00c6fb;
+    font-family: bebas;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+
+}
+/*.....*/
 #posibles_respuestas{
     width: 80%;
 }
@@ -385,5 +505,13 @@ input[type="radio"].input_esCorrecta{
 
     .pie__parrafo{
         font-size: 18px;
+    }
+
+    .popup__trampitaDiv{  
+        max-width: 900px;
+    }
+    .popUpContainer{
+        display: flex;
+        flex-direction: row;
     }
 }

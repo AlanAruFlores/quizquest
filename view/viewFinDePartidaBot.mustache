@@ -1,0 +1,35 @@
+<main class="contenido">
+    <div class="wave wave_arriba"></div>
+        {{#esperarBot}}
+            <div class="popup popup__espera">
+                <h2 class="popup__titulo">Resultado</h2>
+                <p class="popup__parrafo" id="resultadoParrafo">"El bot todavía está jugando. Está procesando la próxima jugada o respuesta. Te agradecemos tu paciencia mientras continúa con la interacción. ¡Gracias por tu comprensión!"</p>
+                <div class="contador_puntaje__bot" id="#puntaje__bot">
+                    <img src="/quizquest/public/imagenes/bot.svg" alt="bot" class="bot">
+                    <span id="bot__puntaje">0</span>
+                </div>
+                {{#partidaActual}}
+                    <p class="popup__parrafo" id="puntajeJugador" data-puntaje="{{puntaje}}">Tu puntaje fue de {{puntaje}}</p>
+                {{/partidaActual}}
+                {{! <a href="/quizquest/juego/goToLobby" class="popup__boton">Continuar</a> }}
+            </div>
+        {{/esperarBot}}
+
+        {{^esperarBot}}
+            <div class="popup popup__espera">
+                <h2 class="popup__titulo">Resultado</h2>
+                <p class="popup__parrafo" id="resultadoParrafo"></p>
+                <div class="contador_puntaje__bot" id="#puntaje__bot">
+                    <img src="/quizquest/public/imagenes/bot.svg" alt="bot" class="bot">
+                    <span id="bot__puntaje">0</span>
+                </div>
+                {{#partidaActual}}
+                    <p class="popup__parrafo" id="puntajeJugador" data-puntaje="{{puntaje}}">Tu puntaje fue de {{puntaje}}</p>
+                {{/partidaActual}}
+                {{! <a href="/quizquest/juego/goToLobby" class="popup__boton">Continuar</a> }}
+            </div>
+        {{/esperarBot}}
+    </div>
+    <div class="wave wave_abajo"></div>
+</main>
+<script src="/quizquest/public/js/ajax/finJuegoBot.js"></script>

@@ -24,5 +24,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
             abrirVentana("#crear__pregunta__ventana");
         if(e.target.matches("#cerrar__pregunta__ventana") || e.target.matches("#cerrar__pregunta__ventana *"))
             cerrarVentana("#crear__pregunta__ventana");
+
+        //Popup trampitas
+        if(e.target.matches(".buy__button") || e.target.matches(".buy__button *"))
+            abrirVentana("#popup__trampitas");
+        if(e.target.matches("#cerrar_popup_trampitas") || e.target.matches("#cerrar_popup_trampitas *"))
+            cerrarVentana("#popup__trampitas");
+
     });
 })
