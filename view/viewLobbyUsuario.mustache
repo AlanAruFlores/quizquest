@@ -68,8 +68,9 @@
                     <img src="/quizquest/public/imagenes/helado.svg" alt="helado" class="helado">
                     <p class="popup__parrafo">30</p>
                     <p class="popup__parrafo">1 USD</p>
+               </div>
+                <div class="comprarClass1">
                 </div>
-                <button class="comprarBoton">Comprar</button>
             </div>
             <div class="popupDiv">
                 <h2 class="popup__subtitulo">Oferta Especial</h2>
@@ -79,7 +80,8 @@
                     <p class="popup__parrafo">60</p>
                     <p class="popup__parrafo">4 USD</p>
                 </div>
-                <button class="comprarBoton">Comprar</button>
+                <div class="comprarClass2">
+                </div>
             </div>
             <div class="popupDiv">
                 <h2 class="popup__subtitulo">Oferta Especial</h2>
@@ -89,7 +91,8 @@
                     <p class="popup__parrafo">90</p>
                     <p class="popup__parrafo">10 USD</p>
                 </div>
-                <button class="comprarBoton">Comprar</button>
+                <div class="comprarClass3">
+                </div>
             </div>  
         </div>
 
@@ -134,3 +137,89 @@
 <script src="/quizquest/public/js/main.js" type="module"></script>
 <script src="/quizquest/public/js/cantidad_preguntas.js"></script>
 <script src="/quizquest/public/js/animacion_yeti.js"></script>
+    <script>
+
+        /*Boton comprar 30 helados*/
+        paypal.Buttons({
+            style:{ 
+                color: 'blue',
+                shape: 'pill',
+                label: 'pay'
+            },
+            createOrder: function(data, actions){
+                return actions.order.create({
+                    purchase_units:[{
+                        amount: {
+                            value: 1
+                        }
+                    }]
+                });
+            },
+            onApprove:function(data,actions){
+                actions.order.capture().then(function(detalles){
+                    if(detalles.status == "COMPLETED")
+                        window.location.href="completado.html";
+                });
+            },
+            onCancel:function(data){
+                alert("Pago cancelado");
+                console.log(data);
+            }
+        }).render('.comprarClass1')
+
+          /*Boton comprar 60 helados*/
+        paypal.Buttons({
+            style:{ 
+                color: 'blue',
+                shape: 'pill',
+                label: 'pay'
+            },
+            createOrder: function(data, actions){
+                return actions.order.create({
+                    purchase_units:[{
+                        amount: {
+                            value: 4
+                        }
+                    }]
+                });
+            },
+            onApprove:function(data,actions){
+                actions.order.capture().then(function(detalles){
+                    if(detalles.status == "COMPLETED")
+                        window.location.href="completado.html";
+                });
+            },
+            onCancel:function(data){
+                alert("Pago cancelado");
+                console.log(data);
+            }
+        }).render('.comprarClass2');
+
+          /*Boton comprar 90 helados*/
+        paypal.Buttons({
+            style:{ 
+                color: 'blue',
+                shape: 'pill',
+                label: 'pay'
+            },
+            createOrder: function(data, actions){
+                return actions.order.create({
+                    purchase_units:[{
+                        amount: {
+                            value: 10
+                        }
+                    }]
+                });
+            },
+            onApprove:function(data,actions){
+                actions.order.capture().then(function(detalles){
+                    if(detalles.status == "COMPLETED")
+                        window.location.href="completado.html";
+                });
+            },
+            onCancel:function(data){
+                alert("Pago cancelado");
+                console.log(data);
+            }
+        }).render('.comprarClass3')
+    </script>
