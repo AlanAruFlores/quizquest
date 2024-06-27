@@ -15,6 +15,10 @@
         <link rel="stylesheet" href="/quizquest/public/css/lobby_editor.css">
     {{/isOnLobbyEditorView}}
 
+    {{#isOnLobbyAdministradorView}}
+        <link rel="stylesheet" href="/quizquest/public/css/lobby_admin.css">
+    {{/isOnLobbyAdministradorView}}
+
     {{#isOnQuestionManagementView}}
         <link rel="stylesheet" href="/quizquest/public/css/question_management.css">
     {{/isOnQuestionManagementView}}
@@ -69,6 +73,12 @@
                 <h1 class="encabezado__titulo">QuizQuest Editor</h1>
             </a>
         {{/isOnLobbyEditorView}}
+
+        {{#isOnLobbyAdministradorView}}
+            <a href="/quizquest/lobbyadministrador/get" style="text-decoration:none" id="inicio">
+                <h1 class="encabezado__titulo">QuizQuest Administrador</h1>
+            </a>
+        {{/isOnLobbyAdministradorView}}
 
         {{#isOnQuestionManagementView}}
             <a href="/quizquest/lobbyeditor/get" style="text-decoration:none" id="inicio">

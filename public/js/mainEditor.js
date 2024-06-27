@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(opcion).classList.add("activo");
             e.target.classList.add("activo");
         }
+
         //Ver sugerencias popup
         if (e.target.matches("#abrir__sugerencias__ventana") || e.target.matches("#abrir__sugerencias__ventana *"))
             abrirVentana("#ver__sugerencias__ventana");

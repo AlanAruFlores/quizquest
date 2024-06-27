@@ -1,4 +1,7 @@
 <?php
+
+use controller\LobbyAdministradorController;
+
 include_once("helper/Database.php");
 include_once("helper/MustachePresenter.php");
 include_once("helper/Router.php");
@@ -7,6 +10,7 @@ include_once("controller/JuegoController.php");
 include_once("controller/RankingController.php");
 include_once("controller/PartidaController.php");
 include_once("controller/LobbyEditorController.php");
+include_once("controller/LobbyAdministradorController.php");
 include_once("controller/LoginController.php");
 include_once("controller/PerfilController.php");
 include_once("controller/RegistroController.php");
@@ -73,6 +77,10 @@ class Configuration
     public static function getLobbyEditorController()
     {
         return new LobbyEditorController(self::getPresenter(), self::getSugiereModel(),self::getPreguntaSugeridaModel(), self::getRespuestaSugeridaModel(),self::getPreguntaModel(), self::getRespuestaModel(), self::getReportaModel(), self::getMainSettings());
+    }
+
+    public static function getLobbyAdministradorController() {
+        return new LobbyAdministradorController(self::getPresenter(), self::getSugiereModel(), self::getUsuarioModel(), self::getPreguntaSugeridaModel(), self::getPreguntaModel(), self::getPartidaModel(), self::getMainSettings());
     }
 
     public static function getRankingController()
@@ -165,6 +173,7 @@ class Configuration
         $main_settings = array(
             "isOnLobbyUsuarioView" => (isset($_GET["controller"]) && $_GET["controller"] == "lobbyusuario" || empty($_GET["controller"])) ? true : false,
             "isOnLobbyEditorView" => (isset($_GET["controller"]) && $_GET["controller"] == "lobbyeditor") ? true : false,
+            "isOnLobbyAdministradorView" => (isset($_GET["controller"]) && $_GET["controller"] == "lobbyadministrador") ? true : false,
             "isOnJuegoView" => (isset($_GET["controller"]) && $_GET["controller"] == "juego") ? true : false,
             "isOnJuegoToTheEnd" => (isset($_GET["controller"]) && $_GET["controller"] == "juego" && $_GET["action"] == "goToTheEnd") ? true : false,
             "isOnRankingView" => (isset($_GET["controller"]) && $_GET["controller"] == "ranking") ? true : false,

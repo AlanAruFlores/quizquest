@@ -10,6 +10,10 @@
             return $this->database->query("SELECT * FROM usuario WHERE id = '$id'");     
         }
 
+        public function getAll(){
+            return $this->database->query("SELECT * FROM usuario");
+        }
+
         public function findUserByEmailandPassword($usuario){
             return $this->database->query("SELECT * FROM usuario WHERE CorreoElectronico='".$usuario->getCorreoElectronico()."' AND contrasena='".$usuario->getContrasena()."'");
         }

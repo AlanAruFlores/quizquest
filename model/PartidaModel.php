@@ -6,6 +6,10 @@
             $this->database = $database;
         }
 
+        public function getAll() {
+            return $this->database->query("SELECT * FROM partida");
+        }
+
         public function insertNewPartida($partida){
             return $this->database->execute("INSERT INTO partida (nombre,puntaje,usuario_id,codigo) VALUES('".$partida->getNombre()."','".$partida->getPuntaje()."', '".$partida->getUsuarioId()."', '".$partida->getCodigo()."')");
         }

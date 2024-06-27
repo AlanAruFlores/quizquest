@@ -1,0 +1,117 @@
+<main class="contenido">
+    <div class="wave wave_arriba"></div>
+    <h2 class="contenido__titulo">¡¡Hola Administrador!!</h2>
+    <h3 class="contenido__titulo contenido__subtitulo">Tú tienes la llave maestra.</h3>
+
+    <p class="contenido__texto">"¡Bienvenido a QuizQuest Administrador, donde tú tienes el poder!
+        Explora los datos de la aplicación con las herramientas preparadas para tí."
+    </p>
+
+    <div class="section ver__sugerencias" id="ver__sugerencias__ventana">
+        <section class="section__contenido">
+            <h2 class="popup__titulo">ESTADISTICAS</h2>
+            <div class="stats">
+                <div class="opciones">
+
+                    <div class="select__user">
+                        <p>Filtrar usuario por: </p>
+                        <select id="filtro">
+                            <option value="todos">Todos</option>
+                            <option value="sexo">Sexo</option>
+                            <option value="pais">País</option>
+                            <option value="edad">Edad</option>
+                            <option value="longevidad">Longevidad</option>
+                            <option value="porcentaje">Porcentaje de respuestas</option>
+                        </select>
+                    </div>
+
+                    <div class="select__user hidden" id="selectPais">
+                        <p>Indicar país: </p>
+                        <input type="text" placeholder="Ej: Argentina">
+                    </div>
+
+                    <div class="select__user hidden" id="selectEdad">
+                        <p>Indicar grupo de edad: </p>
+                        <select>
+                            <option value="todos">Todos</option>
+                            <option value="menores">Menores</option>
+                            <option value="adultos">Adultos</option>
+                            <option value="jubilados">Jubilados</option>
+                        </select>
+                    </div>
+
+                    <div class="select__user hidden" id="selectSexo">
+                        <p>Indicar sexo: </p>
+                        <select>
+                            <option value="todos">Todos</option>
+                            <option value="menores">Masculino</option>
+                            <option value="adultos">Femenino</option>
+                        </select>
+                    </div>
+
+                    <div class="select__user">
+                        <p>Filtrar preguntas por: </p>
+                        <select>
+                            <option value="opcion1">Todas</option>
+                            <option value="opcion2">Creadas por usuarios</option>
+                        </select>
+                    </div>
+
+                    <div class="select__user">
+                        <p>Filtrar resultados por: </p>
+                        <select>
+                            <option value="opcion1">Hoy</option>
+                            <option value="opcion2">Esta semana</option>
+                            <option value="opcion3">Este mes</option>
+                            <option value="opcion4">Este año</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="resultado">
+                    <div class="numeros">
+                        <div class="detalle__contenido lista">
+                            <div class="scrollable-content listaInterna">
+                                <ul class="usuarios__lista">
+                                    <li>
+                                        <button class="elemento">Gat0k0sMik0</button>
+                                        <div class="dropdown-menu">
+                                            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+                                            <p>Nombre: Gat0k0sMik0</p>
+                                            <p>Porcentaje de victorias: 75%</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <button class="elemento">Gat0k0sMik0</button>
+                                        <div class="dropdown-menu">
+                                            <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+                                            <p>Nombre: Gat0k0sMik0</p>
+                                            <p>Porcentaje de victorias: 75%</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="opcion" class="detalle__contenido datos">
+                            <p>NÚMERO DE USUARIOS: 52542</p>
+                            <p>NÚMERO DE PARTIDAS JUGADAS: 345</p>
+                            <p>NÚMERO DE PREGUNTAS: 423</p>
+                        </div>
+                        <div class="graficos">
+                            <div id="opcion" class="detalle__contenido graficos">
+                                <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+                                <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+                                <img src="https://via.placeholder.com/50" alt="Foto de Perfil">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <div class="wave wave_abajo"></div>
+</main>
+
+<script src="/quizquest/public/js/botones.js" type="module"></script>

@@ -1,0 +1,344 @@
+@font-face {
+    font-family: bebas;
+    src: url(/quizquest/public/fuentes/BebasNeue-Regular.ttf);
+}
+@font-face {
+    font-family: opensans;
+    src: url(/quizquest/public/fuentes/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: opensans;
+    color: #fff;
+    scrollbar-color: #2e2e2e #616161;
+}
+
+body{
+    display: grid;
+    background-image: linear-gradient(to bottom, #d8d8d8, #8c8c8c);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "encabezado" "contenido" "pie";
+}
+
+/*ENCABEZADO*/
+.encabezado{
+    background-image: linear-gradient(to top, #2e2e2e, #616161);
+    padding: 10px 20px;
+    grid-area: encabezado;
+}
+.encabezado__titulo{
+    font-family: bebas;
+    background-image: linear-gradient(to top, #696969, #bfbfbf); /* Cambia los colores según lo desees */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+/*CONTENIDO*/
+.contenido{
+    grid-area: contenido;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px 0px;
+    gap: 20px;
+}
+.contenido__titulo{
+    color: #2e2e2e;
+    font-family: bebas;
+    letter-spacing: 2px;
+    font-size: 38px;
+}
+.contenido__subtitulo{
+    font-size: 18px;
+    text-align: center;
+}
+.contenido__texto{
+    color: #2e2e2e;
+    font-family: opensans;
+    font-weight: 700;
+    width: 90%;
+    text-align: center;
+    max-width: 600px;
+}
+
+.cuadros {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+    "cuadro1 cuadro2"
+    "cuadro3 cuadro3";
+}
+
+.cuadro1 {
+    grid-area: cuadro1;
+}
+
+.cuadro2 {
+    grid-area: cuadro2;
+}
+
+.cuadro3 {
+    grid-area: cuadro3;
+}
+
+.wave{
+    background-image: url(/quizquest/public/imagenes/wave3.svg);
+    height: 80px;
+    width: 100%;
+    position: absolute;
+    background-repeat:repeat-x;
+}
+.wave_abajo{
+    bottom:0;
+    left: 0;
+}
+.wave_arriba{
+    top: 0;
+    left: 0;
+    transform: rotate(180deg)}
+
+/*PIE DE PAGINA*/
+.pie__pagina{
+    grid-area: pie;
+    background-image: linear-gradient(to bottom, #2e2e2e, #616161);
+    padding: 20px 20px;
+}
+.pie__titulo{
+    color: #A9A9A9;
+    font-family: bebas;
+    letter-spacing: 1px;
+    font-size: 35px;
+}
+
+.pie__subtitulo{
+    margin-top: 15px;
+    font-size: 20px;
+}
+.pie__integrantes{
+    margin-top: 8px;
+    list-style: none;
+    margin-left: 4px;
+}
+.pie__integrantes li{
+    color: #B0B0B0;
+    font-family: opensans;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.pie__parrafo{
+    color: #B0B0B0;
+    font-family: opensans;
+    font-weight: 400;
+    font-size: 15px;
+    margin-left: 4px;
+
+}
+
+/*Popups*/
+.section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 15px;
+
+}
+
+.popup__titulo {
+    color: #B0B0B0;
+    font-family: bebas;
+    letter-spacing: 2px;
+    font-size: 38px;
+}
+
+.section__contenido {
+    min-height: 70vh;
+    background-image: linear-gradient(to bottom, #2e2e2e, #616161);
+    padding: 20px 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    min-width: max-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+    "opciones resultado";
+}
+
+.opciones {
+    grid-area: opciones;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.resultado {
+    grid-area: resultado;
+    padding: 20px;
+}
+
+.numeros {
+    min-height: 50vh;
+    background: #acacac;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: white;
+    padding:30px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+    "lista"
+    "datos"
+    "graficos";
+    gap: 20px;
+}
+
+.detalle__contenido {
+    padding: 10px;
+    background: #3e3e3e;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.lista {
+    grid-area: lista;
+    min-height: 10vh;
+    padding: 3px;
+}
+
+.listaInterna {
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    background: #3e3e3e;
+    min-height: 80px;
+    max-height: 80px;
+}
+
+.elemento {
+    background: #616161;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.elemento:hover {
+    background-color: #ddd;
+}
+
+.dropdown-menu {
+    display: none;
+    padding: 10px;
+    background-color: #656565;
+    border: none;
+    margin: 3px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.datos {
+    grid-area: datos;
+}
+
+.graficos {
+    grid-area: graficos;
+}
+
+.select__user {
+    color: #acacac;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.select__user p {
+    color: #acacac;
+}
+
+.select__user select, input {
+    color: black;
+    border-radius: 25px;
+    padding: 3px 10px;
+    cursor: pointer;
+    border: none;
+    background: #acacac;
+    width: 100%;
+}
+
+option {
+    color: #333;
+    background: #acacac;
+    border-radius: 25px;
+}
+
+.scrollable-content {
+    overflow-y: auto;
+    max-height: 80px;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: #2e2e2e transparent;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+@media (min-width:950px) {
+    .encabezado__titulo{
+        font-size: 45px;
+    }
+
+    /*CONTENIDO*/
+
+
+    /*PIE DE PAGINA*/
+    .pie__pagina{
+        padding: 20px 70px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: 1fr;
+    }
+    .pie__titulo{
+        font-size: 45px;
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+
+    .pie__subtitulo{
+        font-size: 25px;
+    }
+    .pie__integrantes{
+        grid-area: 1/2;
+        grid-row: 1/2;
+    }
+    .pie__integrantes li{
+        margin-top: 2px;
+        font-size: 18px;
+    }
+
+    .pie__parrafo{
+        font-size: 18px;
+    }
+}

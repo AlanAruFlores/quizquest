@@ -9,7 +9,7 @@ class LobbyEditorController {
     private $respuestaModel;
     private $reportaModel;
 
-    public function __construct($presenter,$sugiereModel, $preguntaSugeridaModel, $respuestaSugeridaModel,$preguntaModel,$respuestaModel,$reportaModel,$mainSettings){
+    public function __construct($presenter, $sugiereModel, $preguntaSugeridaModel, $respuestaSugeridaModel, $preguntaModel, $respuestaModel, $reportaModel, $mainSettings){
         $this->presenter = $presenter;
         $this->sugiereModel = $sugiereModel;
         $this->preguntaSugeridaModel = $preguntaSugeridaModel;
