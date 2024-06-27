@@ -43,5 +43,11 @@
         public function deleteRespuestasByPreguntaId($id){
             $this->database->execute("delete from respuesta where pregunta_id = '$id'");
         }
+
+        public function getRespuestaCorrectaByPreguntaId($idPregunta){
+            return $this->database->query("select * from respuesta r 
+            join pregunta p on r.pregunta_id = p.id 
+            where r.esCorreto = '1' and p.id = '$idPregunta'"); 
+        }
     }
 ?>
