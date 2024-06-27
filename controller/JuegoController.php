@@ -69,6 +69,8 @@ class JuegoController
             "respuestasActuales" => $_SESSION["respuestasActuales"],
             "nivelPregunta" => $_SESSION["levelOfQuestion"],
             "colorDificultad" => $colorDificultad,
+            "trampitas" => $_SESSION["usuarioLogged"]["trampitas"],
+            "tieneTrampa" => $_SESSION["usuarioLogged"]["trampitas"] > 0, 
             ...$this->mainSettings
         ]);
     }
@@ -210,8 +212,18 @@ class JuegoController
                 "respuestasActuales" => $_SESSION["respuestasActuales"],
                 "nivelPregunta" => $_SESSION["levelOfQuestion"],
                 "colorDificultad" => $colorDificultad,
+                "trampitas" => $_SESSION["usuarioLogged"]["trampitas"],
+                "tieneTrampa" => $_SESSION["usuarioLogged"]["trampitas"] > 0,
                 ...$this->mainSettings
             ]);
+    }
+
+
+    public function useTrap(){
+        $respuestaCorrecta = $this->respuestaModel->getRespuestaCorrectaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
+        $this->usuarioModel->updateWhenUseTrampita($_SESSION["usuarioLogged"]);
+        $_SESSION["usuarioLogged"] = $this->usuarioModel->findById($_SESSION["usuarioLogged"]["id"]);
+        header("Location:/quizquest/juego/selectAnswer?idRespSeleccionada=".$respuestaCorrecta["id"]);
     }
 }
 

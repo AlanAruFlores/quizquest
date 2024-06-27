@@ -14,6 +14,12 @@
     {{#partidaActual}}
         <div class="contador_puntaje">{{puntaje}}</div>
     {{/partidaActual}}
+
+    <div class="div__cantidad__trampitas">
+        <img  class="helado__icon" src="/quizquest/public/imagenes/helado.svg" alt ="bolso">
+        <span id="cantidad_helados">{{trampitas}}</span>
+    </div>
+
     <div class="contenedor" style="background-color:{{color}}; box-shadow: 0px 0px 10px #ff;">
         <div class="contenedor__titulo">{{categoria}}</div>
         <div class="contenedor__pregunta">
@@ -26,7 +32,13 @@
         {{#respuestasActuales}}
             <a href="/quizquest/juego/selectAnswer?idRespSeleccionada={{res_id}}" class="contenedor__respuesta">{{letra}}){{descripcion_respuesta}}</a>
         {{/respuestasActuales}}
-    </div>
+        {{#tieneTrampa}}
+                <a href="/quizquest/juego/useTrap" class="contenedor__respuesta respuesta__trampa">Usar un helado</a>
+        {{/tieneTrampa}}
+        {{^tieneTrampa}}
+                <a class="contenedor__respuesta respuesta__trampa respuesta__trampa__desactivado">Usar un helado</a>
+        {{/tieneTrampa}}
+        </div>
     <div class="wave wave_abajo"></div>
 </main>
 

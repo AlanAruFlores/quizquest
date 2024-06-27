@@ -124,7 +124,18 @@ body{
     background-color: #e0e0e0;
     cursor: pointer;
 }
+.respuesta__trampa{
+    background-color: #00c6fb;
+    color: #fff;
+}
 
+.respuesta__trampa__desactivado{
+    background-color: #ff4e37;
+}
+
+.respuesta__trampa__desactivado:hover{
+    background-color: #ff4e37;
+}
 .bot{
     width: 20px;
     height: 20px;
@@ -146,13 +157,39 @@ body{
     font-size: 22px;
     border-radius: 50%;
     padding: 10px 10px;
-    position: fixed;
+    position: absolute;
     width: 70px;
     text-align: center;
     top: 0;
-    right: 11%;
+    left: 0;
     box-shadow: 0px 0px 8px #303030;
-    margin: 20px;
+    margin: 10px;
+}
+
+/*Icon TRAMPITAS*/
+.helado__icon{
+    width: 30px;
+}
+.div__cantidad__trampitas{
+    background-color: white;
+    box-shadow: 0px 0px 8px #303030;
+    position: absolute;
+    top:0;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    width: 70px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+.div__cantidad__trampitas span{
+    line-height: 40px;
+    color: #005bea;
 }
 
 /*Agregar esta clase si perdio el bot*/
@@ -199,14 +236,14 @@ body{
     font-size: 22px;
     border-radius: 50%;
     padding: 10px 10px;
-    position: fixed;
+    position: absolute;
     width: 70px;
     height: 55px;
     text-align: center;
     top: 0;
-    right: 5%;
+    right: 0;
     box-shadow: 0px 0px 8px #303030;
-    margin: 20px;
+    margin: 0px 10px;
 }
 .contenedor_dificultad{
     padding: 4px 10px;
@@ -422,6 +459,12 @@ body{
 }
 
 @media (min-width:950px) {
+    .div__cantidad__trampitas{
+        right: 10px;
+        top: 70px;
+        left: auto;
+        margin: 0;
+    }
     .encabezado__titulo{
         font-size: 45px;
     }
