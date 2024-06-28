@@ -1,0 +1,267 @@
+<div class="side-menu">
+        <div class="brand-name">
+            <h1>QuizQuest</h1>
+        </div>
+        <ul>
+            <li><a href="#general"><i class="fa-solid fa-circle-info"></i>&nbsp<span>General</span></a></li>
+            <li><a href="#estadisticas"><i class="fa-solid fa-chart-simple"></i>&nbsp<span>Estadisticas</span></a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="nav">
+                <h2 style="text-align:center;width:100%">Panel de Administrador</h2>
+                {{! <div class="search">
+                    <input type="text" placeholder="Search..">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div> }}
+                {{! <div class="user">
+                    <a href="#" class="btn">Add New</a>
+                    <img src="notifications.png" alt="">
+                    <div class="img-case">
+                        <img src="user.png" alt="">
+                    </div>
+                </div> }}
+            </div>
+        </div>
+        <div class="content" id="general">
+             <h1>Informacion General</h1>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="box">
+                        <h1>2194</h1>
+                        <h3>Total de Jugadores</h3>
+                    </div>
+                    <div class="icon-case">
+                        <i class="fa-solid fa-user"></i>
+                   </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>53</h1>
+                        <h3>Jugadores Nuevos</h3>
+                    </div>
+                    <div class="icon-case">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>5</h1>
+                        <h3>Cantidad partidas</h3>
+                    </div>
+                    <div class="icon-case">
+                        <i class="fa-solid fa-cards-blank"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>350000</h1>
+                        <h3>Cantidad Preguntas</h3>
+                    </div>
+                    <div class="icon-case">
+                        <i class="fa-solid fa-block-question"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>2194</h1>
+                        <h3>Preguntas Creadas</h3>
+                    </div>
+                    <div class="icon-case">
+                        <i class="fa-solid fa-block-question"></i>     
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>$2194</h1>
+                        <h3>Ingreso</h3>
+                    </div>
+                    <div class="icon-case">
+                        <i class="fa-sharp fa-solid fa-money-bill"></i>
+                    </div>
+                </div>
+            </div>
+            <h1 id="estadisticas">Estadisticas</h1>
+            <div class="estadisticas">
+                <form action="" method="">
+                    <h2>Filtrar por:</h2>
+                    <input type="number" placeholder="Dia"> 
+                    <input type="number" placeholder="Semana"> 
+                    <input type="number" placeholder="Mes"> 
+                    <input type="number" placeholder="Año">
+                    <button type="submit">Filtrar</button>
+                </form>
+            </div>
+
+
+            <div class="graficos">
+                <div class="grafico" id="graficoPorcentajePreguntasPorUsuario"></div>
+                <div class="grafico" id="graficoCantidadUsuarioPorPais"></div>
+                <div class="grafico" id="graficoCantidadUsuarioPorSexo"></div>
+                <div class="grafico" id="graficoCantidadUsuarioPorEdad"></div>
+            </div>
+        </div>
+        
+    </div>
+
+
+{{! SCRIPTS }}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(drawBarraPorcentajeCadaUsuario);
+  google.charts.setOnLoadCallback(drawBarraCantidadUsuarioPorPais);
+  google.charts.setOnLoadCallback(drawTortaCantidadUsuarioPorEdad);
+  google.charts.setOnLoadCallback(drawTortaCantidadUsuarioPorSexo);
+
+
+  /*Grafico de torta*/
+  function drawTortaCantidadUsuarioPorSexo(){
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Genero');
+        data.addColumn('number', 'Cantidad');
+        data.addRows([
+          ['Masculino', 3],
+          ['Femenino', 1],
+        ]);
+         var piechart_options = {
+                       title:'Cantidad usuarios por genero',
+                       width:400,
+                       height:300,
+                       legend: 'none',
+                       colors: ['#581845'],
+                       backgroundColor:"#f45d22",
+                        titleTextStyle: {
+                            color: '#ffffff',  // Color del texto del título
+                            fontSize: 18,      // Tamaño de fuente del título
+                            bold: true         // Negrita del título (opcional)
+                        },
+                        hAxis: {
+                            textStyle: {
+                            color: '#ffffff'  // Color del texto del eje horizontal
+                            }
+                        },
+                        vAxis: {
+                            textStyle: {
+                            color: '#ffffff'  // Color del texto del eje vertical
+                            }
+                        }};
+        var piechart = new google.visualization.PieChart(document.getElementById('graficoCantidadUsuarioPorSexo'));
+        piechart.draw(data, piechart_options);
+  }
+
+    function drawTortaCantidadUsuarioPorEdad(){
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Edad');
+        data.addColumn('number', 'Cantidad');
+        data.addRows([
+          ['Jubilados', 3],
+          ['Media', 1],
+          ['Menores', 1]]);
+         var piechart_options = {
+                       title:'Cantidad usuarios por edad',
+                       width:400,
+                       height:300,
+                       legend: 'none',
+                       colors: ['#581845'],
+                       backgroundColor:"#f45d22",
+                        titleTextStyle: {
+                            color: '#ffffff',  // Color del texto del título
+                            fontSize: 18,      // Tamaño de fuente del título
+                            bold: true         // Negrita del título (opcional)
+                        },
+                        hAxis: {
+                            textStyle: {
+                            color: '#ffffff'  // Color del texto del eje horizontal
+                            }
+                        },
+                        vAxis: {
+                            textStyle: {
+                            color: '#ffffff'  // Color del texto del eje vertical
+                            }
+                        }};
+        var piechart = new google.visualization.PieChart(document.getElementById('graficoCantidadUsuarioPorEdad'));
+        piechart.draw(data, piechart_options);
+  }
+
+
+
+  /*Grafico de barra*/
+   function drawBarraPorcentajeCadaUsuario() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
+
+        var barchart_options = {title:'Ratio de cada jugador',
+                       width:400,
+                       height:300,
+                       legend: 'none',
+                       colors: ['#581845'],
+                       backgroundColor:"#f45d22",
+                        titleTextStyle: {
+                            color: '#ffffff',  // Color del texto del título
+                            fontSize: 18,      // Tamaño de fuente del título
+                            bold: true         // Negrita del título (opcional)
+                        },
+                        hAxis: {
+                            textStyle: {
+                            color: '#ffffff'  // Color del texto del eje horizontal
+                            }
+                        },
+                        vAxis: {
+                            textStyle: {
+                            color: '#ffffff'  // Color del texto del eje vertical
+                            }
+                        }};
+        var barchart = new google.visualization.BarChart(document.getElementById('graficoPorcentajePreguntasPorUsuario'));
+        barchart.draw(data, barchart_options);
+      }
+
+  function drawBarraCantidadUsuarioPorPais() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Pais');
+        data.addColumn('number', 'Usuarios');
+        data.addRows([
+          ['Argentina', 3],
+          ['Peru', 1],
+          ['Bolivia', 1],
+          ['Chile', 1],
+          ['Jamaica', 2]
+        ]);
+
+        var barchart_options = {title:'Cantidad usuarios por pais',
+                       width:400,
+                       height:300,
+                       legend: 'none',
+                       colors: ['#581845'],
+                       backgroundColor:"#f45d22",
+                        titleTextStyle: {
+                            color: '#ffffff',  // Color del texto del título
+                            fontSize: 18,      // Tamaño de fuente del título
+                            bold: true         // Negrita del título (opcional)
+                        },
+                        hAxis: {
+                            textStyle: {
+                            color: '#ffffff'  // Color del texto del eje horizontal
+                            }
+                        },
+                        vAxis: {
+                            textStyle: {
+                            color: '#ffffff'  // Color del texto del eje vertical
+                            }
+                        }};
+        var barchart = new google.visualization.BarChart(document.getElementById('graficoCantidadUsuarioPorPais'));
+        barchart.draw(data, barchart_options);
+      }
+</script>

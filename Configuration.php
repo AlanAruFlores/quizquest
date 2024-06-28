@@ -17,6 +17,7 @@ include_once("controller/RegistroController.php");
 include_once("controller/ContarController.php");
 include_once("controller/QuestionManagementController.php");
 include_once("controller/BotController.php");
+include_once("controller/AdminPanelController.php");
 
 include_once("model/RegistroModel.php");
 include_once("model/UsuarioModel.php");
@@ -117,6 +118,9 @@ class Configuration
         return new BotController(self::getPresenter(), self::getUsuarioModel(), self::getPreguntaModel(),self::getRespuestaModel(), self::getUsuarioPreguntaModel());
     }
 
+    public static function getAdminPanelController(){
+        return new AdminPanelController(self::getPresenter(), self::getMainSettings());
+    }
     /*MODELOS*/
     public static function getRegistroModel(){
         return new RegistroModel(self::getDatabase());
@@ -185,7 +189,8 @@ class Configuration
             "isOnShowPerfilView" => (isset($_GET["controller"]) && $_GET["controller"] == "perfil" && $_GET["action"] == "showPerfil") ? true : false,
             "isOnValidateView" => (isset($_GET["controller"]) && ($_GET["controller"] == "registro" && $_GET["action"]=="validate")) ? true : false,
             "isOnQuestionManagementView" => (isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement") ? true : false,
-            "isOnEditView"=>(isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement" && $_GET["action"] == "goToEdit") ? true:false
+            "isOnEditView"=>(isset($_GET["controller"]) && $_GET["controller"] == "questionmanagement" && $_GET["action"] == "goToEdit") ? true:false,
+            "isOnAdminPanel"=>(isset($_GET["controller"]) && $_GET["controller"] == "adminpanel") ? true : false
         );
         return $main_settings;
     }
