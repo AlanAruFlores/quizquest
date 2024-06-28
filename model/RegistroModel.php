@@ -59,8 +59,8 @@ class RegistroModel{
     public function registerNewUser($usuario){
         // var_dump($usuario);
         // die();
-        $sql = "INSERT INTO Usuario (nombreCompleto, rol, imagen, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena, nombrerUsuario, pais, ciudad,cantidad_dadas, cantidad_acertadas,ratio,nivel)
-        VALUES ('".$usuario->getNombreCompleto()."', '".$usuario->getRol()."', '".$usuario->getImagen()."','".$usuario->getEsHabilitado()."', '".$usuario->getFechaNacimiento()."', '".$usuario->getSexo()."', '".$usuario->getCorreoElectronico()."', '".$usuario->getContrasena()."', '".$usuario->getNombreUsuario()."', '".$usuario->getPais()."', '".$usuario->getCiudad()."', '".$usuario->getCantidadDadas()."', '".$usuario->getCantidadAcertadas()."', '".$usuario->getRatio()."', '".$usuario->getNivel()."')";
+        $sql = "INSERT INTO Usuario (nombreCompleto, rol, imagen, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena, nombrerUsuario, pais, ciudad,cantidad_dadas, cantidad_acertadas,ratio,nivel,fechaCreacion)
+        VALUES ('".$usuario->getNombreCompleto()."', '".$usuario->getRol()."', '".$usuario->getImagen()."','".$usuario->getEsHabilitado()."', '".$usuario->getFechaNacimiento()."', '".$usuario->getSexo()."', '".$usuario->getCorreoElectronico()."', '".$usuario->getContrasena()."', '".$usuario->getNombreUsuario()."', '".$usuario->getPais()."', '".$usuario->getCiudad()."', '".$usuario->getCantidadDadas()."', '".$usuario->getCantidadAcertadas()."', '".$usuario->getRatio()."', '".$usuario->getNivel()."',curdate())";
         $this->database->execute($sql);
     }
 }

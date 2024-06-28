@@ -13,14 +13,14 @@
         }
         
         public function createNewPregunta($pregunta){
-            $this->database->execute("INSERT INTO pregunta (id,descripcion,punto,esValido,cantidad_dadas,acertadas,porcentaje,categoria_id) VALUES ('".$pregunta->getId()."','".$pregunta->getDescripcion()."','10','".$pregunta->getEsValido()."','0','0','100','".$pregunta->getCategoriaId()."')");
+            $this->database->execute("INSERT INTO pregunta (id,descripcion,punto,esValido,cantidad_dadas,acertadas,porcentaje,categoria_id,fechaCreacion) VALUES ('".$pregunta->getId()."','".$pregunta->getDescripcion()."','10','".$pregunta->getEsValido()."','0','0','100','".$pregunta->getCategoriaId()."',curdate())");
             
         }
 
 
         //Creo una nueva pregunta
         public function insertNewPregunta($preguntaNueva){
-            $this->database->execute("INSERT INTO pregunta (id,descripcion,punto,esValido,cantidad_dadas,acertadas,porcentaje,categoria_id) VALUES ('null','".$preguntaNueva["descripcion"]."','10',true,'0','0','100','".$preguntaNueva["categoria_id"]."')");
+            $this->database->execute("INSERT INTO pregunta (id,descripcion,punto,esValido,cantidad_dadas,acertadas,porcentaje,categoria_id,fechaCreacion) VALUES ('null','".$preguntaNueva["descripcion"]."','10',true,'0','0','100','".$preguntaNueva["categoria_id"]."',curdate())");
         }
         public function updateDescripcionAndCategoriaPregunta($pregunta){
             $this->database->execute("UPDATE pregunta SET descripcion = '".$pregunta["descripcion"]."', categoria_id = '".$pregunta["categoria_id"]."' WHERE id = '".$pregunta["id"]."'");

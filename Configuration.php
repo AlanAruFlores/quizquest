@@ -33,6 +33,7 @@ include_once("model/SugiereModel.php");
 include_once("model/ReportaModel.php");
 include_once("model/CategoriaModel.php");
 include_once("model/VentaModel.php");
+include_once("model/AdminModel.php");
 
 include_once("vendor/mustache/src/Mustache/Autoloader.php");
 
@@ -119,7 +120,7 @@ class Configuration
     }
 
     public static function getAdminPanelController(){
-        return new AdminPanelController(self::getPresenter(), self::getMainSettings());
+        return new AdminPanelController(self::getPresenter(), self::getAdminModel(), self::getMainSettings());
     }
     /*MODELOS*/
     public static function getRegistroModel(){
@@ -171,6 +172,11 @@ class Configuration
     public static function getVentaModel(){
         return new VentaModel(self::getDatabase());
     }
+
+    public static function getAdminModel(){
+        return new AdminModel(self::getDatabase());
+    }
+
     /*Configuracion principal */
     public static function getMainSettings()
     {
