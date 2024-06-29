@@ -23,6 +23,7 @@
             $ganancia = $this->adminModel->getGanancia()["ganancia"];
             $ganancia = ($ganancia == null) ? 0 : $ganancia;
 
+            $usuariosRatio = $this->adminModel->getUsuariosAndHisRatio();
 
             $this->presenter->render("view/viewAdminPanel.mustache", [
                 "totalUsuarios"=>$totalUsuarios,
@@ -31,6 +32,7 @@
                 "cantidadPreguntas"=>$cantidadPreguntas,
                 "cantidadPreguntasCreadas"=>$cantidadPreguntasCreadas,
                 "ganancia"=>$ganancia,
+                "usuariosRatio"=>$usuariosRatio,
                 ...$this->mainSettings
             ]);
         }
