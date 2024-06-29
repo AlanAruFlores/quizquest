@@ -1,18 +1,150 @@
 <style>
+
     *{
-        font-family: bebas;
+        font-family:Helvetica;
     }
 
     .titulo__principal{
-        background-color:#00c6fb;
         color:#ffffff;
-        font-family: bebas;
-        text-align : center;
         letter-spacing:1px;
-        height: 80px;
         line-height:60px;
+        text-align : center;
+        background-color:#00c6fb;
+        height: 80px;
+    }
+
+    table{
+        width: 90%;
+        border-collapse: collapse;
+        margin: 100px auto;
+    }
+    table thead tr{
+        background-color: #00c6fb;
+        text-align: center;
+        color: #fff;
+        font-size: 20px
+    }
+    table td{
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+    .campo{
+        width: 30%;
+        font-size:15px;
+        font-weight:bold;
+        text-transform:uppercase;
     }
 </style>
-
 <h1 class="titulo__principal">QuizQuest</h1>
 
+
+<table>
+    <thead>
+        <tr>
+            <td colspan="2">Informacion General</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="campo">Cantidad de jugadores</td>
+            <td>{{totalUsuarios}}</td>
+        </tr>
+        <tr>
+            <td class="campo">Cantidad partidas jugadas</td>
+            <td>{{totalPartidas}}</td>
+        </tr>
+          <tr>
+             <td class="campo">Cantidad preguntas en el juego</td>
+            <td>{{cantidadPreguntas}}</td>
+        </tr>
+                <tr>
+            <td class="campo">Cantidad preguntas nuevas</td>
+            <td>{{cantidadPreguntasCreadas}}</td>
+        </tr>
+        <tr>
+            <td class="campo">Cantidad de usuarios nuevos</td>
+            <td>{{cantidadUsuariosCreados}}</td>
+        </tr>
+        <tr>
+            <td class="campo">Ganancias</td>
+            <td>${{ganancia}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <td colspan="2">Ratio de cada jugador</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#usuariosRatio}}
+            <tr>
+                <td class="campo">{{nombrerUsuario}}</td>
+                <td>{{ratio}}%</td>
+            </tr>    
+        {{/usuariosRatio}}             
+    </tbody>
+</table>
+
+
+
+
+<table>
+    <thead>
+        <tr>
+            <td colspan="2">Cantidad de usuarios por pais</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#usuariosPorPais}}
+        <tr>
+            <td class="campo">{{pais}}</td>
+            <td>{{cantidad_usuarios_pais}}</td>
+        </tr>         
+        {{/usuariosPorPais}}
+    </tbody>
+</table>
+
+
+<table>
+    <thead>
+        <tr>
+            <td colspan="2">Cantidad de usuarios por sexo</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#usuariosPorSexo}}
+            <tr>
+                <td class="campo">{{sexo}}</td>
+                <td>{{cantidad_usuarios_sexo}}</td>
+            </tr>
+        {{/usuariosPorSexo}}
+                     
+    </tbody>
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <td colspan="2">Cantidad de usuarios por grupo de edad</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="campo">Menores</td>
+            <td>{{cantidadMenores}}</td>
+        </tr>
+        <tr>
+            <td class="campo">Medios</td>
+            <td>{{cantidadMedios}}</td>
+        </tr>    
+        <tr>
+            <td class="campo">Jubilados</td>
+            <td>{{cantidadJubilados}}</td>
+        </tr>             
+    </tbody>
+</table>

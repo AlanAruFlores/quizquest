@@ -54,9 +54,41 @@ class AdminPanelController
 
     public function generatePDF()
     {
+        //Cantidades
+        $totalUsuarios = $this->adminModel->getCountUsuarios()["cantidad_usuarios"];
+        $cantidadUsuariosCreados = $this->adminModel->getCountUsuariosCreated()["cantidad_usuarios_nuevos"];
+        $totalPartidas = $this->adminModel->getCountPartidas()["cantidad_partidas"];
+        $cantidadPreguntas = $this->adminModel->getTotalPreguntas()["cantidad_preguntas"];
+        $cantidadPreguntasCreadas = $this->adminModel->getCountPreguntasCreated()["cantidad_preguntas_creadas"];
+        $ganancia = $this->adminModel->getGanancia()["ganancia"];
+        $ganancia = ($ganancia == null) ? 0 : $ganancia;
+
+        $usuariosRatio = $this->adminModel->getUsuariosAndHisRatio();
+        $usuariosPorPais = $this->adminModel->getUsuariosPorPais();
+        $usuariosPorSexo = $this->adminModel->getUsuariosPorSexo();
+        $cantidadMenores = $this->adminModel->getUsuariosMenores()["cantidad"];
+        $cantidadMedios = $this->adminModel->getUsuariosMedios()["cantidad"];
+        $cantidadJubilados = $this->adminModel->getUsuariosJubilados()["cantidad"];
+        
         $pdfCreator= new PdfCreator();
-        $html = $this->presenter->generateHtml("view/viewReportePDF.mustache", ["valor" => 10, ...$this->mainSettings]);
+
+        $html = $this->presenter->generateHtmlForPDF("view/viewReportePDF.mustache", [
+            "totalUsuarios" => $totalUsuarios,
+            "cantidadUsuariosCreados" => $cantidadUsuariosCreados,
+            "totalPartidas" => $totalPartidas,
+            "cantidadPreguntas" => $cantidadPreguntas,
+            "cantidadPreguntasCreadas" => $cantidadPreguntasCreadas,
+            "ganancia" => $ganancia,
+            "usuariosRatio" => $usuariosRatio,
+            "usuariosPorPais" => $usuariosPorPais,
+            "usuariosPorSexo" => $usuariosPorSexo,
+            "cantidadMenores" => $cantidadMenores,
+            "cantidadMedios" => $cantidadMedios,
+            "cantidadJubilados" => $cantidadJubilados,
+            ...$this->mainSettings
+        ]);
         $pdfCreator->create($html);
+ 
     }
 
 }
