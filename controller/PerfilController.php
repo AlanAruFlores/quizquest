@@ -1,4 +1,5 @@
 <?php 
+    include_once("./third-party/phpqrcode/qrlib.php");
 
     class PerfilController{
         private $presenter;
@@ -13,8 +14,7 @@
         }
 
         public function get(){  
-            $usuarioLogeado = $_SESSION["usuarioLogged"];
-            
+            $usuarioLogeado = $_SESSION["usuarioLogged"];        
             //Genero su qr
             $file = "qrusuario".$usuarioLogeado["id"];
             $path = "public/imagenes/qr/$file.png";
