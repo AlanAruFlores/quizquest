@@ -122,10 +122,13 @@
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Genero');
         data.addColumn('number', 'Cantidad');
-        data.addRows([
-          ['Masculino', 3],
-          ['Femenino', 1],
-        ]);
+
+        let datos =[];
+        {{#usuariosPorSexo}}
+            datos.push(['{{sexo}}',{{cantidad_usuarios_sexo}}]);
+        {{/usuariosPorSexo}}
+
+        data.addRows(datos);
          var piechart_options = {
                        title:'Cantidad usuarios por genero',
                        width:400,
@@ -157,9 +160,9 @@
         data.addColumn('string', 'Edad');
         data.addColumn('number', 'Cantidad');
         data.addRows([
-          ['Jubilados', 3],
-          ['Media', 1],
-          ['Menores', 1]]);
+          ['Jubilados', {{cantidadJubilados}}],
+          ['Media', {{cantidadMedios}}],
+          ['Menores', {{cantidadMenores}}]]);
          var piechart_options = {
                        title:'Cantidad usuarios por edad',
                        width:400,
@@ -192,8 +195,8 @@
    function drawBarraPorcentajeCadaUsuario() {
 
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
+        data.addColumn('string', 'Usuario');
+        data.addColumn('number', 'Porcentaje');
         let datos =[];
         {{#usuariosRatio}}
             datos.push(['{{nombrerUsuario}}',{{ratio}}]);
@@ -232,14 +235,13 @@
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Pais');
         data.addColumn('number', 'Usuarios');
-        data.addRows([
-          ['Argentina', 3],
-          ['Peru', 1],
-          ['Bolivia', 1],
-          ['Chile', 1],
-          ['Jamaica', 2]
-        ]);
 
+        let datos =[];
+        {{#usuariosPorPais}}
+            datos.push(['{{pais}}',{{cantidad_usuarios_pais}}]);
+        {{/usuariosPorPais}}
+
+        data.addRows(datos);
         var barchart_options = {title:'Cantidad usuarios por pais',
                        width:400,
                        height:300,

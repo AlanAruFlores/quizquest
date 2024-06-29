@@ -24,6 +24,11 @@
             $ganancia = ($ganancia == null) ? 0 : $ganancia;
 
             $usuariosRatio = $this->adminModel->getUsuariosAndHisRatio();
+            $usuariosPorPais = $this->adminModel->getUsuariosPorPais();
+            $usuariosPorSexo = $this->adminModel->getUsuariosPorSexo();
+            $cantidadMenores = $this->adminModel->getUsuariosMenores()["cantidad"];
+            $cantidadMedios = $this->adminModel->getUsuariosMedios()["cantidad"];
+            $cantidadJubilados = $this->adminModel->getUsuariosJubilados()["cantidad"];
 
             $this->presenter->render("view/viewAdminPanel.mustache", [
                 "totalUsuarios"=>$totalUsuarios,
@@ -33,6 +38,11 @@
                 "cantidadPreguntasCreadas"=>$cantidadPreguntasCreadas,
                 "ganancia"=>$ganancia,
                 "usuariosRatio"=>$usuariosRatio,
+                "usuariosPorPais"=>$usuariosPorPais,
+                "usuariosPorSexo" => $usuariosPorSexo,
+                "cantidadMenores"=>$cantidadMenores,
+                "cantidadMedios" => $cantidadMedios,
+                "cantidadJubilados" => $cantidadJubilados,
                 ...$this->mainSettings
             ]);
         }
