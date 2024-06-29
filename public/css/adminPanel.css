@@ -199,7 +199,7 @@ td {
 
 /*FILTRAR CSS*/
 
-.estadisticas form {
+.filtro form {
     display: flex;
     flex-direction: row;
     margin-left: 25px;
@@ -207,22 +207,24 @@ td {
     color: #581845;
 }
 
-.estadisticas form h2{
+.filtro form label{
     color: #fff;
+    font-size: 25px;
 }
 
-.estadisticas form input{
-    width: 50px;
+.filtro form input{
+    width: 100px;
+    height: 30px;
     background-color: #fff;
     border: none;
     color: #f45d22;
     padding: 0px 4px;
 }
-.estadisticas form input::placeholder{
+.filtro form input::placeholder{
     color: #f45d22;
 }
 
-.estadisticas form button{
+.filtro form button{
     background-color: #581845;
     color: white;
     border: none;
@@ -266,6 +268,14 @@ td {
         background: #f05462;
         padding: 8px 38px;
         border: 2px solid white;
+    }
+
+    .filtro form{
+        display: flex;
+        flex-direction: column;
+    }
+    .filtro form button{
+        width: 100px;
     }
 }
 @media screen and (max-width:536px) {
