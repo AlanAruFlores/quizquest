@@ -68,7 +68,7 @@
                 // die();
                 $this->usuarioModel->update($datosActualizados);
                 $_SESSION["usuarioLogged"] = $this->usuarioModel->findById($_SESSION["usuarioLogged"]["id"]);
-                header("Location:/perfil");
+                header("Location:/quizquest/perfil/get");
         }
     }
 ?>

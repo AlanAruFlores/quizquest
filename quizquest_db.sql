@@ -21,7 +21,8 @@ CREATE TABLE Usuario
     cantidad_acertadas INT NOT NULL,
     ratio INT NOT NULL,
     nivel VARCHAR (100) NOT NULL,
-    trampitas INT DEFAULT 0
+    trampitas INT DEFAULT 0,
+    fechaCreacion DATE
 );
 
 -- Creación de la tabla Administrador
@@ -53,6 +54,7 @@ CREATE TABLE Partida
     puntaje INT          NOT NULL,
     codigo int not null unique,
 	usuario_id INT NOT NULL,
+	fechaCreacion DATE,
     FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );
 
@@ -75,6 +77,7 @@ CREATE TABLE Pregunta
     acertadas INT,
     porcentaje INT,
     categoria_id INT,
+	fechaCreacion DATE,
     FOREIGN KEY (categoria_id) REFERENCES Categoria (id)
 );
 
@@ -147,91 +150,86 @@ CREATE TABLE venta(
 
 -- Insertar datos en la tabla Usuario
 INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
-                     nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, trampitas)
-VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, "19850102", "Masculino", 'juan.perez@example.com', 'password123', 'juanperez', "Argentina", "Buenos Aires",100,90,90,"AVANZADO", 0),
-       (2, NULL, 'Basico', 'Ana López', TRUE,  "19900102", "Femenino" , 'ana.lopez@example.com', 'password456', 'analia123', "Argentina", "Buenos Aires",100,90,90,"AVANZADO",0),
-       (3, NULL, 'Editor', 'Carlos García', TRUE,  "19750102", "Masculino" , 'carlos.garcia@example.com', 'password789', 'carlosgomez',"Argentina", "Buenos Aires",100,90,90,"AVANZADO",0),
-       (4, NULL, 'Basico', 'Jose Gomez', TRUE, '19951115', 'Masculino', 'jose.gomez@example.com', 'password789', 'jose1234', 'México', 'Ciudad de México', 80, 75, 93, 'AVANZADO',0),
-	   (5, NULL, 'Basico', 'María García', TRUE, '19870423', 'Femenino', 'maria.garcia@example.com', 'password987', 'maria.g', 'España', 'Madrid', 120, 110, 91, 'AVANZADO',0),
-	   (6, NULL, 'Basico', 'Carlos Martínez', TRUE, '20000229', 'Masculino', 'carlos.martinez@example.com', 'password123', 'carlosm_29', 'Colombia', 'Bogotá', 95, 85, 89.47, 'AVANZADO',0),
-	   (7, NULL, 'Basico', 'Laura Fernández', TRUE, '19980910', 'Femenino', 'laura.fernandez@example.com', 'passwordabc', 'laura_f', 'Argentina', 'Córdoba', 85, 80, 94.12, 'AVANZADO',0),
-       (8, NULL, 'Basico', 'Pedro Rodríguez', TRUE, '19931205', 'Masculino', 'pedro.rodriguez@example.com', 'password456', 'pedrorod', 'Chile', 'Santiago', 110, 105, 95.45, 'AVANZADO',0),
-	   (9, NULL, 'Basico', 'Ana Ramírez', TRUE, '19901008', 'Femenino', 'ana.ramirez@example.com', 'password789', 'ana_ram', 'España', 'Barcelona', 70, 65, 92.86, 'AVANZADO',0),
-       (10, NULL, 'Basico', 'Jorge Sánchez', TRUE, '19970430', 'Masculino', 'jorge.sanchez@example.com', 'passwordxyz', 'jsancho', 'México', 'Guadalajara', 100, 95, 95, 'AVANZADO',0),
-	   (11, NULL, 'Basico', 'Lucía Morales', TRUE, '20030214', 'Femenino', 'lucia.morales@example.com', 'password123', 'lucia_m', 'España', 'Valencia', 50, 40, 80, 'NOVATO',0),
-	   (12, NULL, 'Basico', 'Martín González', TRUE, '20011203', 'Masculino', 'martin.gonzalez@example.com', 'password456', 'martin_g', 'Argentina', 'Rosario', 55, 45, 81.82, 'NOVATO',0),
-	   (13, NULL, 'Basico', 'Sofía Hernández', TRUE, '20000820', 'Femenino', 'sofia.hernandez@example.com', 'password789', 'sofia_h', 'México', 'Monterrey', 40, 35, 87.5, 'NOVATO',0),
-	   (14, NULL, 'Basico', 'Mateo Díaz', TRUE, '20050110', 'Masculino', 'mateo.diaz@example.com', 'passwordabc', 'mateo_d', 'Colombia', 'Medellín', 48, 42, 87.5, 'NOVATO',0),
-       (15, NULL, 'Basico', 'Valentina Ruiz', TRUE, '20041025', 'Femenino', 'valentina.ruiz@example.com', 'passwordxyz', 'valen_r', 'Chile', 'Valparaíso', 38, 32, 84.21, 'NOVATO',0);
+                     nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, trampitas,fechaCreacion)
+VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, "19850102", "Masculino", 'juan.perez@example.com', 'password123', 'juanperez', "Argentina", "Buenos Aires",100,90,90,"AVANZADO", 0, "20000110"),
+       (2, NULL, 'Basico', 'Ana López', TRUE,  "19900102", "Femenino" , 'ana.lopez@example.com', 'password456', 'analia123', "Argentina", "Buenos Aires",100,90,90,"AVANZADO",0,"20100110"),
+       (3, NULL, 'Editor', 'Carlos García', TRUE,  "19750102", "Masculino" , 'carlos.garcia@example.com', 'password789', 'carlosgomez',"Argentina", "Buenos Aires",100,90,90,"AVANZADO",0,"20120210"),
+       (4, NULL, 'Basico', 'Jose Gomez', TRUE, '19951115', 'Masculino', 'jose.gomez@example.com', 'password789', 'jose1234', 'México', 'Ciudad de México', 80, 75, 93, 'AVANZADO',0,"20090210"),
+	   (5, NULL, 'Basico', 'María García', TRUE, '19870423', 'Femenino', 'maria.garcia@example.com', 'password987', 'maria.g', 'España', 'Madrid', 120, 110, 91, 'AVANZADO',0,"20040101"),
+	   (6, NULL, 'Basico', 'Carlos Martínez', TRUE, '20000229', 'Masculino', 'carlos.martinez@example.com', 'password123', 'carlosm_29', 'Colombia', 'Bogotá', 95, 85, 89.47, 'AVANZADO',0,"20040210"),
+	   (7, NULL, 'Basico', 'Laura Fernández', TRUE, '19980910', 'Femenino', 'laura.fernandez@example.com', 'passwordabc', 'laura_f', 'Argentina', 'Córdoba', 85, 80, 94.12, 'AVANZADO',0,"20180210"),
+       (8, NULL, 'Basico', 'Pedro Rodríguez', TRUE, '19931205', 'Masculino', 'pedro.rodriguez@example.com', 'password456', 'pedrorod', 'Chile', 'Santiago', 110, 105, 95.45, 'AVANZADO',0, "20200210"),
+	   (9, NULL, 'Basico', 'Ana Ramírez', TRUE, '19901008', 'Femenino', 'ana.ramirez@example.com', 'password789', 'ana_ram', 'España', 'Barcelona', 70, 65, 92.86, 'AVANZADO',0,"20200110"),
+       (10, NULL, 'Basico', 'Jorge Sánchez', TRUE, '19970430', 'Masculino', 'jorge.sanchez@example.com', 'passwordxyz', 'jsancho', 'México', 'Guadalajara', 100, 95, 95, 'AVANZADO',0,"20140210"),
+	   (11, NULL, 'Basico', 'Lucía Morales', TRUE, '20030214', 'Femenino', 'lucia.morales@example.com', 'password123', 'lucia_m', 'España', 'Valencia', 50, 40, 80, 'NOVATO',0,"20220202"),
+	   (12, NULL, 'Basico', 'Martín González', TRUE, '20011203', 'Masculino', 'martin.gonzalez@example.com', 'password456', 'martin_g', 'Argentina', 'Rosario', 55, 45, 81.82, 'NOVATO',0,"20190210"),
+	   (13, NULL, 'Basico', 'Sofía Hernández', TRUE, '20000820', 'Femenino', 'sofia.hernandez@example.com', 'password789', 'sofia_h', 'México', 'Monterrey', 40, 35, 87.5, 'NOVATO',0,"20190810"),
+	   (14, NULL, 'Basico', 'Mateo Díaz', TRUE, '20050110', 'Masculino', 'mateo.diaz@example.com', 'passwordabc', 'mateo_d', 'Colombia', 'Medellín', 48, 42, 87.5, 'NOVATO',0,"20150210"),
+       (15, NULL, 'Basico', 'Valentina Ruiz', TRUE, '20041025', 'Femenino', 'valentina.ruiz@example.com', 'passwordxyz', 'valen_r', 'Chile', 'Valparaíso', 38, 32, 84.21, 'NOVATO',0,"20140210");
        
-insert into usuario values
-(100, NULL, 'Basico', 'BOT', TRUE, '', '', '', '', 'BOT', '', '', 0, 0, 0, 'INDEFINIDO',0);
+insert into usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
+nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, trampitas) values(100, NULL, 'Basico', 'BOT', TRUE, '', '', '', '', 'BOT', '', '', 0, 0, 0, 'INDEFINIDO',0);
 
 -- Insertar partidas
 -- Insert para Juan Pérez (Usuario ID: 1)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Juan Pérez', 150, 1, 1);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Juan Pérez', 150, 1, 1,"20000110");
 
 -- Insert para Ana López (Usuario ID: 2)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Ana López', 140, 2, 2);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Ana López', 140, 2, 2,"20100110");
 
 -- Insert para Carlos García (Usuario ID: 3)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Carlos García', 200, 3, 3);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Carlos García', 200, 3, 3,"20120210");
 
 -- Insert para Jose Gomez (Usuario ID: 4)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Jose Gomez', 300, 4, 4);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Jose Gomez', 300, 4, 4,"20090210");
 
 -- Insert para María García (Usuario ID: 5)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de María García', 90, 5, 5);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de María García', 90, 5, 5,"20040101");
 
 -- Insert para Carlos Martínez (Usuario ID: 6)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Carlos Martínez', 1700, 6, 6);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Carlos Martínez', 1700, 6, 6,"20040210");
 
 -- Insert para Laura Fernández (Usuario ID: 7)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Laura Fernández', 1600, 7, 7);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Laura Fernández', 1600, 7, 7,"20180210");
 
 -- Insert para Pedro Rodríguez (Usuario ID: 8)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Pedro Rodríguez', 80, 8, 8);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Pedro Rodríguez', 80, 8, 8,"20200210");
 
 -- Insert para Ana Ramírez (Usuario ID: 9)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Ana Ramírez', 100, 9, 9);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Ana Ramírez', 100, 9, 9,"20200110");
 
 -- Insert para Jorge Sánchez (Usuario ID: 10)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Jorge Sánchez', 350, 10, 10);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id, fechaCreacion)
+VALUES ('Partida de Jorge Sánchez', 350, 10, 10,"20140210");
 
 -- Insert para Lucía Morales (Usuario ID: 11)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Lucía Morales', 400, 11, 11);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Lucía Morales', 400, 11, 11,"20220202");
 
 -- Insert para Martín González (Usuario ID: 12)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Martín González', 100, 12, 12);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Martín González', 100, 12, 12,"20190210");
 
 -- Insert para Sofía Hernández (Usuario ID: 13)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Sofía Hernández', 40, 13, 13);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Sofía Hernández', 40, 13, 13,"20190810");
 
 -- Insert para Mateo Díaz (Usuario ID: 14)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Mateo Díaz', 950, 144, 14);
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Mateo Díaz', 950, 144, 14,"20150210");
 
 -- Insert para Valentina Ruiz (Usuario ID: 15)
-INSERT INTO Partida (nombre, puntaje, codigo, usuario_id)
-VALUES ('Partida de Valentina Ruiz', 120, 15, 15);
-
-
-
-
-
+INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
+VALUES ('Partida de Valentina Ruiz', 120, 15, 15,"20140210");
 
 -- Insertar datos en la tabla Administrador
 INSERT INTO Administrador (Usuario_id)

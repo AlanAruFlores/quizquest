@@ -29,14 +29,14 @@
         <div class="content" id="general">
              <h1>Informacion General</h1>
              <div class="filtro"> 
-               <form action="" method="">
+               <form action="/quizquest/adminpanel/filter" method="POST">
                     <div>
                         <label>Desde:</label>
-                        <input type="date" required> 
+                        <input type="date" name="desde" required> 
                     </div>
                     <div>
                         <label>Hasta:</label>
-                        <input type="date" required> 
+                        <input type="date" name="hasta" required> 
                     </div>
 
                     <button type="submit">Filtrar</button>

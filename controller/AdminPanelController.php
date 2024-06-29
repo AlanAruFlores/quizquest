@@ -91,6 +91,12 @@ class AdminPanelController
  
     }
 
+    public function filter(){
+        $fechaDesde = $_POST["desde"];
+        $fechaHasta = $_POST["hasta"];
+        
+    }
+
 }
 
 ?>
