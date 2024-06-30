@@ -4,12 +4,12 @@
         <div class="perfil">
             <div>
                 <h2 class="contenido__titulo perfil__titulo">{{nombrerUsuario}}</h2>
-                <h3 class="contenido__titulo perfil__subtitulo">Ranking #4</h3>
+                <h3 class="contenido__titulo perfil__subtitulo">Ranking #{{posicion}}</h3>
                 {{#imagen}}
                     <img src="{{imagen}}" alt="perfil" class="perfil__imagen">
                 {{/imagen}}
                 {{^imagen}}
-                    <img src="quizquest/public/imagenes/perfil.png" alt="perfil" class="perfil__imagen">
+                    <img src="/quizquest/public/imagenes/perfil.png" alt="perfil" class="perfil__imagen">
                 {{/imagen}}
                 
             </div>
@@ -17,7 +17,7 @@
                 <p class="perfil__parrafo">Nombre completo: <span>{{nombreCompleto}}</span></p>
                 <p class="perfil__parrafo">Pais y Ciudad: <span>{{pais}}, {{ciudad}}</span></p>
                 <div id="map"></div>
-                <p class="perfil__parrafo">Max. Puntaje: <span>1000 puntos</span></p>
+                <p class="perfil__parrafo">Max. Puntaje: <span>{{maximoPuntaje}} puntos</span></p>
                 <p class="perfil__parrafo">Partidas Recientes:</p>
                 <table class="perfil__tabla">
                       <thead>

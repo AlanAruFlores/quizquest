@@ -104,7 +104,7 @@ class Configuration
     }
 
     public static function getPerfilController(){
-        return new PerfilController(self::getPresenter(), self::getUsuarioModel(),self::getPartidaModel(), self::getMainSettings());
+        return new PerfilController(self::getPresenter(), self::getUsuarioModel(),self::getPartidaModel(), self::getRankingModel(), self::getMainSettings());
     }
 
     public static function getContarController(){

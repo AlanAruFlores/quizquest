@@ -6,11 +6,14 @@
         private $mainSettings;
         private $usuarioModel;
         private $partidaModel;
-        public function __construct($presenter,$usuarioModel,$partidaModel,$mainSettings){
+
+        private $rankingModel;
+        public function __construct($presenter,$usuarioModel,$partidaModel,$rankingModel, $mainSettings){
             $this->presenter = $presenter;
             $this->mainSettings = $mainSettings;
             $this->usuarioModel = $usuarioModel;
             $this->partidaModel = $partidaModel;
+            $this->rankingModel = $rankingModel;
         }
 
         public function get(){  
@@ -33,10 +36,15 @@
             $idUsuario = $_GET["id"];
             $usuario = $this->usuarioModel->findById($idUsuario);
             $partidasRecientes = $this->partidaModel->getPartidasRecientes($idUsuario);
+            $ranking = $this->rankingModel->obtenerTopUsuarioId($idUsuario);
+            // var_dump($ranking);
+            // die();    
             $this->presenter->render("view/viewShowPerfil.mustache",
             [
                 "usuario" => $usuario,
                 "partidaRecientes" => $partidasRecientes,
+                "posicion" => $ranking["top"],
+                "maximoPuntaje" => $ranking["max_puntaje"],
                 ...$this->mainSettings
             ]);
         }
