@@ -52,6 +52,13 @@ class LobbyEditorController {
         header("Location:/quizquest/lobbyeditor/get");
     }
 
+    
+    public function exit()
+    {
+        unset($_SESSION["usuarioLogged"]);
+        header("Location:/quizquest/login/get");
+    }
+
     //Elimino una sugerencia
     public function deleteSuggest(){
         $this->sugiereModel->deleteRespuestasSugeridasByPreguntaSugeridaId($_GET["id"]);

@@ -140,6 +140,12 @@ class AdminPanelController
         ]);
     }
 
+    public function exit()
+    {
+        unset($_SESSION["usuarioLogged"]);
+        header("Location:/quizquest/login/get");
+    }
+
 }
 
 ?>

@@ -40,6 +40,11 @@
                 return;
             }
 
+            /*Si es admin lo mando a su vista */
+            if($usuarioEncontrado["rol"] == "Administrador"){
+                header("Location:/quizquest/adminpanel/get");
+                return;
+            }
             
             /*Si no es editor ni administrador, es un usuario normal */
             header("Location:/quizquest/lobbyusuario/get");
