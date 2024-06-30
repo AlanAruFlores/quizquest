@@ -84,7 +84,7 @@ CREATE TABLE Pregunta
 -- Creación de la tabla Realiza
 CREATE TABLE Realiza
 (
-    pregunta_id INT,
+    pregunta_id INT,	
 	usuario_id INT,
 	PRIMARY KEY (usuario_id, pregunta_id),
     FOREIGN KEY (pregunta_id) REFERENCES Pregunta (id),
@@ -151,29 +151,36 @@ CREATE TABLE venta(
 -- Insertar datos en la tabla Usuario
 INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
                      nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, trampitas,fechaCreacion)
-VALUES (1, NULL, 'Administrador', 'Juan Pérez', TRUE, "19850102", "Masculino", 'juan.perez@example.com', 'password123', 'juanperez', "Argentina", "Buenos Aires",100,90,90,"AVANZADO", 0, "20000110"),
-       (2, NULL, 'Basico', 'Ana López', TRUE,  "19900102", "Femenino" , 'ana.lopez@example.com', 'password456', 'analia123', "Argentina", "Buenos Aires",100,90,90,"AVANZADO",0,"20100110"),
-       (3, NULL, 'Editor', 'Carlos García', TRUE,  "19750102", "Masculino" , 'carlos.garcia@example.com', 'password789', 'carlosgomez',"Argentina", "Buenos Aires",100,90,90,"AVANZADO",0,"20120210"),
-       (4, NULL, 'Basico', 'Jose Gomez', TRUE, '19951115', 'Masculino', 'jose.gomez@example.com', 'password789', 'jose1234', 'México', 'Ciudad de México', 80, 75, 93, 'AVANZADO',0,"20090210"),
-	   (5, NULL, 'Basico', 'María García', TRUE, '19870423', 'Femenino', 'maria.garcia@example.com', 'password987', 'maria.g', 'España', 'Madrid', 120, 110, 91, 'AVANZADO',0,"20040101"),
-	   (6, NULL, 'Basico', 'Carlos Martínez', TRUE, '20000229', 'Masculino', 'carlos.martinez@example.com', 'password123', 'carlosm_29', 'Colombia', 'Bogotá', 95, 85, 89.47, 'AVANZADO',0,"20040210"),
-	   (7, NULL, 'Basico', 'Laura Fernández', TRUE, '19980910', 'Femenino', 'laura.fernandez@example.com', 'passwordabc', 'laura_f', 'Argentina', 'Córdoba', 85, 80, 94.12, 'AVANZADO',0,"20180210"),
-       (8, NULL, 'Basico', 'Pedro Rodríguez', TRUE, '19931205', 'Masculino', 'pedro.rodriguez@example.com', 'password456', 'pedrorod', 'Chile', 'Santiago', 110, 105, 95.45, 'AVANZADO',0, "20200210"),
-	   (9, NULL, 'Basico', 'Ana Ramírez', TRUE, '19901008', 'Femenino', 'ana.ramirez@example.com', 'password789', 'ana_ram', 'España', 'Barcelona', 70, 65, 92.86, 'AVANZADO',0,"20200110"),
-       (10, NULL, 'Basico', 'Jorge Sánchez', TRUE, '19970430', 'Masculino', 'jorge.sanchez@example.com', 'passwordxyz', 'jsancho', 'México', 'Guadalajara', 100, 95, 95, 'AVANZADO',0,"20140210"),
-	   (11, NULL, 'Basico', 'Lucía Morales', TRUE, '20030214', 'Femenino', 'lucia.morales@example.com', 'password123', 'lucia_m', 'España', 'Valencia', 50, 40, 80, 'NOVATO',0,"20220202"),
-	   (12, NULL, 'Basico', 'Martín González', TRUE, '20011203', 'Masculino', 'martin.gonzalez@example.com', 'password456', 'martin_g', 'Argentina', 'Rosario', 55, 45, 81.82, 'NOVATO',0,"20190210"),
-	   (13, NULL, 'Basico', 'Sofía Hernández', TRUE, '20000820', 'Femenino', 'sofia.hernandez@example.com', 'password789', 'sofia_h', 'México', 'Monterrey', 40, 35, 87.5, 'NOVATO',0,"20190810"),
-	   (14, NULL, 'Basico', 'Mateo Díaz', TRUE, '20050110', 'Masculino', 'mateo.diaz@example.com', 'passwordabc', 'mateo_d', 'Colombia', 'Medellín', 48, 42, 87.5, 'NOVATO',0,"20150210"),
-       (15, NULL, 'Basico', 'Valentina Ruiz', TRUE, '20041025', 'Femenino', 'valentina.ruiz@example.com', 'passwordxyz', 'valen_r', 'Chile', 'Valparaíso', 38, 32, 84.21, 'NOVATO',0,"20140210");
+VALUES (1, NULL, 'Basico', 'Juan Pérez', TRUE, "1985-01-02", "Masculino", 'juan.perez@example.com', 'password123', 'juanperez', "Argentina", "Buenos Aires",100,90,90,"AVANZADO", 0, "2000-01-10"),
+       (2, NULL, 'Basico', 'Ana López', TRUE,  "1990-01-02", "Femenino" , 'ana.lopez@example.com', 'password456', 'analia123', "Argentina", "Buenos Aires",100,90,90,"AVANZADO",0,"2010-01-10"),
+       (3, NULL, 'Basico', 'Carlos García', TRUE,  "1975-01-02", "Masculino" , 'carlos.garcia@example.com', 'password789', 'carlosgomez',"Argentina", "Buenos Aires",100,90,90,"AVANZADO",0,"2012-02-10"),
+       (4, NULL, 'Basico', 'Jose Gomez', TRUE, '1995-11-15', 'Masculino', 'jose.gomez@example.com', 'password789', 'jose1234', 'México', 'Ciudad de México', 80, 75, 93, 'AVANZADO',0,"2009-02-10"),
+	   (5, NULL, 'Basico', 'María García', TRUE, '1987-04-23', 'Femenino', 'maria.garcia@example.com', 'password987', 'maria.g', 'España', 'Madrid', 120, 110, 91, 'AVANZADO',0,"2004-01-01"),
+	   (6, NULL, 'Basico', 'Carlos Martínez', TRUE, '2000-02-29', 'Masculino', 'carlos.martinez@example.com', 'password123', 'carlosm_29', 'Colombia', 'Bogotá', 95, 85, 89.47, 'AVANZADO',0,"2004-02-10"),
+	   (7, NULL, 'Basico', 'Laura Fernández', TRUE, '1998-09-10', 'Femenino', 'laura.fernandez@example.com', 'passwordabc', 'laura_f', 'Argentina', 'Córdoba', 85, 80, 94.12, 'AVANZADO',0,"2018-02-10"),
+       (8, NULL, 'Basico', 'Pedro Rodríguez', TRUE, '1993-12-05', 'Masculino', 'pedro.rodriguez@example.com', 'password456', 'pedrorod', 'Chile', 'Santiago', 110, 105, 95.45, 'AVANZADO',0, "2020-02-10"),
+	   (9, NULL, 'Basico', 'Ana Ramírez', TRUE, '1990-10-08', 'Femenino', 'ana.ramirez@example.com', 'password789', 'ana_ram', 'España', 'Barcelona', 70, 65, 92.86, 'AVANZADO',0,"2020-01-10"),
+       (10, NULL, 'Basico', 'Jorge Sánchez', TRUE, '1997-04-30', 'Masculino', 'jorge.sanchez@example.com', 'passwordxyz', 'jsancho', 'México', 'Guadalajara', 100, 95, 95, 'AVANZADO',0,"2014-02-10"),
+	   (11, NULL, 'Basico', 'Lucía Morales', TRUE, '2003-02-14', 'Femenino', 'lucia.morales@example.com', 'password123', 'lucia_m', 'España', 'Valencia', 50, 40, 80, 'NOVATO',0,"2022-02-02"),
+	   (12, NULL, 'Basico', 'Martín González', TRUE, '2001-12-03', 'Masculino', 'martin.gonzalez@example.com', 'password456', 'martin_g', 'Argentina', 'Rosario', 55, 45, 81.82, 'NOVATO',0,"2019-02-10"),
+	   (13, NULL, 'Basico', 'Sofía Hernández', TRUE, '2000-08-20', 'Femenino', 'sofia.hernandez@example.com', 'password789', 'sofia_h', 'México', 'Monterrey', 40, 35, 87.5, 'NOVATO',0,"2019-08-10"),
+	   (14, NULL, 'Basico', 'Mateo Díaz', TRUE, '2005-01-10', 'Masculino', 'mateo.diaz@example.com', 'passwordabc', 'mateo_d', 'Colombia', 'Medellín', 48, 42, 87.5, 'NOVATO',0,"2015-02-10"),
+       (15, NULL, 'Basico', 'Valentina Ruiz', TRUE, '2004-10-25', 'Femenino', 'valentina.ruiz@example.com', 'passwordxyz', 'valen_r', 'Chile', 'Valparaíso', 38, 32, 84.21, 'NOVATO',0,"2014-02-10");
        
 insert into usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
 nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, trampitas) values(100, NULL, 'Basico', 'BOT', TRUE, '', '', '', '', 'BOT', '', '', 0, 0, 0, 'INDEFINIDO',0);
+-- Editor y administrador
+
+
 
 -- Insertar partidas
 -- Insert para Juan Pérez (Usuario ID: 1)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
 VALUES ('Partida de Juan Pérez', 150, 1, 1,"20000110");
+INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
+                     nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, trampitas,fechaCreacion)
+VALUES (16, NULL, 'Editor', 'Editor Quizquest', TRUE, "1985-01-02", "Masculino", 'editor@gmail.com', 'editor1234', 'editor', "Argentina", "Buenos Aires",0,9,0,"NOVATO", 0, "2000-01-10"),
+       (17, NULL, 'Administrador', 'Admin Quizquest', TRUE, "1985-01-02", "Masculino", 'admin@gmail.com', 'admin1234', 'admin', "Argentina", "Buenos Aires",0,9,0,"NOVATO", 0, "2000-01-10");
 
 -- Insert para Ana López (Usuario ID: 2)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)

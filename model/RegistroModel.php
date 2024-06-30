@@ -7,9 +7,9 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Usamos estas librerias
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require './third-party/PHPMailer/src/Exception.php';
+require './third-party/PHPMailer/src/PHPMailer.php';
+require './third-party/PHPMailer/src/SMTP.php';
 //Create an instance; passing `true` enables exceptions
 
 class RegistroModel{
