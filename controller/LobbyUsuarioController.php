@@ -56,11 +56,12 @@ class LobbyUsuarioController
     public function createNewPartida()
     {
         //INSERTO Y OBTENGO LA PARTIDA
+        $codigo = $this->partidaModel->generateCodeRandom();
         $partida = new Partida();
-        $partida->setNombre($_POST["nombre"]);
+        $partida->setNombre("Partida#".$codigo);
         $partida->setPuntaje(0);
         $partida->setUsuarioId($_SESSION["usuarioLogged"]["id"]);
-        $partida->setCodigo($this->partidaModel->generateCodeRandom());
+        $partida->setCodigo($codigo);
 
         $this->partidaModel->insertNewPartida($partida);
         $partidaObject = $this->partidaModel->getPartidaByNameAndCode($partida);
@@ -79,11 +80,13 @@ class LobbyUsuarioController
     public function createPartidaBot()
     {
         //INSERTO Y OBTENGO LA PARTIDA
+        $codigo = $this->partidaModel->generateCodeRandom();
+
         $partida = new Partida();
-        $partida->setNombre($_POST["nombre"]);
+        $partida->setNombre("PartidaBot#".$codigo);
         $partida->setPuntaje(0);
         $partida->setUsuarioId($_SESSION["usuarioLogged"]["id"]);
-        $partida->setCodigo($this->partidaModel->generateCodeRandom());
+        $partida->setCodigo($codigo);
 
         $this->partidaModel->insertNewPartida($partida);
         $partidaObject = $this->partidaModel->getPartidaByNameAndCode($partida);

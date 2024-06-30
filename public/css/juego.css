@@ -19,7 +19,7 @@ body{
     display: grid;
     background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 100%);
     grid-template-columns: 1fr;
-    grid-template-rows: auto 800px auto;
+    grid-template-rows: auto 900px auto;
     grid-template-areas: "encabezado" "contenido" "pie";
 }
 
@@ -229,6 +229,12 @@ body{
     background-color: #f5353596;
 } */
 
+.id_partida{
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 30px;
+    font-family: bebas;
+}
 .contador_puntaje{
     background-color: #fff;
     color: #005bea;
