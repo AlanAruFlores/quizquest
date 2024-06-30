@@ -94,7 +94,50 @@ class AdminPanelController
     public function filter(){
         $fechaDesde = $_POST["desde"];
         $fechaHasta = $_POST["hasta"];
+
+        if($fechaDesde  == null || $fechaHasta == null)
+            header("Location:/quizquest/adminpanel/get");
+        //Cantidades
+        $totalUsuarios = $this->adminModel->getCountUsuarios()["cantidad_usuarios"];
+        $cantidadUsuariosCreados = $this->adminModel->getCountUsuariosCreated()["cantidad_usuarios_nuevos"];
+        $totalPartidas = $this->adminModel->getCountPartidas()["cantidad_partidas"];
+        $cantidadPreguntas = $this->adminModel->getTotalPreguntas()["cantidad_preguntas"];
+        $cantidadPreguntasCreadas = $this->adminModel->getCountPreguntasCreated()["cantidad_preguntas_creadas"];
+        $ganancia = $this->adminModel->getGanancia()["ganancia"];
+        $ganancia = ($ganancia == null) ? 0 : $ganancia;
         
+        //Graficos
+        $usuariosRatio = $this->adminModel->getUsuariosAndHisRatioByFilter($fechaDesde, $fechaHasta);
+        $usuariosPorPais = $this->adminModel->getUsuariosPorPaisByFilter($fechaDesde, $fechaHasta);
+        $usuariosPorSexo = $this->adminModel->getUsuarioPorSexoByFilter($fechaDesde,$fechaHasta);
+        $cantidadMenores = $this->adminModel->getUsuariosMenoresByFilter($fechaDesde,$fechaHasta)["cantidad"];
+        $cantidadMedios = $this->adminModel->getUsuarioMediosByFilter($fechaDesde, $fechaHasta)["cantidad"];
+        $cantidadJubilados = $this->adminModel->getUsuarioJubiladosByFilter($fechaDesde, $fechaHasta)["cantidad"];
+        
+        // var_dump($fechaDesde);
+        // var_dump($fechaHasta);
+
+        // var_dump($usuariosRatio);
+        // var_dump($usuariosPorPais);
+        // var_dump($usuariosPorSexo);
+        // var_dump($cantidadMenores);
+        // var_dump($cantidadMedios);
+        // die();
+        $this->presenter->render("view/viewAdminPanel.mustache", [
+            "totalUsuarios" => $totalUsuarios,
+            "cantidadUsuariosCreados" => $cantidadUsuariosCreados,
+            "totalPartidas" => $totalPartidas,
+            "cantidadPreguntas" => $cantidadPreguntas,
+            "cantidadPreguntasCreadas" => $cantidadPreguntasCreadas,
+            "ganancia" => $ganancia,
+            "usuariosRatio" => $usuariosRatio,
+            "usuariosPorPais" => $usuariosPorPais,
+            "usuariosPorSexo" => $usuariosPorSexo,
+            "cantidadMenores" => $cantidadMenores,
+            "cantidadMedios" => $cantidadMedios,
+            "cantidadJubilados" => $cantidadJubilados,
+            ...$this->mainSettings
+        ]);
     }
 
 }
