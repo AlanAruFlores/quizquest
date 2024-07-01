@@ -22,7 +22,10 @@
             $file = "qrusuario".$usuarioLogeado["id"];
             $path = "public/imagenes/qr/$file.png";
             $fullPath ="/quizquest/$path";
-            QRcode::png("192.168.8.254/quizquest/perfil/showPerfil?id=".$usuarioLogeado["id"],$path,"M",4,4);
+
+            $config = parse_ini_file("config/config.ini");
+            $ip=$config["IP"];
+            QRcode::png("$ip/quizquest/perfil/showPerfil?id=".$usuarioLogeado["id"],$path,"M",4,4);
             
             $this->presenter->render("view/Perfil.mustache",
             [
