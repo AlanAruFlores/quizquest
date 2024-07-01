@@ -404,6 +404,7 @@ body{
     visibility: hidden;
     opacity: 0;
     transition: .5s;
+    z-index: 1000;
 }
 .reportar__formulario{
     background-color: #00c6fb;
