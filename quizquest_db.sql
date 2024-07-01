@@ -165,7 +165,8 @@ VALUES (1, NULL, 'Basico', 'Juan Pérez', TRUE, "1985-01-02", "Masculino", 'juan
 	   (12, NULL, 'Basico', 'Martín González', TRUE, '2001-12-03', 'Masculino', 'martin.gonzalez@example.com', 'password456', 'martin_g', 'Argentina', 'Rosario', 55, 45, 81.82, 'NOVATO',0,"2019-02-10"),
 	   (13, NULL, 'Basico', 'Sofía Hernández', TRUE, '2000-08-20', 'Femenino', 'sofia.hernandez@example.com', 'password789', 'sofia_h', 'México', 'Monterrey', 40, 35, 87.5, 'NOVATO',0,"2019-08-10"),
 	   (14, NULL, 'Basico', 'Mateo Díaz', TRUE, '2005-01-10', 'Masculino', 'mateo.diaz@example.com', 'passwordabc', 'mateo_d', 'Colombia', 'Medellín', 48, 42, 87.5, 'NOVATO',0,"2015-02-10"),
-       (15, NULL, 'Basico', 'Valentina Ruiz', TRUE, '2004-10-25', 'Femenino', 'valentina.ruiz@example.com', 'passwordxyz', 'valen_r', 'Chile', 'Valparaíso', 38, 32, 84.21, 'NOVATO',0,"2014-02-10");
+	   (15, NULL, 'Basico', 'Alan', TRUE, '2004-10-25', 'Femenino', 'alan@gmail.com', 'pachan242', 'alan', 'Argentina', 'Buenos Aires', 80, 80, 100, 'AVANZADO',0,"2014-02-10");
+
        
 insert into usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
 nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, trampitas) values(100, NULL, 'Basico', 'BOT', TRUE, '', '', '', '', 'BOT', '', '', 0, 0, 0, 'INDEFINIDO',0);
@@ -176,7 +177,7 @@ nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, tra
 -- Insertar partidas
 -- Insert para Juan Pérez (Usuario ID: 1)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Juan Pérez', 150, 1, 1,"20000110");
+VALUES ('Partida#1', 150, 1, 1,"20000110");
 INSERT INTO Usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
                      nombrerUsuario,pais,ciudad,cantidad_dadas, cantidad_acertadas, ratio, nivel, trampitas,fechaCreacion)
 VALUES (16, NULL, 'Editor', 'Editor Quizquest', TRUE, "1985-01-02", "Masculino", 'editor@gmail.com', 'editor1234', 'editor', "Argentina", "Buenos Aires",0,9,0,"NOVATO", 0, "2000-01-10"),
@@ -184,59 +185,59 @@ VALUES (16, NULL, 'Editor', 'Editor Quizquest', TRUE, "1985-01-02", "Masculino",
 
 -- Insert para Ana López (Usuario ID: 2)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Ana López', 140, 2, 2,"20100110");
+VALUES ('Partida#2', 140, 2, 2,"20100110");
 
 -- Insert para Carlos García (Usuario ID: 3)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Carlos García', 200, 3, 3,"20120210");
+VALUES ('Partida#3', 200, 3, 3,"20120210");
 
 -- Insert para Jose Gomez (Usuario ID: 4)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Jose Gomez', 300, 4, 4,"20090210");
+VALUES ('Partida#4', 300, 4, 4,"20090210");
 
 -- Insert para María García (Usuario ID: 5)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de María García', 90, 5, 5,"20040101");
+VALUES ('Partida#5', 90, 5, 5,"20040101");
 
 -- Insert para Carlos Martínez (Usuario ID: 6)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Carlos Martínez', 1700, 6, 6,"20040210");
+VALUES ('Partida#6', 1700, 6, 6,"20040210");
 
 -- Insert para Laura Fernández (Usuario ID: 7)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Laura Fernández', 1600, 7, 7,"20180210");
+VALUES ('Partida#7', 1600, 7, 7,"20180210");
 
 -- Insert para Pedro Rodríguez (Usuario ID: 8)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Pedro Rodríguez', 80, 8, 8,"20200210");
+VALUES ('Partida#8', 80, 8, 8,"20200210");
 
 -- Insert para Ana Ramírez (Usuario ID: 9)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Ana Ramírez', 100, 9, 9,"20200110");
+VALUES ('Partida#9', 100, 9, 9,"20200110");
 
 -- Insert para Jorge Sánchez (Usuario ID: 10)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id, fechaCreacion)
-VALUES ('Partida de Jorge Sánchez', 350, 10, 10,"20140210");
+VALUES ('Partida#10', 350, 10, 10,"20140210");
 
 -- Insert para Lucía Morales (Usuario ID: 11)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Lucía Morales', 400, 11, 11,"20220202");
+VALUES ('Partida#11', 400, 11, 11,"20220202");
 
 -- Insert para Martín González (Usuario ID: 12)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Martín González', 100, 12, 12,"20190210");
+VALUES ('Partida#12', 100, 12, 12,"20190210");
 
 -- Insert para Sofía Hernández (Usuario ID: 13)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Sofía Hernández', 40, 13, 13,"20190810");
+VALUES ('Partida#13', 40, 13, 13,"20190810");
 
 -- Insert para Mateo Díaz (Usuario ID: 14)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Mateo Díaz', 950, 144, 14,"20150210");
+VALUES ('Partida#14', 950, 144, 14,"20150210");
 
 -- Insert para Valentina Ruiz (Usuario ID: 15)
 INSERT INTO Partida (nombre, puntaje, codigo, usuario_id,fechaCreacion)
-VALUES ('Partida de Valentina Ruiz', 120, 15, 15,"20140210");
+VALUES ('Partida#15', 120, 15, 15,"20150210");
 
 -- Insertar datos en la tabla Administrador
 INSERT INTO Administrador (Usuario_id)
@@ -522,13 +523,126 @@ VALUES
 (119, FALSE, 'Buzz Aldrin', 'C', 30),
 (120, FALSE, 'John Glenn', 'D', 30);
 
-/*
-use quizquest_db;
-select * from usuario;
-select * from partida where usuario_id = 4 order by id desc limit 3;
-select * from pregunta;
-select * from partida where usuario_id  = 4;
-update usuario set CorreoElectronico ="alanaruquipa242@gmail.com" , Sexo ="Masculino" WHERE id = 4;
-update usuario set nivel ="NOVATO" WHERE id = 1;
-update usuario set nivel ="AVANZADO" WHERE id = 2;
-update usuario set nivel ="AVANZADO" WHERE id = 3;*/
+
+-- Mas preguntas y respuestaas
+INSERT INTO Pregunta (id, descripcion, punto, esValido, categoria_id, cantidad_dadas, acertadas, porcentaje)
+VALUES 
+    (32, "¿Cuál es la capital de Italia?", 10, TRUE, 5, 150, 100, 66.67);
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+    (121, TRUE, 'Roma', 'A', 32),
+    (122, FALSE, 'París', 'B', 32),
+    (123, FALSE, 'Londres', 'C', 32),
+    (124, FALSE, 'Berlín', 'D', 32);
+
+INSERT INTO Pregunta (id, descripcion, punto, esValido, categoria_id, cantidad_dadas, acertadas, porcentaje)
+VALUES 
+    -- Preguntas fáciles (entre 50 y 100 de porcentaje)
+    (33, "¿Cuántos lados tiene un triángulo?", 10, TRUE, 1, 100, 100, 100),
+    (34, "¿En qué país se encuentra la Torre Eiffel?", 10, TRUE, 2, 80, 80, 100),
+    (35, "¿Cuál es el resultado de 5 + 3?", 10, TRUE, 3, 120, 120, 100),
+    (36, "¿Cuál es el océano más grande del mundo?", 10, TRUE, 4, 90, 90, 100),
+    (37, "¿Cuál es el animal más grande del mundo?", 10, TRUE, 5, 70, 70, 100),
+    
+    -- Preguntas intermedias (entre 25 y 49 de porcentaje)
+    (38, "¿En qué año comenzó la Primera Guerra Mundial?", 10, TRUE, 1, 80, 40, 50),
+    (39, "¿Cuál es el valor de pi (π)?", 10, TRUE, 3, 70, 35, 50),
+    (40, "¿Qué es la fotosíntesis?", 10, TRUE, 4, 100, 50, 50),
+    (41, "¿Quién escribió 'Don Quijote de la Mancha'?", 10, TRUE, 5, 50, 25, 50),
+
+    -- Preguntas difíciles (entre 0 y 24 de porcentaje)
+    (42, "¿Cuál es el resultado de 2^10?", 10, TRUE, 1, 60, 10, 16.67),
+    (43, "¿Cuál es la capital de Mongolia?", 10, TRUE, 2, 40, 8, 20),
+    (44, "¿Cuál es la temperatura de congelación del agua en grados Celsius?", 10, TRUE, 3, 50, 12, 24),
+    (45, "¿En qué año se descubrió América por Cristóbal Colón?", 10, TRUE, 4, 30, 7, 23.33),
+    (46, "¿Cuál es el hueso más largo del cuerpo humano?", 10, TRUE, 5, 20, 4, 20),
+   
+	(47, "¿Cuántos elementos químicos tiene la tabla periódica?", 10, TRUE, 1, 40, 8, 20),
+    (48, "¿En qué año se inventó la imprenta?", 10, TRUE, 2, 30, 5, 16.67),
+    (49, "¿Cuál es la velocidad de la luz en el vacío?", 10, TRUE, 3, 20, 4, 20),
+    (50, "¿Cuántas patas tiene una araña?", 10, TRUE, 5, 15, 3, 20),
+	(51, "¿Cuál es la montaña más alta del mundo?", 10, TRUE, 5, 30, 6, 20);
+
+INSERT INTO Respuesta (id, esCorreto, descripción, letra, pregunta_id)
+VALUES 
+    -- Respuestas para las preguntas fáciles
+    (125, TRUE, 'Tres', 'A', 33),
+    (126, FALSE, 'Cuatro', 'B', 33),
+    (127, FALSE, 'Dos', 'C', 33),
+    (128, FALSE, 'Cinco', 'D', 33),
+    (129, TRUE, 'Francia', 'A', 34),
+    (130, FALSE, 'España', 'B', 34),
+    (131, FALSE, 'Italia', 'C', 34),
+    (132, FALSE, 'Alemania', 'D', 34),
+    (133, TRUE, 'Ocho', 'A', 35),
+    (134, FALSE, 'Seis', 'B', 35),
+    (135, FALSE, 'Diez', 'C', 35),
+    (136, FALSE, 'Doce', 'D', 35),
+    (137, TRUE, 'Pacífico', 'A', 36),
+    (138, FALSE, 'Atlántico', 'B', 36),
+    (139, FALSE, 'Índico', 'C', 36),
+    (140, FALSE, 'Ártico', 'D', 36),
+    (141, TRUE, 'Ballena azul', 'A', 37),
+    (142, FALSE, 'Elefante africano', 'B', 37),
+    (143, FALSE, 'Oso polar', 'C', 37),
+    (144, FALSE, 'Jirafa', 'D', 37),
+    
+    -- Respuestas para las preguntas intermedias
+    (145, TRUE, '1914', 'A', 38),
+    (146, FALSE, '1918', 'B', 38),
+    (147, FALSE, '1939', 'C', 38),
+    (148, FALSE, '1945', 'D', 38),
+    (149, TRUE, '3.14159', 'A', 39),
+    (150, FALSE, '2.71828', 'B', 39),
+    (151, FALSE, '1.61803', 'C', 39),
+    (152, FALSE, '1.73205', 'D', 39),
+    (153, TRUE, 'Proceso por el cual las plantas convierten la luz solar en energía', 'A', 40),
+    (154, FALSE, 'Proceso por el cual las plantas absorben agua del suelo', 'B', 40),
+    (155, FALSE, 'Proceso por el cual las plantas respiran dióxido de carbono', 'C', 40),
+    (156, FALSE, 'Proceso por el cual las plantas producen oxígeno', 'D',40),
+    (157, TRUE, 'Miguel de Cervantes', 'A', 41),
+    (158, FALSE, 'Gabriel García Márquez', 'B', 41),
+    (159, FALSE, 'Pablo Neruda', 'C', 41),
+    (160, FALSE, 'William Shakespeare', 'D', 41),
+
+    -- Respuestas para las preguntas difíciles
+    (161, TRUE, '1024', 'A', 42),
+    (162, FALSE, '512', 'B', 42),
+    (163, FALSE, '2048', 'C', 42),
+    (164, FALSE, '256', 'D', 42),
+    (165, TRUE, 'Ulán Bator', 'A', 43),
+    (166, FALSE, 'Bangkok', 'B', 43),
+    (167, FALSE, 'Hanoi', 'C', 43),
+    (168, FALSE, 'Dhaka', 'D', 43),
+    (169, TRUE, '0 grados Celsius', 'A', 44),
+    (170, FALSE, '100 grados Celsius', 'B', 44),
+    (171, FALSE, '-10 grados Celsius', 'C', 44),
+    (172, FALSE, '25 grados Celsius', 'D', 44),
+    (173, TRUE, '1492', 'A', 45),
+    (174, FALSE, '1498', 'B', 45),
+    (175, FALSE, '1500', 'C', 45),
+    (176, FALSE, '1502', 'D', 45),
+    (177, TRUE, 'Fémur', 'A', 46),
+    (178, FALSE, 'Húmero', 'B', 46),
+    (179, FALSE, 'Fíbula', 'C', 46),
+    (180, FALSE, 'Tibia', 'D', 46),
+	(181, TRUE, '118', 'A', 47),
+    (182, FALSE, '92', 'B', 47),
+    (183, FALSE, '109', 'C', 47),
+    (184, FALSE, '103', 'D', 47),
+    (185, TRUE, '1440', 'A', 48),
+    (186, FALSE, '1450', 'B', 48),
+    (187, FALSE, '1430', 'C', 48),
+    (188, FALSE, '1460', 'D', 48),
+    (189, TRUE, '299,792,458 m/s', 'A', 49),
+    (190, FALSE, '300,000,000 m/s', 'B', 49),
+    (191, FALSE, '250,000,000 m/s', 'C', 49),
+    (192, FALSE, '350,000,000 m/s', 'D', 49),
+    (193, TRUE, '8', 'A', 50),
+    (194, FALSE, '6', 'B', 50),
+    (195, FALSE, '10', 'C', 50),
+    (196, FALSE, '12', 'D', 50),
+	(197, TRUE, 'Monte Everest', 'A', 51),
+    (198, FALSE, 'Monte Kilimanjaro', 'B', 51),
+    (199, FALSE, 'Monte McKinley', 'C',51),
+    (200, FALSE, 'Monte Vinson', 'D',51);
