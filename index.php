@@ -7,9 +7,14 @@
         $_GET["action"]="get";
     }
     
-    if(isset($_SESSION["isPlaying"]) && ($_GET["controller"] != "juego") && ($_GET["controller"] !="contar") && ($_GET["controller"] != "bot")){
+    if(isset($_SESSION["isPlaying"]) && ($_GET["controller"] != "juego") && ($_GET["controller"] !="contar") && ($_GET["controller"] != "bot") && $_SESSION["playBot"] == false){
         $_GET["controller"]="juego";
         $_GET["action"]="get";
+    }
+
+    if(isset($_SESSION["isPlaying"]) && ($_GET["controller"] != "juego") && ($_GET["controller"] !="contar") && ($_GET["controller"] != "bot") && $_SESSION["playBot"] == true){
+        $_GET["controller"]="juego";
+        $_GET["action"]="playBot";
     }
 
     if(isset($_SESSION["usuarioLogged"]) && $_SESSION["usuarioLogged"]["rol"] != "Editor" && strcasecmp($_GET["controller"], "lobbyeditor") == 0){

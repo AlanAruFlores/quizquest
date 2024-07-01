@@ -78,8 +78,19 @@ class JuegoController
     //Se ejecuta cuando seleccion una respuesta
     public function selectAnswer()
     {
-        // if($_SERVER["REQUEST_METHOD"] != "POST")
-        //     header("Location:/quizquest/juego/get");
+        // var_dump($_GET["idRespSeleccionada"]);
+        // var_dump($_SESSION["preguntaActualExistente"]["id"]);
+        // var_dump($this->respuestaModel->verifyIfExists($_GET["idRespSeleccionada"],$_SESSION["preguntaActualExistente"]["id"]));
+        // die();
+        if(!$this->respuestaModel->verifyIfExists($_GET["idRespSeleccionada"],$_SESSION["preguntaActualExistente"]["id"]) && $_SESSION["playBot"] == false){
+            header("Location:/quizquest/juego/get");
+            return ;
+        }
+
+        if(!$this->respuestaModel->verifyIfExists($_GET["idRespSeleccionada"],$_SESSION["preguntaActualExistente"]["id"]) && $_SESSION["playBot"] == true){
+            header("Location:/quizquest/juego/playBot");
+            return ;
+        }
 
         $usuarioActualizado = $_SESSION["usuarioLogged"];
 
@@ -225,6 +236,10 @@ class JuegoController
     public function useTrap(){
         $respuestaCorrecta = $this->respuestaModel->getRespuestaCorrectaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
         $this->usuarioModel->updateWhenUseTrampita($_SESSION["usuarioLogged"]);
+        var_dump($respuestaCorrecta);
+        echo "<br>";
+        var_dump($_SESSION["preguntaActualExistente"]);
+        // die();
         $_SESSION["usuarioLogged"] = $this->usuarioModel->findById($_SESSION["usuarioLogged"]["id"]);
         header("Location:/quizquest/juego/selectAnswer?idRespSeleccionada=".$respuestaCorrecta["id"]);
     }

@@ -69,7 +69,6 @@ class LobbyUsuarioController
 
         $_SESSION["indicePregunta"] = 0;
         $_SESSION["playBot"] = false;
-
         //Aseguro que el usuario luego no se pueda ir libremente
         $_SESSION["isPlaying"] = true;
         header("Location:/quizquest/juego/get");
