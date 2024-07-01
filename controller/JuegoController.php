@@ -78,6 +78,9 @@ class JuegoController
     //Se ejecuta cuando seleccion una respuesta
     public function selectAnswer()
     {
+        // if($_SERVER["REQUEST_METHOD"] != "POST")
+        //     header("Location:/quizquest/juego/get");
+
         $usuarioActualizado = $_SESSION["usuarioLogged"];
 
         //Obtengo la respuesta seleccionada
