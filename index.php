@@ -17,6 +17,12 @@
         $_GET["action"]="get";    
     }
 
+
+    if(isset($_SESSION["usuarioLogged"]) && $_SESSION["usuarioLogged"]["rol"] != "Administrador" && strcasecmp($_GET["controller"], "adminpanel") == 0){
+        $_GET["controller"]="lobbyusuario";
+        $_GET["action"]="get";    
+    }
+
     $controller = isset($_GET["controller"]) ? $_GET["controller"] : "";
     $action = isset($_GET["action"]) ? $_GET["action"] : "";
 
