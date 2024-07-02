@@ -32,14 +32,14 @@
         public function obtenerTopUsuarioId($id){
             $usuarioDatos= null;
             $usuariosTop = self::obtenerTodosTops();
-            if(self::isBidimentionalResult($usuariosTop)){
+            if(self::isBidimentionalResult($usuariosTop)){ //Evaluo si me devuelve mas de 1 resultado
                 foreach($usuariosTop as $usuario){
                     if($usuario["id_usuario"] == $id){
                         $usuarioDatos = $usuario;
                     }
                 }
             }
-            else{
+            else{ //Se me devuelve 1 usuario
                 if($usuariosTop != null && $usuariosTop["id_usuario"] == $id)
                     $usuarioDatos = $usuariosTop;
             }

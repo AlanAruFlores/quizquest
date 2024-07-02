@@ -17,15 +17,18 @@
         }
 
         public function verifyLogin(){
+            /*Si algun campo esta vacio */
             if(!isset($_POST["correo_electronico"]) || !isset($_POST["contrasena"])){
-                header("Location:/quizquest/login/get");
+                header("Location:/quizquest/login/get"); //Login
                 return;
             }
+
             $usuario = new Usuario();
             $usuario->setCorreoElectronico($_POST["correo_electronico"]);
             $usuario->setContrasena($_POST["contrasena"]);
             $usuarioEncontrado = $this->usuarioModel->findUserByEmailandPassword($usuario);
 
+            //Evalua si no existe
             if(!$usuarioEncontrado){
                 header("Location:/quizquest/login/get");
                 return;

@@ -27,7 +27,7 @@
         }
 
 
-        //Para el usuario
+        //Obtener pregunta no repetida por usuario por su nivel y por puntaje(novato).
         private function getPreguntasNoRepeatedByLevel($level){
             $porcentajeDificultadConditional = ($level == "FACIL") ? "p.porcentaje between 50 and 100" :
                     (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje between 0 and 24");

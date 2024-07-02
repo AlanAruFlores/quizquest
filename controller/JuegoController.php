@@ -106,14 +106,14 @@ class JuegoController
         if (!$estaEquivocado) {
             $_SESSION["partidaActual"] = $this->partidaModel->increasePartidaPoints($_SESSION["partidaActual"], $_SESSION["preguntaActualExistente"]["punto"]);
             $this->preguntaModel->increaseAcertadasOfPregunta($_SESSION["preguntaActualExistente"]);
-            $usuarioActualizado["cantidad_acertadas"] += 1;
+            $usuarioActualizado["cantidad_acertadas"] += 1; //incremento la cantidad de acertadas del usuario
         }else{
             $_SESSION["isIncorrectQuestion"] = true;
         }
-        //Actualizo el usuario
+        //Actualizo el ratio del usuario
         $usuarioActualizado["ratio"] = ($usuarioActualizado["cantidad_acertadas"] / $usuarioActualizado["cantidad_dadas"]) * 100;
         $this->usuarioModel->update($usuarioActualizado);
-        $_SESSION["usuarioLogged"] = $this->usuarioModel->findById($usuarioActualizado["id"]);
+        $_SESSION["usuarioLogged"] = $this->usuarioModel->findById($usuarioActualizado["id"]); //actualizo el usuario
 
         //Actualizo el ratio de la pregunta
         $this->preguntaModel->updatePorcentaje($_SESSION["preguntaActualExistente"]);

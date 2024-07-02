@@ -35,10 +35,8 @@ class LobbyUsuarioController
 
     public function get()
     {
-
-        // QRcode::png("192.168.0.213/quizquest/lobbyusuario/get", false , QR_ECLEVEL_L, 10, 7);
-
-        self::updateDataUser();
+        self::updateDataUser(); //Actualizar los datos del usuario
+        
         $usuarioRanking = $this->rankingModel->obtenerTopUsuarioId($_SESSION["usuarioLogged"]["id"]);
 
         $esAvanzado = $_SESSION["usuarioLogged"]["nivel"] == "AVANZADO" ? true : false;
