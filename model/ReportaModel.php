@@ -6,6 +6,7 @@
             $this->database = $database;
         }
 
+        /*INSERTAR UN NUEVO REPORTA */
         public function insertNewReporte($reporte){
             $this->database->execute("insert into reporta (id,usuario_id, pregunta_id, razon) values('null','".$reporte->getUsuarioId()."','".$reporte->getPreguntaId()."','".$reporte->getRazon()."')");
         }

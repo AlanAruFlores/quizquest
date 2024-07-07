@@ -6,8 +6,6 @@
             $this->database = $database;
         }
 
-
-
         public function getAllPreguntas(){
             return $this->database->query("SELECT * FROM pregunta");
         }
@@ -66,8 +64,10 @@
             $porcentajeDificultConditional = ($level == "FACIL") ? "p.porcentaje between 50 and 100" :
                 (($level =="INTERMEDIO") ? "p.porcentaje between 25 and 49": "p.porcentaje between 0 and 24");
             
+                //OBTENGO LAS PREGUNTAS RESPONDIDAS EN EL HISTORIAL
             $preguntasToDelete = self::getPreguntasRepeatedByLevel($porcentajeDificultConditional);
             
+            //Elimina cada pregunta del arreglo de las preguntas ya respondidas
             foreach($preguntasToDelete as $preguntaItem){
                 $this->database ->execute("DELETE FROM realiza WHERE usuario_id = '".$preguntaItem["usuario_id"]."' and pregunta_id = '".$preguntaItem["pregunta_id"]."';");
             }
@@ -81,10 +81,14 @@
             //     $level = ($puntaje>=0 && $puntaje <=100) ? "FACIL" : "INTERMEDIO";
             // else
             //     $level  = "DIFICIL";
+
+            //DETERMINO EL NIVEL DE LA PREGUNTA
             $level = self::getLevelOfQuestion($puntaje,$nivelUsuario);            
  
-            if(!self::getPreguntasNoRepeatedByLevel($level))
-                self::clearQuestionsByLevel($level);
+            //getPreguntasNoRepeatedByLevel() obtiene la pregunta por el nivel obtenido en "$level"
+
+            if(!self::getPreguntasNoRepeatedByLevel($level)) 
+                self::clearQuestionsByLevel($level); // LIMPIO "HISTORIAL" DE PREGUNTAS RESPONDIDAS DEL USUARIO
 
             $questionGenerated = self::getPreguntasNoRepeatedByLevel($level);
             return $questionGenerated;
