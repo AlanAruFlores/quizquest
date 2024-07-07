@@ -43,6 +43,8 @@ class JuegoController
             $_SESSION["preguntaActualExistente"] = $this->preguntaModel->generateARandomQuestion($_SESSION["partidaActual"]["puntaje"], $_SESSION["usuarioLogged"]["nivel"]);
 
             $_SESSION["respuestasActuales"] = $this->respuestaModel->getRespuestaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
+            
+            //Instancio un objeto para evitar que se repita en la siguiente ronda
             $up = new UsuarioPregunta($_SESSION["preguntaActualExistente"]["id"], $_SESSION["usuarioLogged"]["id"]);
             $this->usuarioPreguntaModel->insertNewUsuarioPregunta($up);
             //Itero para la siguiente pregunta que venga
@@ -56,11 +58,11 @@ class JuegoController
         $colorDificultad  = "";
 
         if($_SESSION["levelOfQuestion"] == "FACIL")
-            $colorDificultad  = "#339900";
+            $colorDificultad  = "#339900"; // color verde
         else if($_SESSION["levelOfQuestion"] == "INTERMEDIO")
-            $colorDificultad  = "#ffcc00";
+            $colorDificultad  = "#ffcc00"; //color amarillo
         else
-            $colorDificultad = "#cc3300";
+            $colorDificultad = "#cc3300"; //color rojo 
 
 
         $this->presenter->render("view/viewJuego.mustache", [
@@ -100,16 +102,22 @@ class JuegoController
         //Veo si se equivoco o no
         $estaEquivocado = $respuestaSeleccionadaObject["esCorreto"] == "0" ? true : false;
         
+        //Incremento las cantidades dadas de la pregunta actual
         $this->preguntaModel->increaseCantidadOfPregunta($_SESSION["preguntaActualExistente"]);
+        //Incremento la cantidades de preguntas que contesto el usuario --> promediar el ratio del usuario --> determina el nivel del usuario 
         $usuarioActualizado["cantidad_dadas"] += 1;
+
         //Si acierta
         if (!$estaEquivocado) {
             $_SESSION["partidaActual"] = $this->partidaModel->increasePartidaPoints($_SESSION["partidaActual"], $_SESSION["preguntaActualExistente"]["punto"]);
+            
+            //Determino el ratio de la pregunta por su cantidad dadas y cantidad acertadas
             $this->preguntaModel->increaseAcertadasOfPregunta($_SESSION["preguntaActualExistente"]);
             $usuarioActualizado["cantidad_acertadas"] += 1; //incremento la cantidad de acertadas del usuario
         }else{
             $_SESSION["isIncorrectQuestion"] = true;
         }
+       
         //Actualizo el ratio del usuario
         $usuarioActualizado["ratio"] = ($usuarioActualizado["cantidad_acertadas"] / $usuarioActualizado["cantidad_dadas"]) * 100;
         $this->usuarioModel->update($usuarioActualizado);
@@ -162,6 +170,7 @@ class JuegoController
             ]);
     }
 
+    //Redirige al home "lobbyusuario" y se encarga de eliminar la sessiones que se usaron en el juego
     public function goToLobby(){
         unset($_SESSION["temporizador"]);
         unset($_SESSION["preguntaActualExistente"]);
@@ -178,8 +187,8 @@ class JuegoController
     public function reportQuestion(){
         $razon = isset($_POST["razon"]) ? $_POST["razon"] : "Razon indefinida";
         $preguntaId= $_POST["pregunta_id"]; //Id de la pregunta a reportar 
-        $usuarioId = $_SESSION["usuarioLogged"]["id"]; // Accedo al id del usuario
-        $this->preguntaModel->changePreguntaToInvalidById($preguntaId);
+        $usuarioId = $_SESSION["usuarioLogged"]["id"]; // Accedo al id del usuario de quien reporta
+        $this->preguntaModel->changePreguntaToInvalidById($preguntaId); //Cambio el campo esValido a false en la Base de datos
 
         $nuevoReporte = new Reporta(null,$usuarioId, $preguntaId, $razon);
         $this->reporteModel->insertNewReporte($nuevoReporte);
@@ -235,11 +244,16 @@ class JuegoController
 
     public function useTrap(){
         $respuestaCorrecta = $this->respuestaModel->getRespuestaCorrectaByPreguntaId($_SESSION["preguntaActualExistente"]["id"]);
+        //Refresca la base de datos el usuario
         $this->usuarioModel->updateWhenUseTrampita($_SESSION["usuarioLogged"]);
+        /*
         var_dump($respuestaCorrecta);
         echo "<br>";
         var_dump($_SESSION["preguntaActualExistente"]);
+        */
         // die();
+
+        //Refresca al usuario
         $_SESSION["usuarioLogged"] = $this->usuarioModel->findById($_SESSION["usuarioLogged"]["id"]);
         header("Location:/quizquest/juego/selectAnswer?idRespSeleccionada=".$respuestaCorrecta["id"]);
     }

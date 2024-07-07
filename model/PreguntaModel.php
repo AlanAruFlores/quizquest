@@ -38,13 +38,14 @@
                     ) and $porcentajeDificultadConditional order by rand() limit 1 ;");         
         }
 
-        //Para el bot
+        //Genera una pregunta para el bot
         public function getPreguntaNoRepeatedForBot($botId){
             $preguntaSeleccionada = $this->database->query("select p.*, c.nombre as categoria, c.color from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
                     select r.pregunta_id from realiza r
                     where r.usuario_id = '$botId'
                     ) order by rand() limit 1 ;");         
         
+            //En caso de que contesto todas la preguntas, se borra el 'historial'.
             if(!$preguntaSeleccionada){
                 $this->database->execute("DELETE FROM realiza WHERE usuario_id = '$botId'");
                 $preguntaSeleccionada = $this->database->query("select p.*, c.nombre as categoria, c.color from pregunta p join categoria c on p.categoria_id = c.id where p.id not in(
