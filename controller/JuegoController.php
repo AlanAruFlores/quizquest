@@ -184,7 +184,12 @@ class JuegoController
         $nuevoReporte = new Reporta(null,$usuarioId, $preguntaId, $razon);
         $this->reporteModel->insertNewReporte($nuevoReporte);
 
-        header("Location:/quizquest/juego/get");
+        if($_SESSION["playBot"] == false)
+            header("Location:/quizquest/juego/get");
+        
+        if($_SESSION["playBot"] == true)
+            header("Location:/quizquest/juego/playBot");
+  
     }
 
     /*METODO PARA JUGAR CON EL BOT*/
