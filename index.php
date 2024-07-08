@@ -17,6 +17,7 @@
         $_GET["action"]="playBot";
     }
 
+    
     if(isset($_SESSION["usuarioLogged"]) && $_SESSION["usuarioLogged"]["rol"] != "Editor" && strcasecmp($_GET["controller"], "lobbyeditor") == 0){
         $_GET["controller"]="lobbyusuario";
         $_GET["action"]="get";    
@@ -26,6 +27,16 @@
     if(isset($_SESSION["usuarioLogged"]) && $_SESSION["usuarioLogged"]["rol"] != "Administrador" && strcasecmp($_GET["controller"], "adminpanel") == 0){
         $_GET["controller"]="lobbyusuario";
         $_GET["action"]="get";    
+    }
+
+    if(isset($_SESSION["usuarioLogged"]) && $_SESSION["usuarioLogged"]["rol"] == "Editor" && $_GET["controller"] != "lobbyeditor" && $_GET["controller"] != "questionmanagement"){
+        $_GET["controller"] ="lobbyeditor";
+        $_GET["action"] = "get";
+    }
+
+    if(isset($_SESSION["usuarioLogged"]) && $_SESSION["usuarioLogged"]["rol"] == "Administrador" && $_GET["controller"] != "adminpanel"){
+        $_GET["controller"] ="adminpanel";
+        $_GET["action"] = "get";
     }
 
     $controller = isset($_GET["controller"]) ? $_GET["controller"] : "";
