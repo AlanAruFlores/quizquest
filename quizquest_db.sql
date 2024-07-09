@@ -1,4 +1,4 @@
-DROP DATABASE quizquest_db;
+DROP DATABASE IF EXISTS quizquest_db;
 CREATE DATABASE quizquest_db;
 USE quizquest_db;
 
@@ -166,6 +166,7 @@ VALUES (1, NULL, 'Basico', 'Juan Pérez', TRUE, "1985-01-02", "Masculino", 'juan
 	   (13, NULL, 'Basico', 'Sofía Hernández', TRUE, '2000-08-20', 'Femenino', 'sofia.hernandez@example.com', 'password789', 'sofia_h', 'México', 'Monterrey', 40, 35, 87.5, 'NOVATO',0,"2019-08-10"),
 	   (14, NULL, 'Basico', 'Mateo Díaz', TRUE, '2005-01-10', 'Masculino', 'mateo.diaz@example.com', 'passwordabc', 'mateo_d', 'Colombia', 'Medellín', 48, 42, 87.5, 'NOVATO',0,"2015-02-10"),
 	   (15, NULL, 'Basico', 'Alan', TRUE, '2004-10-25', 'Femenino', 'alan@gmail.com', 'pachan242', 'alan', 'Argentina', 'Buenos Aires', 80, 80, 100, 'AVANZADO',0,"2014-02-10");
+
 
        
 insert into usuario (id, imagen, rol, nombreCompleto, esHabilitado, fechaNacimiento, Sexo, CorreoElectronico, contrasena,
@@ -646,3 +647,14 @@ VALUES
     (198, FALSE, 'Monte Kilimanjaro', 'B', 51),
     (199, FALSE, 'Monte McKinley', 'C',51),
     (200, FALSE, 'Monte Vinson', 'D',51);
+
+/*
+use quizquest_db;
+select * from usuario;
+select * from partida where usuario_id = 4 order by id desc limit 3;
+select * from pregunta;
+select * from partida where usuario_id  = 4;
+update usuario set CorreoElectronico ="alanaruquipa242@gmail.com" , Sexo ="Masculino" WHERE id = 4;
+update usuario set nivel ="NOVATO" WHERE id = 1;
+update usuario set nivel ="AVANZADO" WHERE id = 2;
+update usuario set nivel ="AVANZADO" WHERE id = 3;*/

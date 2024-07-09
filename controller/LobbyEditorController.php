@@ -74,6 +74,7 @@ class LobbyEditorController {
     public function cancelReport(){
         $this->reportaModel->cancelReport($_GET["id"],$_GET["idPregunta"]);
         header("Location:/quizquest/lobbyeditor/get");
+        exit();
     }
 
 }
